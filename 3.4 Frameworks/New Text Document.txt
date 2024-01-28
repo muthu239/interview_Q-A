@@ -1,0 +1,21 @@
+Automation Framework:
+	Automation framework is not a single tool or process, but it is a collection of tools and processes working together to support automated testing of any application. It integrates various functions like libraries, test data and various reusable models
+
+Why automation Test framework is required?
+	Maintain a well defined strategy across the test suites
+	Enhanced speed at which testing progresses
+	Maintaining the test code will be easy
+	The URL or Application can be tested accurately
+	Continuous testing of coding and delivery will be achieved
+	
+Types of automation framework
+	- Linear automation framework (Tools which support record and playback follows this approach)
+	- Modular driven framework (Spliting the code as modules and not based on application eg:, current UiPath project)
+	- Behaviour driven framework (eg: cucumber)
+	- Data driven framework (test data will basically drive the automation)
+	- Keyword driven framework
+	- Hybrid testing framework (Mixing of two or more frameworks)
+
+Reports
+Types of reports
+Reports in java selenium

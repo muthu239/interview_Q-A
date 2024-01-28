@@ -1,0 +1,184 @@
+TestNG:
+	TestNG is test automation framework, which used to manage and execute the test cases.
+	
+How TestNG helps in automation testing?
+	Execute the test case we need test engine.
+	
+Why TestNG?
+	Test execution report generation
+	Batch test execution
+	Execute specific tests only
+	Set up and execute test pre requisite
+	Easy to code test cases, TestNG used own validators
+	Great exception handling
+	Test parallel execution
+	Test order execution
+	Easy to automate dataDriven test cases
+	support command line execution.
+	Easy to integrate with jenkins
+	
+TestNG Annotations
+	Test annotations are attached with the java methods or your test code business logic methods
+	Annotations in TestNG are lines of code that can control how the method below them will be executed
+	TestNG annotations preceded by @ symbol
+	
+List of TestNG annotations and their use
+	@BeforeSuite :
+		The annotated method will be run before all tests in this suite have run
+	@AfterSuite : 
+		The annotated method will run after all tests in this suite have run
+	@BeforeTest :  
+		The annotated method will run before any test method belonging to the classes inside the <test> tag have run
+	@AfterTest : 
+		The annotated method will run after all the test method belonging to the classes inside the <test> tag have run
+	@BeforeGroups : 
+		The list of groups that this configuration will run before. This method is guaranteed to run shortly before the first test method that belongs to any of these groups is invoked
+	@AfterGroups : 
+		The list of groups that this configuration will run after. This method is guaranteed to run shortly after the last test method that belongs to any of these groups is invoked.
+	@BeforeMethod : 
+		The annotated method will run before each test method	
+	@AfterMethod : 
+		The annotated method will run after each test method.
+	@DataProvider : 
+		Marks a method as supplying data for a test method. The @Test method that wants to receive data from this DataProvider needs to use a data provider name equals to the name of this annotation
+	@Listeners : 
+		Defines listeners on a test classes
+	@Parameters : 
+		Describes how to pass parameters to a @Test method.
+	@Test : 
+		Marks a method as part of the test
+		
+Why TestNG.xml?	
+	TestNG.xml is a XML file which is present at the root location of your project
+	TestNG XML file allows user to configure a test suite and execute it from the command line or ant script
+	TestNG XML file control the complete execution flow
+	TestNG XML file used to define the parametes for test suite/case
+	TestNG XMl file allow include and exclude tests from execution
+	TestNG XML follows specific order of XML tags
+	TestNG XML support multiple Test executions
+	TestNG XML supports direct package instructions
+	
+									              	    Suite
+										
+			Test case1                                 Test case2                          Test case3				
+						
+		Testclass1      Tclass2      TClass3          Tclass1 Tclass2  TClass3			Tclass1 Tclass2  TClass3
+		
+		TM1 TM2 TM3    TM1 TM2 TM3  TM1 TM2 TM3  TM->TestMethod
+	
+
+	
+Execution Order of Annotations:
+	TestNG annotations execute in specific order
+	
+	Importance of Execution order:
+		If some piece of code needs to be executed each time before running a test, we can use appropriate annotations
+	
+	Execution Order:
+		BeforeSuite -> BeforeTest -> BeforeClass -> BeforeMethod -> Test -> AfterMethod -> AfterClass -> AfterTest -> AfterSuite
+														
+														
+Skip tests:
+	User can skip the execution of selective tests while executing the test classes	
+		- using enable = false : If your test case is not ready to use or you want to skip the test then you just need to use enable = false with @Test annotation
+		Syntax : @Test(enabled = false)
+		
+		- using SkipException() : Add SkipException() statement in your testcase what you want to skip and the Test will be skipped at runtime.
+		syntax : throw new SkipException("Declare reason");
+		
+	Diff btwn both the above mentioned methods is while using SkipException the reason given will be printed in report while throwing exception in console whereas if we use enabled = false method the test will be completely skipped
+	
+Priortise Tests:
+	User can set the Test Priority in TestNG
+	
+	- using priority = Number : User can set the Testcase priority by passing the priority to @Test annotation
+	syntax : @Test(Priority = 1)
+		
+	- No Priority means Test is prioritise to zero
+	
+Assertion:
+	Assertion is performed to compare the actual result with the expected result
+	Assertion helps us verify the conditions of the test and decide whether the test has failed or passed
+	
+	Types of Assertion
+		Hard Assertion - If assertion fails, the rest of testcase execution is stopped
+		Soft Assertion - If assertion fails also, the rest of testcase execution continues.
+	
+	Methods available for assertion:
+		assertEquals(String actual, String Expected)
+		assertEquals(String actual, String Expected, String Message)
+		assertEquals(boolean actual, boolean Expected)
+		assertTrue(boolean)
+		assertTrue(condition, Message)
+		assertFalse(boolean)
+		assertFalse(condition, Message)
+		
+	Soft Assertion:
+		- In Soft Assertion assertAll() should be the last statement of Testcase
+		- assertAll() is used at end, so that it collects all the soft assertions and marks our testcase pass or fail based on all the assertion outputs.
+		- All assertion will work with Soft assertion too
+		- We should instantiate a SoftAssert object within @Test method. 
+		Scope of SoftAssert should only be within Test method only.
+		
+Test grouping
+	Grouping is a feature through which you can easily categorise your test cases based on requirement
+	User can assign any Group to Testcase by passing group name to @Test annotation
+	Synatax : @Test(groups = {"groupname"})
+	User can maintain the execution of groups via testng.xml
+	After grouping in selenium we can specify the include and exclude in testng.xml
+	<include> - it tells testng.xml that which group we need to execute
+	<exclude> - it tells testng.xml that which group we have to skip
+	
+Test dependency
+	Dependency is a feature in TestNG that allows a test method to depend on a single or a group of test methods.
+	User needs to pass attribute dependsOnMethods to a @Test annotation and pass the dependent test method name
+	Syntax : @Test(dependsOnMethods = {"testMethodName"})
+	
+	
+Test parametrization:
+	To pass multiple data to the application at runtime, we need to paramterize our test scripts
+	This concept which we achieve by parametrization is called data driven testing
+	
+	Types of parametrization in TestNG:
+		1. With the help of parameters annotation and TestNG XML file
+		2. With the help of DataProvider annotation
+		
+		
+	1. Parameterization via TestNG.xml file:
+		Prefer this way, when you do want to deal with complexity & the number of input combinations are less
+		User needs to create an XML file which will store the parameters
+		All parameters would be in key-value pair
+		In the test, add annotation @Parameters and pass the key to this annotation
+		
+	2. Data Provider : 
+		- Data provider is used to supply test data to test case
+		- Data provider is annotation in TestNG, which attach with a method that returns the data set in the form of two dimensional object array Object[][]
+		- The first array represents a data set wheras the second array contains the parameter values
+		- DataProvider is key of data driven testing framework
+		- The DataProvider method can be in the same test class or one of its super classes. It is also possible to provide DataProvider in another class but then the method has to be static
+		- User can also provide a name to it using the name attribute of the DataProvider annotation but this is optional. If one hasnt provided the name, name of the method will be used to refer to it.
+		
+		DataProvider with ITestContext:
+			User can use ITestContext to determine what runtime parameters the current test method was invoked with
+			With ITestContext user can decide the Test Data for various level/type of tests
+			ITestContext helps in running the script with dataProvider as it extracts value from testng.xml
+			
+Listeners:
+	Listeners implements the interface in TestNG and report the real time event when Test starts, fails, passes, etc;
+	
+	ITestListener : We can use this listener to analyse test methods, perform logging
+	Advantage of Listeners over @BeforeTest, @BeforeMethod, @AfterTest, @AfterMethod, etc;
+	
+
+Reporting in TestNG
+	TestNG provides default report in HTML format for the test done
+
+
+"slf4J/LoggerFactory" error in TestNG execution
+	Why this error message?
+		From version 7.5 TestNG introduced a dependency on slf4J because TestNG decided to move into using a proper logging mechanism for TestNG
+		LoggerFactory class from the SLF4J(Simple Logging Facade for Java) library is not found at runtime in our project
+	
+	Fix for this issue
+		Include the slf4J library in your project classpath
+		If you are using a build tool, you can add the slf4J dependency in your build file

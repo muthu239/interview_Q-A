@@ -1,0 +1,83 @@
+What is Maven?
+	Maven is build tool, which helps developer in building their projects
+	
+What is build tool?
+	A build tool is a tool that automates everything related to building the software project
+	
+Why we need maven?
+	If we want to use any third party project, we need to download and import the project, and configure the project on our system.
+	Each time this is not possible. These dependencies are difficult to handle.
+	
+	In the maven, we have a centralised location(pom.xml) where we can define the required dependencies and the version of the dependency.
+	Rest of the job, like downloading and configuring it is the work of maven
+	
+Maven central repository
+	Maven has a central repository where all the 3rd party jars and open source projects available with versions which can be used
+	
+What is build lifeCycle?
+	
+Maven build lifeCycle:
+	Maven is based around the central concept of a build lifeCycle. What this means is that the process for building and distributing a particular artifact(project) is clearly defined
+	
+	Validate :  validate the project is correct and all necessary information is available
+	Compile : Compile the source code of the project
+	Test : Test the compiled source code using a suitable unit testing framework
+	Package :  take the compiled code and pack in its distributable format, such as jar
+	Clean : Clean the projects un necessary files
+	Install : install the package into the local repository, for use as dependency in other projects locally
+	Deploy : Done in the build environment, copies the final package to the remote repository for sharing with other developers and projects.
+	
+	
+pom.xml file in maven
+	POM.xml - A project object Model or POM is the fundamental unit of work in maven. It is an XML file that contains information about the project and configuration details
+	POM is used by maven to Build the project
+	All the dependencies and support plugins are defined in the POM file.
+	All dependencies resolved during the compilation, which mentioned in POM file
+	
+
+Purpose of scope in dependency?
+	dependencies scope is based on the scope of the dependency.
+	if the scope is test then the dependencies will work on src/test/java only
+
+
+Maven - TestNG :
+
+	Standard practise of maven structure:
+		src/main/java - is the place to keep to main source files
+		src/test/java - is the place to keep the code for testing purposes - [test cases]
+		src/test/resources - is the place to maintain resources like properties file required for code in src/test/java
+	
+	Why we need to execute tests using command line?
+		Executing TestNG tests using Maven command line provides several benefits
+			- Allows test execution within the build lifeCycle 
+			- It helps ensure a consistent build  environment across different continuous integration(CI) servers. Same build commands can be used to run tests
+			- Test Report generation
+			- Maven surefire plugin helps in running the test suite in command line and also supports parallel execution of tests,which can significantly reduce test execution time 
+			- SureFire plugin also generates an inbuilt report
+			- Lifecycle management
+			
+		Requirements to Execute TestNG using Maven CLI:
+			- Maven compiler plugin
+			- Maven surefire plugin
+	
+		CLI commands for maven
+			mvn --version -> to verify the version installed in the system
+			mvn compile -> to compile the source code. It will compile only the code in src/main/java
+			mvn test -> executing the tests
+			mvn clean -> To clean the target folder generated while test is build
+			
+Execute test cases in parallel
+	Benefits of using test cases in parallel
+		- Reduced execution time
+		- Optimal resource utilization
+		- Faster feedback loop
+		- Improved scalability
+		- Efficient use of test environment
+		- Isolation of tests
+		- Suitability of distributed environments
+
+	To start mutiple test case in parallel using testNG is in XML mention the parallel parameter in the suite tag along with the test scopes
+	TestNG doesnt have inbuilt function/parameter to run suites in parallel
+	
+	To execute the test suites in parallel, then update the pom.xml with the suites that needed to be run in parallel by mentioning their testng xml files and mention the thread size.
+	Based on the thread size the number of parallel executions happen

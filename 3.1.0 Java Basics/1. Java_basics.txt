@@ -1,0 +1,182 @@
+Note:
+	-> Methods should be inside a class only. they cannot exist outside a class
+
+Interview question (Important):
+	Why Java is platform independent?
+		Source code ->Compiler -> Byte code -> Execution -> Java Virtual machine(JVM) -> Output
+
+Types of variable:
+	Local variable:
+		Variable declared inside the body of the method is called local variable.
+		You can use this variable only within that method and the other methods in the class aren't even aware that the variable exists.
+		
+	Instance or Class variable:
+		A variable declared inside the class but outside the body of the method, is called instance variable.
+	
+	Static variable:
+		A variable which is declared as static is called static variable. It cannot be local
+	
+
+Primitive Vs Non Primitive Data type
+
+Arrays
+	Arrays is a collection of similar type of elements
+
+Strings
+	String is a sequence of characters. But in jave string is an object that represents a sequence of characters
+	String is a class in java
+	
+	Why Java strings are immutable?(Important)
+	
+	
+	String Vs String Buffer
+	String Buffer Vs String Builder
+	
+	
+Enums
+	Diff btwn Enum and class
+-----------------------------------------------------------------
+OOPS Basics
+	Class
+	Object
+	Inheritance
+	Polymorphism	
+	Abstraction
+	Encapsulation
+---------------------------------------------------------------------
+Constructor
+	Types of constructor
+		Default constructor
+		Paramterized constructor
+	
+	Rules for creating Java Constructor
+		Constructor name must be the same as its class name
+		A constructor must have no explicit return type
+		A java constructor cannot be abstract, final, static
+		
+	Is constructor overloading possible?
+		Yes
+		
+		
+Constructor Vs Method
+-----------------------------------------------------------------------------
+Static keyword
+	Static members of class belongs to class itself instead of Class object
+	
+	Static variable:
+		The static variable can be used to refer to the common property of all objects
+		The static variable gets memory only once in the class area at the time of class loading
+---------------------------------------------------------------------------------------
+This keyword
+	This is a reference variable that refers to the current object.
+	
+	
+	Usage of this keyword in java
+		-> this can be used to refer current class instance variable
+		-> this can be used to invoke current class method(implicitly)
+		-> this() can be used to invoke current class constructor
+		-> this can be passed as an argument in method call
+		-> this can be passed as an argumen in constructor call
+		-> this can be used to return the current class instance from the method
+		
+		
+------------------------------------------------------------------------------------------------
+Inheritance
+
+	can we overload Java main() method?
+	Types of inheritance:
+		Single
+		Multilevel
+		Hierarchical
+	
+	Why mulitple inheritance is not possible in java?
+-------------------------------------------------------------------------------------------------------
+Polymorphism
+	Runtime Ploymorphism(Method overriding) Vs Compile time polymorphism(Method Overloading)
+	
+-----------------------------------------------------------------------------------------------------
+Super Keyword
+	Super keyword is a reference variable which is used to refer immediate parent class object
+	
+	Usage of java Super keyword
+		-> super can be used to refer immediate parent class instance variable
+		-> super can be used to invoke immediate parent class method
+		-> super() can be used to invoke immediate parent class constructor
+		
+-------------------------------------------------------------------------------------------
+Final keyword
+	Final keyword in java is used to restrict user. Variable,method and class can be defined final
+	
+---------------------------------------------------------------------------------------
+Abstract class
+	Class which is declared with abstract keyword is known as abstract class. It can have abstract and non abstract methods
+	Abstract methods are methods without implementation
+	Abstraction is a process of hiding the implementation details of showing only functionality to the user. Abstraction lets you focus on what the object does instead of how it does it.
+	Abstract class needs to be extended and its method implemented. Abstract class cannot be instantiated
+	
+Why abstract class cannot be instantiated?
+	As the methods in abstract class are not implemented methods, there is no point in creating object for that class
+	
+--------------------------------------------------------------------------------------------------
+Interface
+	Interface is used to achieve 100% abstraction in java
+	All variable declared in interface should be constant i.e) public static final
+	you cant create the object of Interface
+	An interface is declared by using the interface keyword
+	An interface can extend another java interface only
+	
+Abstract class Vs Interface
+--------------------------------------------------------------------------------------------------
+Encapsulation
+	Process of wrapping code and data together into a single unit
+	user can create a fully encapsulated class in java by making all the data members of the class private. And use setter and getter methods to set and get the data in it.
+	
+--------------------------------------------------------------------------------------------------
+Exception handling
+	This is one of the powerful mechanism to handle runtime errors so that the normal flow of the application is maintained
+	Exception is an event that disrupts the normal flow.
+	
+	Try:
+		The "try" keyword is used to specify a block where we should place exception code. 
+		The try block must be followed by either catch or finally
+		
+	Catch:
+		The "catch" block is used to handle the exception.
+		It must be prceded by try block which means we cant use catch block alone
+		
+	Java try block is used to enclose the code that might throw an exception. It must be used within the method.
+	
+	Multi catch:
+		Application perfrm different taks at the occurence of different exceptions, use java multi catch block
+		At a time only one exception is occured and at a time only one catch block is executed
+		All catch block must be ordered from most specific to general
+		
+	Nested try:
+		We can declare try inside the try and is called as nested try
+		
+	Finally:
+		Java finally block is followed by try block and always executed whenever the execption occurs or not.
+		Finally block is used to execute important code such as closing connection,stream etc.
+
+------------------------------------------------------------------------------------------------------------
+Collections
+	Java collection framework
+		A collection is a group of individual objects represented as a single unit. Java provides collection framework which defines several classes and interfaces to represent a group of objects as a single unit
+		
+Advantages of collection:
+	Consistent API:
+		The API has basic set of interfaces like collection, Set, List or Map. All those classes(such as ArrayList, LinkedList, Vector etc) which implements these interfaces have some common set of methods
+	Reduces Programming effort:
+		The programmer need not worry about design of collection rather than he can focus on its best use in his programmer
+	Increases program speed and quality:
+		Increases performance by providing high-performance implementations of useful data structures and algorithms
+
+
+------------------------------------------------------------------------------------------------------------
+Wrapper class
+--------------------------------------------------------------------
+File Handling in Java:
+
+	Properties file:
+		
+

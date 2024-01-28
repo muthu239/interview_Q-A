@@ -1,0 +1,483 @@
+What is selenium?
+	Selenium is a web based automation tool. Used to automate web based automation
+	Selenium is a third party open source tool
+	
+Browser support - selenium:
+	Mozilla firefox, Google chrome,Internet explorer,opera,Safari
+		
+Selenium programming language support:
+	Java, C#, python, Ruby, Javascript, PHP
+	
+Issue might come with framework utils file path and all the file paths
+
+does minimize exist in selenium?
+How will you minimize a screen?
+How will you switch window in selenium 3
+
+
+ctrl + u -> to view page source
+F12 / ctrl + shif + i -> to view developer tools
+ctrl + shift +  c -> to inspect an element
+==================================================
+Selenium	
+	Selenium is an open source UI automation tool
+	Selenium is used to automate web based application
+	selenium is not used for desktop based application automation
+	Selenium is not a tool. It is a package where we have lot of tools 
+	
+Components of selenium
+	Selenium IDE
+	Selenium RC
+	Selenium webdriver
+	Selenium Grid
+	
+	Selenium IDE(Integrated Development environment)
+		Selenium IDE is record and play back base tool
+		Selenium IDE is basically a browser plugin, which is compatible with mozilla only
+		It's easy to learn, use and install.
+		
+		Limitations of Selenium IDE
+			Since selenium IDE is a browser plugin, we cannot use it in other programming
+			Only compatible with mozilla and not other browsers
+			User is not allowed to put conditions in IDE
+			
+	Selenium RC
+		Selenium RC stands for remote control
+		RC is the first automated web testing tool that allowed users to use a programming language they prefer
+		User is allowed to use Java, C#, PHP, perl, Ruby and python with selenium RC
+		
+		Pros
+			Cross browser and platform
+			Perform loops and conditional statements
+			Data driven testing is possible
+			Can support multiple browsers and faster than the IDE
+			
+		Cons
+			More complicated than the IDE
+			Programming knowledge is must
+			Selenium RC server needs to be run to start the execution
+			Slow than webdriver and poor support for javascript
+			
+	Selenium webdriver
+		- Selenium WebDriver is better than selenium IDE and RC
+		- Since the launch of the selenium webdriver 3 the RC is considered as depreceated and selenium company is not planning to upgrade RC but their focus is on webdriver
+		- Selenium WebDriver is more stable than RC
+		- WebDriver, unlike selenium RC, does not rely on Javascript for automation. It controls the browser by directly communicating with it.
+		- Selenium WebDriver supports mulitple programming language. Java, C#, python, PHP, perl, Ruby
+	
+	Selenium Grid
+		Selenium Grid is tool used for parallel execution
+		Selenium grid is compatible with RC and WebDriver both
+		It works like an execution engine for selenium tests
+		Enables simultaneous running of tests in multiple browsers and environments
+		Utilizes the hub and nodes concept. The hub acts as a central source of selenium commands to each node connected to it
+===================================================================================================		
+
+Selenium Vs QTP(UFT)
+	Selenium
+		- Open source, free to use and free of charge
+		- Highly extensible
+		- Can run tests across different browsers
+		- Can support multiple browsers and faster than IDE
+		- Supports various operating systems
+		- Can execute tests while the browser is minimized
+		- Can execute tests in parallel
+		- Can only test web applications
+		- Has no built in object repository
+		- Data driven is more cumbersome since you have to rely on the programming language
+		
+	QTP(UFT)
+		- Commercial, License are high cost
+		- Limited add-ons
+		- Can run test only in firefox, IE and chrome
+		- Slow than webdriver and poor support to javascript
+		- Can only be used in windows
+		- Needs to have the application under test to be visible on the desktop
+		- Can only execute in parallel but using quality center which is again a paid product
+		- Can test both web and desktop applications
+		- Comes with built in object repository
+		- Data driven testing is easier to perform because it has built in global and local data tables
+		
+===================================================================================================================
+Whats new in Selenium 4
+	Selenium 4 alpha 3 release on April 2019
+	Selenium 4 have few major improvements over selenium 3
+	No major changes in selenium 3 generic fucntionality or end user usability
+	Selenium 4 has built in support for microsoft edge browser, so no need for separate webdriver
+	
+	Major features introduced in selenium 4 are :
+	-> Enhanced version of selenium grid
+			Earlier version of selenium grid was complex to setup and rigid in terms of scaling
+			New selenium grid comes with docker support. This will enable developers or testers to spin up the containers rather than setting up heavy virtual machines
+			Grid in selenium 4 also comes with an enhanced user friendly GUI
+		
+	-> Upgraded selenium IDE
+			Improved GUI for intuitive user experience
+			Improved control flow mechanism that enables testers to write better "while" and "if" conditions
+			The code for test cases recorded using selenium IDE can be exported in the desired language binding like Java,C#,Python, .Net and Javascript
+			
+	-> Relative locators in selenium 4
+			Selenium 4 brings an easy way of locating elements with the inclusion of relative locators
+				-> To Left Of
+				-> To Right Of
+				-> Above 
+				-> Below
+			No existing locator functionalities have been removed
+
+	-> Support for chrome debugging protocol
+			Selenium 4 comes with native support for chrome dev tools protocol
+			This means QAs can now use chrome development properties like fetch, Network, Profiler, Performance, Application cache and more
+			
+	-> Better window/Tab management in selenium 4
+			Limitations in Selenium 3
+				In selenium 3 to handle mulitple windows, a new object with the webdriver has to be crteated and then window handlers are used to handle the new window
+			
+			selenium 4, the limitation is addressed and completely removed
+				newWindow function that allows user to create and switch to a new window/tab without creating a new WebDriver object
+					driver.switchTo().newWindow(WindowType.WINDOW);
+					driver.switchTo().newWindow(WindowType.Tab);
+			
+	-> Modifications in the Actions class
+			Limitations of Actions class in Selenium 3
+				There were some limitation with drag and drop, double clicks and some other interactive actions
+				
+			Selenium 4 features upgrade
+				- click(WebElement) : 
+					This method is added to Actions class to replace the moveToElement(onElement).click()
+					It is used to click on certain web element
+				
+				- clickAndHold(WebElement):
+					This method  will replace the moveToElement(onElement).clickAndHold()
+					It is used to click on an element without releasing the click
+					
+				- contextClick(WebElement)
+					This method will replace moveToElement(onElement).contextClick()
+					It will perform the right click operation
+					
+				- doubleClick(WebElement)
+					This method is added to replace moveToElement(element).doubleClick()
+					It will perform a double click on an element
+					
+					
+How to automate microsoft edge using selenium 4?
+	
+==================================================================================================================================================
+
+
+							java Project												Chrome
+								|													
+								|						WebDriver						FireFox
+Web application  ------->       |						----------------->
+								|														IE
+								|
+							Selenium Libraries											Safari
+							
+							
+							
+==========================================================================================================================================
+How to run the test in headless mode and How can we achieve headless browser execution?
+
+
+=========================================================================================================================================
+WebDriver [Important topic for interview]
+
+	Selenium webdriver is a well designed object oriented API which helps in communication between languages and browsers
+	Every browser has different logic of performing actions like loading a page, closing the browser etc
+	Selenium makes it possible for programmer to communicate with browsers through webdriver
+	
+	Architecture of selenium webdriver
+	
+				C#      																					FireFox
+		
+				Java																						Chrome
+		
+[Bindings]		Python   <-------------->     Selenium webdriver      <-------------------->     [Drivers]	edge
+		
+				Ruby																						Opera
+		
+				Others
+				
+		Language Binding:
+			To support multiple languages, selenium has developed language bindings
+			
+		Selenium WebDriver:
+			It is an API which makes possible to communication between programming languages and browsers. It follows object oriented concepts. it has multiple classes and interfaces
+			
+		Browser drivers:
+			A browser driver can be considered as a personal secretary of a boss. 
+			A browser driver helps in communicating with browser without revealing the internal logic of browsers functionality.
+			The browser driver is the same regardless of the language used for automation
+			
+	Working internal logic flow of a selenium script:[important Q]
+	A http request is created  and sent to browser driver for each selenium instruction or commands
+	A browser driver receives the http request through http server
+	http server decides all steps to perform instructions which are executed on browser.
+	Execution status is sent back to http server which is sent back to automation script
+	
+		
+
+	Q1. WebDriver is a class or interface?
+		Webdriver is interface in Java. Chromedriver, safaridriver,geckodriver are the class which actually implements the webdriver
+
+	Q2. Difference btwn close() and quit() methods
+		Close() : This method closes the currently open browser window or the browser window which is in focus. 
+		Quit() : This method is used to close all the open instances of browser opened by selenium
+	
+		The other difference is that the driver invoked will not be closed with close() as it will close only the current browser window and the process will be running in background though the browser is closed. The quit() method will close the invoked driver as well along with the browser instances opened using selenium
+	
+=========================================================================================================================================	
+Options Class:
+	Options class are used to set the browser preferences and Browser Settings.
+	ChromeOptions(), FireFoxOptions(), etc.,
+		
+	FireFoxOptions(): FirefoxOptions() class set all the options specific to the execution of the session.
+	ChromeOptions(): ChromeOptions() class set all the options specific to the execution of the session.
+		
+	Using Browser Options class we can set options like make the browser headless, load extensions, set binaries and set proxy so on.
+		
+	Methods of Options Class
+		setBinary(): 
+			This is used to provide the binary exe path of Browser. This method is used when ever tester want to perform the version testing in selenium
+				
+		setAcceptInsecureCerts(): 
+			This is used to bypass the authentication certificate or SSL certificate to test the website. This method accepts boolean parameter, if true driver accepts the certificate and proceeds further, if false is passed and site has SSL then driver will stop the execution as it cannot process further due to SSL.
+				
+		setProxy(): 
+			To set Proxy we have Proxy Class in Selenium. We need to set the proxy and pass the Proxy Object in setProxy() method.
+				
+		setHeadLess(): 
+			Headless means no UI. Selenium helps user to run the Tests in headless browser and make the Browser HeadLess.
+		
+		addArguments(): 
+			This method is used when user wants to open the Browser with some specific permissions. 
+			Like : disable Infobar(eg: Chrome is running by automated software), Manage Browser Notifications(like pop up on the left saying know your location, wants to send notification, pop up disabled which has allow & block options)
+			
+		setUnhandledPromptBehaviour(): 
+			This method helps the user to handle the un handled alert, when we dont know when a javascript alert pop ups this method can be used
+				
+			
+		setPageLoadStrategy(): 
+			This is used when page load takes much time. 
+			Three type page load strategy: Normal,Eager,None
+			
+=========================================================================================================================================	
+WebElement:
+	Anything present on the webpage such as textbox,text, button, link, table,radio button, checkbox etc are called as webelement
+	
+	Importance of webelement in selenium:
+		Without webelement it is impossible to automate the functionality in a webpage
+	
+	The object we used to identify and work on web-element is called locator
+	Webelement is an interface same as webdriver
+	WebElement can be created by findElement() and findElements() method of webdriver
+	
+Locators:
+	Selenium uses locators to find and match the elements of the page that it needs to interact with
+	In selenium we have 8 type of locators
+		ID
+		name
+		className
+		tagName
+		linkText
+		partialLinkText
+		cssSelector
+		xpath
+		
+	Priority of locator on selenium
+		id > name > className > cssSelector > xpath
+		
+	To find the locator user need to open the developer tools of browser
+	
+FindElement:
+	findElement() is method in selenium, used to identify the web-element with the help of 'By' class
+	This method is used to find the single element on the web-page
+	This method returns the first matching element of the specified locators
+	It throws NoSuchElementException when fails to locate the element
+	Find element will not work with elements which are present in HTML frames
+		
+FindElements:
+	findElements() method which can return multiple elements matching with the given locator, findElements() returns List<WebElement>
+	findElements() provide the whole list of all the elements matching the specified locator
+	It the element doesnt exist or not available on the page then, the return value will be an empty list
+	It will not throw "NoSuchElementException" in case of element not present
+		
+=========================================================================================================================================
+
+Xpath & CSS selectors	
+	
+	Q1. Can single webelement have 2 path?[Important]
+		Yes,it is possible
+		//input[@id='nickname']
+		//*[@id='gb']/div[2]/div[3]/div[1]/div/div[1]/a
+		
+	Q2. Can 2 web elements have same xpath?[Important]
+		Yes. It is possible. 
+			eg : //a - there can be multiple tags that can be found with the a tag
+	
+	Q3. How can you verify the xpath genrated for a element is correct?
+			Open developer option by pressing f12 on broswer and click ctrl+f and enter the xpath value and verify that the xpath is highlighting right element 
+	
+=========================================================================================================================================	
+Waits in selenium
+	Waits are necessary to capture the web application reaction.
+	Waits are helpful when page have the Ajax calls
+	Waits help user to create the stable automation
+	
+	Timeout Interface in selenium
+		- Timeout is interface in webdriver interface, which manages all waits of webdriver instances
+		- We are declaring the timeout in the instance of webdriver and not on the process. So if we define the timeout with a webdriver instance it is applicable throughout the script. So we dont have to mention it again and again on the scrip like thread.sleep
+		- There is no implementation present for these methods in Timeouts interface, the browser classes(FireFox driver, chromeDriver,..) provides the implementations for these methods because browser classes implements webdriver interface
+		- one time putting wait is enough here as long as driver is not killed
+		
+		Timeout interface has three abstract methods
+			implicitlyWait
+			setScriptTimeOut
+			pageLoadTimeOut
+	
+	Types of wait in selenium 3:
+		-> Sleep
+			Sleep() is a method present in thread class
+			Thread.sleep will halt the process thread for the hardcoded timeframe even if the next action webelement is available
+			we have to mention thread.sleep each time when we want to put a wait between the code/action
+			
+		-> pageLoadTimeOut
+			Page load Timeout in selenium requests/set the time limit for a page to load
+			If page is not loaded within the given time frame selenium throws TimeOutException
+			one time putting wait is enough here as long as driver is not killed 
+			if the pageload timeout in -ve it means giving infinite time
+			page load timeout is useful when we perform performance test, or when we test execution in IE
+				eg : driver.manage().timeouts().pageLoadTimeout(20, TimeUnit.SECONDS);
+			
+		-> setScriptTimeOut
+			setScriptTimeOut sets the time limit for asynchronous script to finish execution
+			The setScriptTimeOut method affects only javascript code
+			If process is not completed within the given time frame selenium throws TimeOutException
+			
+			Why we need setScriptTimeOut?
+				The default timeout set for setScriptTimeOut method is 0(Zero), if we dont set any time, our executeAsyncScript method may fail because the javascript code may take more than zero seconds. So to avoid unnecessary failures we have to set the setScriptTimeOut
+			
+			
+		-> Implicit Wait in selenium
+			The implicit wait will tell the web driver to wait for certain amount of time before it throws "No such element exeception"
+			Default wait time of the selenium is 500 milli seconds, implicit wait overrides the default wait time of the selenium webdriver
+			If element is found before implictly wait time, selenium moves to next commands in the program without waiting to complete the implicitlyWait time
+			one time putting wait is enough here as long as driver is not killed 
+			if the driver is not able to find out the web element within the limit of implicit wait then it will throw "No such element exeception"
+				eg: driver.manage().timeouts().implicitlyWait(2,TimeUnit.SECONDS);
+			
+			
+		-> ExplicitWait
+			The explicit wait is used to tell the web driver to wait for certain conditions (Excepted conditions) or the maximum time exceeded before throwing an "ElementNotVisibleException" exception
+			Explicit wait will be applicable for only one line (one condition) we have to use it with ExpectedConditions class
+			WebDriverWait by default calls the expected condition every 500 milliseconds until it returns successfully
+			Expected condition will not impact findElement() and findElements() in selenium
+			
+			Expected conditions present in Explicit wait:
+				- alertIsPresent()
+				- elementSelectionStateToBe(locator,selected)
+				- elementToBeClickable(locator)
+				- elementToBeSelected(locator)
+				- frameToBeAvailableAndSwitchToIt(locator)
+				- presenceOfElementLocated(locator)
+				- textToBePresentInElement(locator,text)
+				- title()
+				- titleIs(title)
+				- visibilityOf(Element)
+				
+		-> FluentWait
+	
+	
+	
+	Waits and Timeout in selenium 4: [important]
+		Selenium 3 wait methods are deprecated in selenium 4
+		In selenium 4, the parameters received in Waits and Timeout have changed from expecting(long Time, TimeUnit unit) to expect(Duration duration)
+		
+		Implicit wait
+			selenium 3:
+				driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
+				
+			selenium 4:
+				driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+				
+		Explicit wait
+			selenium 3:
+				WebDriverWait wait = new WebDriverWait(driver,10);
+				
+			selenium 4:
+				WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+				
+=========================================================================================================================================	
+Get Text
+	How can we extract the text from webWebelement
+		Text of link /paragraph / Heading
+		Text of place holder
+	
+getAttribute()
+	getAttribute method is used to extract the text value of an attribute from a HTML tag
+	Text of place holder can be extracted using getAttribute
+		
+How to find broken links using selenium?
+	What is broken link?
+		Link is pointing to the wrong URL or on click which renders the user on 404 page not found error
+	
+	we can verify the broken links in two ways
+		Click link and verify the URL redirection
+		Click link and verify status code
+		
+How to handle frame and iFrames?
+	Frames/iFrames are attribute of HTML
+	iFrames are used in HTML to divide the webpage in blocks
+	code/elements inside the iFrames are not accesible by the main page source
+	Elements present in iFrames cant be extracted from webpage directly, it means defining a HTML page inside a HTML page
+	To work with iFrames, first we need to switch selenium focus into iFrame
+	We can handle frames/iFrames present in the webpage using drivers.switchTo() command in webdriver
+	Look at the DOM structure of a page that contains an iFrame you will never be able to find inner content of iFrame. And you wont be able to interact with it via the DOM
+	
+	How to identify the iFrame is there are not?
+		We can identify iFrame by ID, name, element and index
+			driver.switchTo().frame("//iframe[@id = 'id_value']");
+		
+		if frame does not have id or name we use xpath as follows
+			driver.switchTo().frame(driver.findElement(By.xpath("//iframe[@class = 'demo-frame']")));
+			
+	
+Verify visibility of web-element on web page
+	isDisplayed()
+		It is the method used to verify presence of web element within the webpage
+		Returns 'true' if element is displayed or false element is missing on web page
+		
+Verify link/webelement is enabled on webpage
+	isEnabled()
+		It is the method to verify if the web element is enabled or disabled within the webpage
+		Returns 'true' if element is enabled or false element is not enabled on web page
+
+Verify element is selected on webpage		
+	isSelected()
+		It is the method used to verify if the web element is selected or not
+		isSelected() method is predominantly used with radio buttons, drop down and check boxes
+		Returns 'true' if element is selected or false element is not selected on web page
+		
+Select class
+	Selenium webdriver provides Select class, with the help of select class we can handle drop downs on the webpage
+	
+	Steps to select a valus in dropdown in selenium webdriver
+		1. Find the dropdown using findElement
+		2. Create object for Select class passing dropdown element as parameter
+		3. Select the value from the dropdown values
+		
+	There are two type of dropdowns
+		- single value dropdown
+		- Multiple value dropdown
+		
+	Methods in select class:
+		- selectByIndex(int Index)
+		- selectByValue(String value)
+		- selectByVisibleText(String text)
+		- getOptions()
+		- getFirstSelectedOption()
+		- getAllSelectedOption()
+		- isMultiple()   - to check if the drop down accepts multiple selection. Returns true or false
+		- deSelectByIndex(int Index)
+		- deSelectByValue(String Value)
+		- deSelectByVisibleText(String text)
+		- deSelectAll()

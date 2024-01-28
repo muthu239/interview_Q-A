@@ -1,0 +1,88 @@
+re --version ->to check version of git
+git help config (or) git config --help ->to get the help page to read about syntax
+git config --global user.name "*username*" -> to add global usernmae
+git config --global user.emai "*usermail*" -> to add global mail
+git config --list -> to list the config done in git
+
+
+
+mkdir *filename* -> creating local directory 
+cd *filename* -> to change directory
+rm *filename* -> to delete file
+mv *name1* *name2* ->to rename the file from name1 tore name2
+cat *filename with extension*  ->  to view the contents of the file
+
+git init -> to initialize the directory
+
+git status -> to check the status of files in the directory
+
+git add *filename with extension* -> to add only the file to current directory
+
+git add . -> to add all the untracked files to staging current directory
+
+git diff -> to find the difference between the file. to help identify the changes made in the file
+
+git dif --cached -> after staging to find the diff in file 
+
+git commit -m "*any message to document*" -> to commit the file into added in the directory
+
+clear -> clearing the cmd screen
+
+git config --global user.username *github username* -> to connect the local git to github
+
+git remote add origin *URL of repository* -> to connect local repository to remote repository 
+
+git remote -v -> to check if the URL is added correctly, this will show all the URLs added to the current folder
+
+git push origin master (or) git push -u origin master (or) git push origin *branch name*-> to push the changes to master or branch of repository based on branch name
+
+git branch *branch name* (or) git branch -c *branch name* -> to create a branch in git 
+
+git branch -a -> to view the all branches available. The star represents the current branch.
+
+when a branch is created from the main(master) branch which already has file it'll reflect in the branch. but after that the files that are created in the branch will be available only in branch. to merge the branch into master branch we use merge command
+
+git switch *branch name* -> switch working path to that branch
+
+git checkout '*branch name*' -> to move into that branch to work
+
+ls -> to list the files present in the branch
+
+git merge *branch name* -> to merge the *branch name* into the checked out branch. 
+
+git log -> to check on the log messages
+
+git log --pretty=oneline -> to give the log history in oneline
+
+git clone *URL of repository* -> to clone the repository available in Github to local
+
+git reset --soft *commit id*-> changes made after that commit were removed from commit history i.e) the commit above the commit key will be removed. do reset only in local not when changes pushed to repository.
+The commit id can be got form git log command
+
+git revert *commit id* "*message*" -> to add a commit to undo a change that was done in that commit id
+
+git branch -D *branch name* -> to delete the branch. To delete you should not be checked out into that branch. 
+
+git push origin --delete *branch name* -> to delete the branch fro repository which was already deleted in local 
+
+git pull -> to copy the remote repository to local repos 
+
+git log --merge -> to produce logs with the list of commits that are causing the merge conflict
+
+git reset --mixed -> to undo the changes to the working directory and staging area
+
+git reset --hard *commit id* -> to reset to that commit id change and it will not have history of commit done after the commit id
+
+git merge --abort -> to exit the merge process and return back to the state befor merging began
+ 
+git log --oneline ->to get smaller commit id
+
+git show *commit id* -> to display contents added or removed on that commit
+
+git restore --staged *file name* -> the file name of older file before change and this command is used when the file is staged and not commited
+
+git stash -> this command is used when i dont want to commit the change done but it has to be saved somewhere for later use. All the files will be staged locally.
+
+git stash pop -> this will move the files from staged to unstaged area, so we can commit the change
+
+git stash clear -> to delete the stashed files permanently.

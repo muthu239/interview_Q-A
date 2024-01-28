@@ -1,0 +1,42 @@
+File Handling in Java
+
+Properties File:
+	Properties class in Java which store the key-value pairs
+	Properties class is a sub class of HashTable
+	Properties file is used to store project configuration data or settings
+	
+	We can write the properties file.
+	setProperty() method is used to write the Properties file Key-values
+	
+	We can read properties file
+	getProperty() method is used to read the properties.
+	
+Excel File:
+	Apache POI libraries are used to read/write the excel files in java
+	With Apache POI, you can easily create, read, write and update excel files using this library
+	POI use terminology like workbook, worksheet, cell, row to keep itself aligned with microsoft excel.
+	
+JSON file
+	JSON stands for JavaScript Object Notation. JSON is a lightweight format for storing and transporting data
+	
+	Why JSON for Test Data
+		- For Excel, organizations need MS Excel license
+		- Excel is a heavy data builder and a bit expensive in terms of performance
+		- Multiple sheets have the manual errors
+		- Hard to maintain as compare to JSON
+		- Windows machines are required for Data modification and creation
+	
+	Simplest way to handle JSON is using simple Java Jar file in java. 
+	
+	Why it is necessary to handle JSON?
+		In some cases if the response or test data collected is in JSON format and needs to be written in a Excel or some dataSheet, this methodology comes in handy while automation
+		
+YAML File:
+	YAML ain't a markup language. YAML is a human friendly data serialization standard for all programming languages.
+	YAML is popular in the devops 
+	Key-values pair
+	Strict indentation is followed in YAML
+	
+	JSON Vs YAML
+		
+		

@@ -1,0 +1,210 @@
+Xpath
+	Xpath is defined as XML path. It is syntax or language for finding any element on the web page using XML path expression
+	It is mostly used when web element has no class, name or id 
+	
+	Absolute Xpath:
+		Absolute Xpath is direct way to find the element in HTML DOM
+		It begins with the single forward slash(/), which means you can select the element from the root node
+			eg: /html/body/div/div[1]/div[1]/div[1]/a
+		
+		Limitation of absolute xpath
+			It requires lot of maintenance, if the DOM is modified
+			It is slower than relative xpath
+		
+	Relative/Partial Xpath:
+		Relative Xpath the path starts from the middle of HTML DOM structure
+		It starts with double forward slash(//) which means it can search the element anywhere at the webpage
+		
+		Syntax of relative xpath:
+			Xpath = //tagname[@attribute = 'Value']
+			
+			//        -> select current node
+			tagname   -> Tagname of that particular node
+			@         -> select attribute
+			Attribute -> Attribute name of the node
+			value     -> value of the attribute, should be mentioned inside single quote
+			
+			eg: //input[@id='nickname']
+			eg 2 : //div/a/img
+			
+		eg : //*[@id='nickname']  is same as  //input[@id='nickname']
+		eg : //*[@id='gb']/div[2]/div[3]/div[1]/div/div[1]/a
+			
+	
+		-> Create combined xpath:
+			Associate 2 or more HTML attribute in a single xpath. and both the html attribute must be of the same level
+			
+			eg: //input[@type = 'text' and @name = 'firstname']
+			
+		-> text() function:
+			text() function in xpath helps us to find the element based on the text present in the element
+			text() function is case sensitive in xpath
+			
+			syntax : //HTMLtag[text()='value']
+			eg: //span[text() = 'Create an account']
+		
+		->Xpath with parent reference:
+			Design xpath with parent, child combination
+			
+			syntax : //parentTag[@parentAttribute = 'value']/childTag[@childAttribute = 'value']
+			eg : //div[@id = 'navbar-collapse']/ul/li/a[text() = 'Features'] == //div[@id = 'navbar-collapse']//a[text() = 'Features'] 
+		
+		
+		->Wildcard search in xpath :
+			* is one of the most used wild card character with xpath
+			//* - matches all the element present in the HTML
+			//div/* - matches all the element(s) inside the div tag
+			//input[@*] - matches all the element(s) with input tag and have atleast one attribute
+			//*[@*] - matches all the element(s) which have atleast one attribute
+			
+		->Dependent and Independent Xpath:
+			Mostly used for the dynamic web element. when web element position is depend on another web element
+			
+		
+		Note : //td[text() = 'QTP']/.. -> will fetch the parent of td tag
+		syntax : /.. -> will fetch the parent of the xpath
+		
+		
+		->contains():
+			This function helps user to find the element with partial values or dynamically changing values(Dynamic elements)
+			
+			syntax - xpath contains text : //HTMLtag[contains(text(),'value')]
+			syntax - xpath contains ID : //HTMLtag[contains(@id,'value')]
+			syntax - xpath contains class : //HTMLtag[contains(@class,'value')]
+			
+			eg: //div[contains(text(), '2019') and contains (@id, 'last_traded')] == //div[contains(text(), '2019') and @id = 'last_traded_time']
+			
+			
+		
+		->Normalize space on xpath:
+			Normalize space used to find the element on webpage by ignoring starting and ending spaces in text
+			It will not have any effect if the spaces are present in between
+			
+			Syntax : //HTMLtag[normalize-space(text()) = 'value']
+		
+		->starts-with() in xpath
+			starts-with function matches the elements which property starting value
+			
+			Syntax : //HTMLtag[starts-with(@attribute,'value')]
+		
+		->ends-with() in xpath:
+			ends-with fucntion matches the elements which property ending value
+			
+			Syntax : //HTMLtag[ends-with(@attribute,'value')]
+		
+		->Axes in xpath :
+			Axes refers to node on which elements are lying relative to an independent element
+			We could traverse in both forward and reverse directions
+			A double colon :: is used to separate the axis specifier from the node test
+		
+		
+			Forward axis:
+				Self - select the current node
+					eg: //input/self::* - Facebook all input Fields
+					
+				attribute - Select all attribute of current node
+					eg: //div/attribute::* - Elements have div HTML Tag and aleast one HTML Attribute
+					
+				child - select all children of current node
+					eg: div[contains(@class,'pvl')]/child::* - Child of all pvl class on Facebook Registration Page
+					
+				descendant - selects all descendants (children, grandchildren, etc) of the current node
+				
+				descendant -or-self - selects all descendants (children, grandchildren, etc) of the current node and the current node itself
+					eg: //table[@role='presentation']/descendant-or-self::input[@type='password'] - Locator for Password on facebook WebPage
+					
+				following-sibling - selects all siblings after the current node
+					eg: //table[@role='presentation']/following-sibling::*
+					
+				following - selects everything in the document after the closing tag of the current node
+					eg: //table[@role='presentation']/following::*
+					
+			
+			Reverse axis:
+				parent - selects the parent of the current node
+					eg: //input[@type='text' and @name='firstname']/parent::* - Parent of FirstName field
+					
+				Ancestor - selects all ancestors (parent, grandparent, etc) of the current node 
+					
+				Ancestor -or-self - selects all ancestors (parent, grandparent, etc) of the current node and the current node itself
+					eg: //input[@type='text' and @name='firstname']/ancestor-or-self::* - All ancestors of FirstName Field
+					
+				preceding-siblig - selects all siblings before the current node
+					eg: //input[@name='login_source']/preceding-sibling::*
+					
+				preceding - selects all nodes that appear before the current node in the document, except ancestors
+					eg:  //input[@name='login_source']/preceding::*
+			
+			
+Q1. Can single webelement have 2 path?[Important]
+		Yes,it is possible
+		//input[@id='nickname']
+		//*[@id='gb']/div[2]/div[3]/div[1]/div/div[1]/a
+		
+	Q2. Can 2 web elements have same xpath?[Important]
+		Yes. It is possible. 
+			eg : //a - there can be multiple tags that can be found with the a tag
+	
+	Q3. How can you verify the xpath genrated for a element is correct?
+			Open developer option by pressing f12 on broswer and click ctrl+f and enter the xpath value and verify that the xpath is highlighting right element 
+			
+=========================================================================================================================================
+	
+CSS selector
+		CSS selector is the combination of an element selector and a selector value
+		CSS selector is a path pattern that can use web elements attributes to locate a web element in a webpage
+		Like xpath, CSS selector can also locate web elements having no ID, class or name
+		
+		CSS selector - ID:
+			syntax: <HTML tag><#><value of ID attribute>
+			eg: input#login1 
+			input#login1  is same as #login1
+			
+		CSS selector - Class:
+			synatx : <HTML tag><.><value of Class attribute>
+			eg : input.signinbtn
+			input.signinbtn is same as .signinbtn
+			
+		CSS selector - Attribute:
+			synatx : <HTML tag><[attribute = value of attribute]>
+			eg : input[type='submit'], input[title = 'Sign In']
+			
+		wild card in CSS:
+			User can use wild card characters in css selector to find the element ^,$,* are wild card characters present in the css selector in selenium
+			
+			^ (carrat character) : when the starting part of the attribute value is fixed
+				Syntax : HTMLtag[attribute^ = 'value']
+				eg : input[id^='username']
+				
+			$ (Dollar character) : when the ending part of the attribute value is fixed
+				Syntax : HTMLtag[attribute$ = 'value']
+				eg: label[abc$ = '__abcd']
+				
+			* (asterisk character) : when the fixed attribute value is in middle
+				Syntax : HTMLtag[attribute* = 'value']
+				eg: div[name* = 'username']
+				
+		CSS combinators
+			Combinator explains the relationship between the css selectors
+			4 CSS combinators are in CSS selector
+			
+			Descendant selector: 
+				space is descendant combinator
+				The descendant selector matched all elements that are descendants of a specified element
+					eg : table[role='presentation'] tbody tr td label[for='email'] - Identify username on web-page.
+				
+			Child selector:
+				> is the child selector
+				the child selector selects all elements that are the immediate children of a specified element
+					eg : div[class^='pvl']>div 
+				
+			Adjacent sibling selector:
+				+ is used for the adjacent sibling combinator
+				The adjacent sibling selector selects a element that is adjacent siblings of a specified element
+					eg: div[id='fullname_field'] + div
+					
+			General sibling:
+				~ is used for the general sibling combinator
+				All the siblings of a defined css selector of a webpage
+					eg : div[id='fullname_field'] ~ div
+					
