@@ -136,7 +136,7 @@ Xpath
 					eg:  //input[@name='login_source']/preceding::*
 			
 			
-Q1. Can single webelement have 2 path?[Important]
+	Q1. Can single webelement have 2 path?[Important]
 		Yes,it is possible
 		//input[@id='nickname']
 		//*[@id='gb']/div[2]/div[3]/div[1]/div/div[1]/a

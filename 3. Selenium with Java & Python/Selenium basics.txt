@@ -13,6 +13,9 @@ Issue might come with framework utils file path and all the file paths
 does minimize exist in selenium?
 How will you minimize a screen?
 How will you switch window in selenium 3
+How to pass keyboard shortcut to selenium?
+How to scroll using selenium without JS executor?
+
 
 
 ctrl + u -> to view page source
@@ -411,10 +414,28 @@ Get Text
 	How can we extract the text from webWebelement
 		Text of link /paragraph / Heading
 		Text of place holder
+		
+	eg:
+		//to get the text of button
+		System.out.println(driver.findElement(By.xpath("//button[@name = 'login']")).getText());
 	
 getAttribute()
 	getAttribute method is used to extract the text value of an attribute from a HTML tag
 	Text of place holder can be extracted using getAttribute
+	
+	eg:
+		//to get a placeholder text //get attribute works on webElement
+		System.out.println(driver.findElement(By.xpath("//input[@id = 'pass']")).getAttribute("placeholder"));
+		
+sendKeys in selenium
+	To enter text in a field
+	eg:
+		driver.findElement(By.name("q")).sendKeys("Selenium");
+
+Handle keyboard keys
+	To perform the action of key pressed in keyboard
+		eg:
+			driver.findElement(By.id("userpass")).sendKeys(Keys.ENTER);
 		
 How to find broken links using selenium?
 	What is broken link?
@@ -481,3 +502,145 @@ Select class
 		- deSelectByValue(String Value)
 		- deSelectByVisibleText(String text)
 		- deSelectAll()
+		
+		eg: 
+			WebElement monthDropDown = driver.findElement(By.name("birthday_month"));
+			//selectByIndex(int index)
+			Select select = new Select(monthDropDown);
+			select.selectByIndex(11);
+		
+Handle multiple Browser windows/Tab
+	In selenium, we need to switch to window/tab on which we want to work
+	Selenium provides native support to handle multiple windows
+	Selenium use GUID to identify the application and work on it
+	
+	Methods to work with Multiple windows:
+		getWindowHandle() - will get the GUID of the tab
+		getWindowHandles()
+		switchTo().window()
+		
+		eg:
+			Set<String> windowId = driver.getWindowHandles();
+		
+			System.out.println(windowId.size());
+		
+			Iterator<String> itr = windowId.iterator();
+		
+			String mainPageId = itr.next();
+			String secondPageId = itr.next();
+			System.out.println(mainPageId);
+			System.out.println(secondPageId);
+		
+		
+			//Switching to the second page
+			driver.switchTo().window(secondPageId);
+		
+Handle alerts 
+	Alerts in webpage used to get the attention of user
+	Alerts are formed using javascript inside the HTML page
+	
+	Properties of alert:
+		We cannot identify alerts using inspect tools
+		We cannot write xpaths for alerts
+		when alert is present on webpage we cannot proceed further without handling the pop up/alert
+		
+	Alerts can be handled using switchTo().alert() method present in selenium
+	
+	we can perform below actions on Alerts
+		Accept the alert
+		Dismiss the alert
+		Get text present on alert
+		Send text to prompt of alert
+		
+	eg:
+		Alert alt = driver.switchTo().alert();
+		alt.accept();
+		
+		
+Handle Mouse & keyboard events in selenium
+	Actions class in selenium supports to perform all the operations related with mouse and keyboard
+	Actions class will not help to switch window/tab like we can do with ctrl+tab key
+	
+	Builder pattern:
+		Builder pattern is used to build the composite pattern to perform some action. In action class that can be completed by build() method
+		This means that we can build up a nice sequence of operations, for example, "Press shift key and type something and then release"
+		
+	Handle Mouse Hover:	
+		Actions action = new Actions(driver);
+		action.moveToElement(courseLink).build().perform();
+	
+	Handle Drag and drop:
+		Actions action = new Actions(driver);
+		action.dragAndDrop(src, trgt).build().perform();
+		
+		Actions action = new Actions(driver);
+		action.dragAndDropBy(dragAble, 10, 20).build().perform();
+		
+		How to drag and drop without using drag and drop method[important]
+			WebElement src = driver.findElement(By.id("draggable"));
+			WebElement trgt = driver.findElement(By.id("droppable"));
+			Actions action = new Actions(driver);
+			action.clickAndHold(src).moveToElement(trgt).release(trgt).build().perform();
+		
+	How to handle Keyboard shortcuts
+		
+	
+	
+Handle webTables:
+	What is webtable
+		Webtable is table of rows and columns in HTML
+		 tr -> table rows th -> table header td-> table columns
+		Using list of webelements and entering the right xpath we can fetch the desired value at ease with webtable
+		
+Handle Ajax auto suggestion
+	Put thread.sleep() so the elements will load and get the webelement list. Using the list we can work on the element auto suggested
+	
+
+Javascript executor:
+	Javascript:
+		Javascript is used to make the website interactive
+		Javascript can change the content of the html page dynamically
+	Javascript executor:
+		It allows you to run pure Javascript code irrespective of the selenium language binding(java, c#, python) you are using
+		JavascriptExecutor is an interface which have two methods
+			executeScript()
+			executeAsyncScript()
+		If selenium is not able to perform a action in webpage then javascript executor can help in that case
+		Typecast the driver object into javascript executor, then we can perform any webpage action
+	
+	use javascript executor for some operations like 
+		- open website
+			eg: 
+				js.executeScript("window.location = 'https://www.rediff.com/'");
+				
+		- verify page loaded completely
+			eg:	String pageTitle = (String)js.executeScript("return document.title");
+				
+		- Type text with javascript executor
+			eg:
+				js.executeScript("arguments[0].value = 'abc@xyz.com'", userName);.
+				
+		- Click via js executor
+			eg:
+				WebElement signinBtn = driver.findElement(By.linkText("Sign in"));
+				js.executeScript("arguments[0].click()", signinBtn)
+				
+		- Scroll the page via JS executor
+			eg:
+				js.executeScript("window.scrollBy(0,3000)");
+				
+		- Scroll to particular webElement
+			eg:
+				js.executeScript("arguments[0].scrollIntoView(true)", webElement);
+				
+		- Highlight the element on webpage
+	
+		
+	How to scroll using js executor?
+		JavascriptExecutor js = (JavascriptExecutor)driver;
+		js.executeScript("window.location = 'https://www.rediff.com/'");
+		js.executeScript("window.scrollBy(0,3000)");
+	
+	
+File upload in selenium
+	Selenium cannot interact with OS, so with the help of sendKeys method we can send in the filepath which will upload the file
