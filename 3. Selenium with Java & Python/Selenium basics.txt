@@ -436,6 +436,13 @@ Handle keyboard keys
 	To perform the action of key pressed in keyboard
 		eg:
 			driver.findElement(By.id("userpass")).sendKeys(Keys.ENTER);
+			
+How to empty a field:
+	driver.findElement(By.id("create")).clear();
+	
+How to perfrom right click?
+	Actions a = new Actions(WebDriver ref name); 
+	a.contextClick(WebElement); 
 		
 How to find broken links using selenium?
 	What is broken link?
@@ -460,6 +467,10 @@ How to handle frame and iFrames?
 		
 		if frame does not have id or name we use xpath as follows
 			driver.switchTo().frame(driver.findElement(By.xpath("//iframe[@class = 'demo-frame']")));
+			
+		defaultContent(); 
+			in selenium it helps to switch the context to top most frame which is main page
+			driver.switchTo().defaultContent();
 			
 	
 Verify visibility of web-element on web page
