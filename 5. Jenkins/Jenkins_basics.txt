@@ -1,0 +1,45 @@
+Why we need continuous integration?
+	process before CI
+		Developers have to wait till the complete software is developed for the test results
+		If the test fails then locating and fixing bugs is very difficult. Developers have to check the entire source code of the software
+		Software delivery process was slow
+		Continuous feedback pertaining to things like coding or architectural issues, build failures, test status etc was not present
+		
+		
+	Continuous integration
+		Since after every commit to the source code an auto build is triggered and then it is automatically deployed on the test server
+		If the test results shows that there is a bug in the code then the developers only have to check the last commit made to the source code
+		This also increases the frequency of new software releases
+		The concerned teams are always provided with the relevant feedback
+		
+										Code id pulled over every commit
+										made in the source code
+				GIT repo				------------------------------>						CI server
+					^					<------------------------------					
+					| Commit changes to										Every change made in source code is build continuously
+					| source code
+					|
+				
+				Developers
+				
+				
+				
+				
+						Build and test results are feedback shared to dev
+			-----------------------------------------------------------------
+			|																|
+		   \|/																|
+		Developers															|
+																			|
+																			|
+		Developers		<----->			git repo	<->	          jenkins server <->	Selenium	<->	Prod server				           		
+		
+		
+		Developers
+		
+		
+	Developer - Commit the changes to source code
+	Jenkins server - Jenkins check the shared repo at periodic intervals and every check in is pulled and then build
+	Selenium - Jenkins deploys the build application on the test server
+	Prod server - The build application is then deployed to the production server
+	

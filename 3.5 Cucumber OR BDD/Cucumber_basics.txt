@@ -1,0 +1,116 @@
+Cucumber framework
+	TDD(Test driven development)
+		Based on test cases script is developed 
+		Only developer and tester can understand the implementation. 
+		eg: TestNG
+		
+	BDD (Behavior driven development)
+		Gherkin language : 
+			used by cucumber. To convert plain simple english language to interact with application
+			Its a feature language not programming language
+		
+		BDD is all about behavior
+		BDD is not only for UI automation. It is a common framework and can be used with API automation as well
+		In BDD, Tests are written in plain descriptive english type grammer
+		
+		
+	Cucumber is available with java & Ruby
+	Cucumber is a testing framework which supports BDD
+	It lets us define application behavior in plain meaningful english text using a simple grammer defined by a language called gherkin.
+	Cucumber itself is written in Ruby, but it can be used to "test" code written in Ruby or other languages including but not limited to Java, C# and python
+
+
+Cucumber have 3 components
+	1. Feature file
+		Feature file should have .feature extension
+		Feature file have all keywords (feature, Given, When, Then, As,*..)
+		Feature file contains scenario related to that feature
+	
+		
+	2. Step definition file
+		In Step definition file, tester will use the test code
+		Test code - Selenium + java + Annotations(cucumber annotations)
+		TestNG annotations are not used here. Cucumber annotations will be used
+		
+	3. Test Runner
+		Used to execute to Run your test cases
+		Will use Junit to execute the code. Not TestNG
+		Use to Run feature
+		To generate report and output
+		
+	Cucumber Framework setup
+		Create Maven project
+		Add dependencies
+			1. latest Junit
+			2. Add cucumber dependencies
+			3. Download eclipse Natural plug-in
+			
+			
+	Cucumber feature implementation
+		- Create feature in cucumber
+				A single feature file can have multiple scenarios
+		- Create scenario in cucumber
+		- Define proper steps in feature file
+		
+	Step Definition implementation
+		- Create step definition class
+		- Implement the annotations
+		- Define annotations. Annotations must have ^ at the beginning and $ at  the end
+			eg: @Given("^Go to mycontactsform site$")
+			
+	Test runner
+		Cucumber Options
+			Cucumber options are like property file or setting for your test cases containg what you want to execute, where you want to execute and what is the basic criteria for execution
+
+			Number of cucumber options available are:(Important interview questions)
+				1. dryRun :  Checks if all the steps have step definition, will help in identifying the gap between step definition and feature file
+				2. Features - The path of feature file
+				3. Tags : What tags in the feature file should be executed
+				4. Glue : The path of step definition file
+				5. Monochrome : Display the console output in readable way (Will help in Command Line execution)
+				6. Format : What all report format to use
+				7. Strict : Will fail execution if there are pending steps
+		
+		All cucumber options must be defined in your test runner class
+		"Tags" is the only cucumber option need to be defined in feature file
+		
+		dryRun :
+			dryRun option can either set as true or false. If it is set as true, it means that cucumber will only checks that every step mentioned in the feature file have corresponding code written in step definition file or not
+			So in case of any of the function is missed in the step definition for any step in Feature file, it will give us the message
+			
+		monochrome:
+			This option can either set as true or false. If it is set as true, it means the console output for the cucumber test are much more readable. And if it is set as false, then the console output is not as readable as it should be
+		
+		Format:
+			Format option is used to specify different formatting options for the output reports. Various options that can be used as formatters are:
+				pretty : prints the gherkin source with additional colour and stack traces for errors
+					eg: format = {"pretty"}
+					
+				HTML : This will generate a HTML report at the location mentioned in the formatter itself. 
+					eg : format = {"html:Folder_name"}
+					
+				JSON : This report contains all the information from the gherkin source in JSON format. This report is meant to be post processed into another visual format by 3rd party tools such as cucumber jenkins.
+					eg : format = {"json : Folder_name/File_name.json"}
+				
+				Junit : This report generate XML files just like Apache Ant's Junit report task. This XML format is understood by most continuous integration servers, who will use it to generate visual reports.
+					eg : format = {"junit : Folder_name/File_name.xml"}
+					
+			
+			
+		Strict:
+			Strict will verify the feature with the step definition file and it will mark your test case failed if any of the step or feature is in pending state or undefined
+					
+			
+		
+	Disadvantage of cucumber
+		The process of cucumber is very lengthy where we have to create the feature file which is lengthy, then the coressponding method and so on
+		
+=======================================================================================================================================
+Data driven testing using Cucumber framework
+	1. Simple Data driven - No use Examples keyword
+	2. use Examples & Scenario outline Keyword
+		Note: Withdry run = true, we can check if the values are passed correctly in the keywords correctly for all iterations
+	3. Using tables
+		
+		
+Diff btwn Scenario & scenario outline

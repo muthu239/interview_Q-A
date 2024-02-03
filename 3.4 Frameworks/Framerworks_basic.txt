@@ -15,7 +15,100 @@ Types of automation framework
 	- Data driven framework (test data will basically drive the automation)
 	- Keyword driven framework
 	- Hybrid testing framework (Mixing of two or more frameworks)
+	
+TDD(Test driven development)
+		Only developer or tester can understand the implementation as its purely technical language. 
+		eg: TestNG
+		Data driven Framework, POM all falls under this category
+		
+
 
 Reports
 Types of reports
 Reports in java selenium
+
+===========================================================================================================================================
+What is selenium Framework?
+	Selenium framework is a code structure for making code maintenance simpler and code readability better
+	A framework involves breaking the entire code into smaller pieces of code, which test a particular functionality
+	
+Data driven framework:
+	A data driven framework in selenium is the technique of separating the "data set" from the actual "test case" (code)
+	We need to design a single test case for all scenarios and we will keep the test data in a separate file. From the file we will pass the data to the test case and the test case will iterate over the data present in the file.
+	Data might vary each time test is executed but the code will not
+	We will read the data from Excel file with third party library  Apache POI
+	
+	Requirement for DD framework:
+		- Project building tool -> maven
+		- Test execution tool -> TestNG
+		- Read data from excel files -> Apache POI
+		- Generate report -> Extent report
+		
+	Selenium does not contain report utility
+	
+	Selenium code I developed have,
+		Test data - Excel - Apache POI
+		Locators - Properties File 
+		Build tool - Maven
+		Test execution - TestNG
+		Report - Extent report
+		Logger - Extent logger(belongs to Extent report)
+		Assert - Soft Assert is used
+		Screenshot - Screenshots are taken on Failure using the method created
+		BaseUI class - Containing commmon methods of UI functionalities
+		
+Soft Assert Vs Hard assert	
+============================================================================================================================
+What is Page object Model Framework
+	Page Object Model is a design pattern to create object repository for webUI elements
+	In POM, page class will find the webElements of that webpage and also contains page methods which perform operations on those web elements
+	
+Why POM?
+	Page object pattern says operations and flows in the UI should be separated from verification. This concept makes the code cleaner and easy to understand.
+	The second benefit is the object repository is independent of test cases, so we can use the same object repository for a different purpose with different tests
+	Methods get more relaistic names which can be easily mapped with the operation happening in UI
+	
+What is page Factory?
+	'Page object model' is way of representing an application in a test framework
+	'Page Factory' is one way of implementing the 'Page Object Model' by initializing the web elements you want to interact with within the page Object when you create an instance of it.
+	
+The implementation would be like when you are performing some operation which will redirect you to a new page then that particular operation should create the object of the new page and return it
+
+In this particular implementation if particular operation is not navigating you on a new page, then this will not return anything or this will return something
+But if a particular function is redirecting you to a new page, then that function must return the object of the new page class
+
+At runtime it will return null pointer exception if it cannot find the object
+
+Challenges with POM
+	How driver instances will be shared? - Resolved with help of pageFactory
+	How to handle the common functions?
+	What should be return type of fucntion?
+	How to handle common web Elements?
+		
+		
+@FindBy and pageFactory are part of selenium packagae
+============================================================================================================================
+What is Extent report?
+	Extent is open source library for rich HTML reporting for TestNG tests.
+	Extent Report have very rich UI with pie charts and details logs options
+	
+Why use TestNG with extent report?
+	TestNG by default creates some reporting, using that particular reporting, extent report works with that by creating a far more optimised report
+	
+===============================================================================================================================
+Why screenshots is required?
+	To make debugging easy and to pinpoint the failure reason Screenshot are helpful
+
+
+===============================================================================================================================
+Common good practices on Automation
+	Always make sure to generalize the code and data inputs and configs. So if required that can be changed in one place only.
+	Maintain Configuration separately. 
+	Maintain data required from user separate excel sheet
+	Always maintain one Excel workboobk for datasheet. The workbook can have multiple sheets. But try to generalize the test sheet as well
+	Capture screenshots on failures
+	Always use try catch to catch the exceptions and put that in the report along with screenshots
+	Maintain log on each function, step, UIelement. So for traceing back it'll be helpful in case of errors
+	Always put yourself in the shoes of user. That will give a clear perspective.
+	Generalise the code as much as possible as reusable code
+	

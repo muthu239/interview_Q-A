@@ -645,6 +645,15 @@ Javascript executor:
 				js.executeScript("arguments[0].scrollIntoView(true)", webElement);
 				
 		- Highlight the element on webpage
+		
+		- to check the page is completely loaded using js
+			eg:
+				JavascriptExecutor js = (JavascriptExecutor) driver;
+				String pageState = (String) js.executeScript("return document.readyState;");
+				
+		- to check the js of the page loads
+			eg:
+				Boolean jsState = (Boolean) js.executeScript("return window.jQuery != undefined && jQuery.active ==0;");
 	
 		
 	How to scroll using js executor?
@@ -655,3 +664,20 @@ Javascript executor:
 	
 File upload in selenium
 	Selenium cannot interact with OS, so with the help of sendKeys method we can send in the filepath which will upload the file
+	
+=========================================================================================================================================
+Justify selenium webdriver is interface not a class
+		 Object cannot be instantiated for interface
+		 And interface methods does not have any body
+		 
+Retry only failed tests in Automation
+	
+	Method 1: testng-failed.XML in test-output directory
+		TestNG will automatically create the testing-failed XML with the failed test cases. We can run the XML and run the failed tests alone
+	
+	Method 2: attach retry Analyzer with the retry mechanism implemented class using testNG
+
+
+Execute test in microsoft edge
+	using edge driver we can automate similar to chrome driver.
+	But execution on edge is not much preferred as it is quite unstable and lots of times it cannot identify the locators
