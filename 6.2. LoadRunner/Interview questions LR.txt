@@ -1,0 +1,394 @@
+Interview Questions
+
+Do you do any test before the acutal test?
+	Dry run Test / Shakedown test is usually done before the actual test to verify if all the scripts in total are working correctly
+
+Which component the scripts get executed or where the scripts get executed
+	Load generators are the place the scripts executed.
+	When Run is click on controller, the test scripts are downloaded on to the Load generators and they are executed
+	
+Calculation of Load Generators or How do you find the number of LGs required for the test? (important)
+
+	Number of Vuser this LG can support totally depends on the memory footprint
+
+	What is Memory footprint(important)	
+		Memory footprint is the amount of physical memory that a program uses or references while it runs.
+		The word footprint generally refers to the extent of physical dimensions that an object occupies, giving a sense of its size
+		Memory footprint will vary from Protocol to protocol and tool to tool
+		For example, memory footprint for HTTP/HTML protocol in LR is 2.3 mb RAM for each Vuser
+=====================================		
+What are Actions?
+	Actions are the place holder for the code to be saved. 3 default actions get added.Vuser_init, Action, Vuser_end. .c is the format the file is saved
+	
+====================================	
+At the start of script any functions to be added?
+
+   web_cleanup_cookies();
+	web_cache_cleanup();
+	web_cleanup_auto_headers();
+	
+	these three functions are added which are important in any web script.
+	Used to clean cache, cookies, headers
+	
+What is cookies?
+	Cookies are small pieces of text sent to your browser by a website you visit. They help that website remember information about your visit, which can both make it easier to visit the site again and make the site more useful to you
+
+What is Cache?
+	Some part of the response from the server is stored on the disk as cache on the first time. This is helpful in opening the webpage faster. This way lot of requests is avoided sending to the server.
+	This is the reason we cleanup cache at the start of script
+
+What are headers?
+
+
+why does cleaning the cache, cookies,headers matter?
+	Because if the cache, cookies are not cleaned each time, the response time will not be accurate. as there is cookies and cache the response time will get low which is not the ideal response and it is not the ideal way to test
+
+
+How to run certain action alone in run for a certain number of time?
+	Using "Insert Block" option in the runtime settings. Add the action into the block and give the number of times
+	
+============================================================
+HTTP Methods(important topic)
+	GET(web_url() function in LR)
+		The GET method requests a specified resource. Requests using GET should only retrieve data and should have no other effect.
+	
+	POST(web_submit_data() function in LR)
+		The data POSTed might be, for example, an annotation for existing resources; a messgae for a bulletin board, mailing list or comment thread; a block of data that is the result of submitting a web form to a data handling process or an item to add to a database.
+		
+	PUT
+		The PUT method requests that the enclosed entity ne stored under the supplied URI. If the URI refers to an already existing resource , it is modified; if the URI does not point to an existing resource, then the server can create the server can create the resource with that URI
+		
+	DELETE
+		The DELETE method deletes the specified resource
+		
+	PUT and DELETE are not used by Performance tester.
+
+==================================================================
+If I record in IR, can I Playback in Google chrome?
+	Using Browser Emulation in Runtime settings. We can choose the browser type,Browser version, Platform.
+	Verify the User-Agent string
+	
+	If the version we are looking for is not available, check in the internet for the User agent version of the browser and use it in Use custom menu.
+	
+=====================================================================
+What are good scripting standards you have followed?
+	1. Adding comments wherever necessary.
+	2. Adding thinktime 
+	3. Adding cache, cookie, header clearing functions
+	
+=======================================
+
+HTTP status codes(important)
+
+200 - 
+404 - 
+300 - 
+503 - 
+
+================================
+What is the purpose of LR_AUTO in the lr_end_transaction()?
+LR_AUTO  - Leaving the decision of whether the transaction is fail or pass to the VuGen instead we are giving LR_PASS or LR_FAIL.
+
+How does the pass and fail is determined in LR_AUTO?
+
+
+naming standard for transaction name
+<project_name>_<Script_name>_<Transaction_name>_<Transaction_number>
+
+======================================================
+Actions
+	Vuser_init and Vuser_end actions cannot be renamed (Important question)
+
+
+	Which function will be used to print out a value to output log in VuGen?
+		lr_output_message();
+		
+==========================================================
+HTML based script Vs URL based Script
+
+Embedded Resources
+	When we are clicking URL in browser, without our knowledge we are sending multiple requests to get the response, like for logo there is a request, background colour, etc.
+	Embedded resources are resources that are required for by the HTML page to be fully functional and loaded along with page itself.
+	Embedded resources  - they are found in the developer page of web page. i.e) on clicking ctrl+Shit+I we can see the resources
+	The resources of the page that hit the server and return are the embedded resources.
+	
+	-> HTML based scripts sends the request of all the embedded resources in one or two web requests in the script. therefore the script is small.
+	-> Whereas in URL based scripts each resources will have a web request in the script. The script is large
+	
+	web_concurrent_start();
+	web_concurrent_end(); 
+	These two codes are saying that the requests are in parallel.
+	
+	Why URL based scripting is used even though the HTML based scripting is small?(Important)
+		Because to capture the response of each resources we are using the URL based scripting 
+		
+=========================================================
+HTTP Watch basic - in browser
+	SImilar to developer tools
+	It needs to be installed in internet explorer
+=========================================	
+Check Points
+	Check points are basically assertions to verify if we got the correct response.
+	Two types of content checks are available with VuGen
+		Text CheckPoint
+		Image CheckPoint
+	
+	Text CheckPoint
+		web_reg_find(); function is used for inserting the text check point
+		The /IC is for ignore case
+		The checkpoint is always added above that transaction.
+		It checks for the text at the body level
+		if the search =  body no mentioned it'll search both header and body for the text
+		
+		example
+		web_reg_find("Search=Body",
+		"Text/IC=Welcome",
+		LAST);
+		
+		web_reg_find() can be added automatically while recording using recordig option. Under record->Recording Options->Http properties->Advanced it is present
+		
+		After checking the checkbox. Just regenreate the script it'll automatically add the web_reg_find
+		
+		Image checkpoint
+		Not mostly used
+		web_image_check();
+		The checkpoint is always added below that transaction.
+		Every image has the ALT (altername image name) or SRC (Server file name) or both.. If we can get hold of one of these we are good to put check point
+		Inspect the element in the browser. from there we can find the src or Alt name
+	
+		->Is there any pre requisite for image checkpoint?(important)	
+			Enable the verification check in the runtime settings ->Internet protocol ->preferences -> Enable image and text checks. Only if the check is enable the check point works
+			
+			Example
+			web_image_check("web_image_check",
+		"Alt={signOff}",
+		LAST);
+			
+===================================================
+Rendezvous Point
+	(It more over does the work like Synchronizing timer in Jmeter)
+	
+	launch -> Think time -> Rendezvous point -> Login -> Think time -> Logoff transaction
+	
+	lr_rendezvous("x");
+	
+	every Vuser will wait at the Rendezvous point to go to the Login
+	
+	Rendezvous point is used to synchronize all the Vusers to perform a particular transaction at the same point of time
+	When a a Vuser reaches the Rendezvous point, the controller holds execution of the Vuser until all the other participating Vusers reach the point
+	when all the participating Vusers reach the rendezvous point, these Vusers will be released all at once to create a spike
+===========================================
+Think time - Time user pauses between transactions
+pacing - Time paused between iterations
+
+================================
+When you define a rendezvous point in a scenario, where should the lr_start_transaction function be palced?
+	Immediately after the rendezvous point
+	
+=====================================
+Which language is supported by VuGen
+	C & Javascript
+	
+======================================================================================================================
+Where are the variables declared?
+	Variables are declared at the start of the script with data type
+	
+=====================
+What is globals.h?
+		It is used to cretae global variables. Once variables are declaared with data type here it can be used in script with declaring again. 
+		One of the good scripting practices
+		
+how are sting compared in C?
+	We can use strcmp function. which can be used to comapre strings
+	Syntax: 
+		int strcmp( constchar *string1, const char *string2 );
+		
+		Return value	Description
+		<0	string1 is less than string2
+		0	string1 is the same as string2
+		>0	string1 is greater than string2
+
+==================================
+Conversions
+
+		int -> LR parameter
+			lr_save_int(); - eg: lr_save_int(i,"LR_param") 
+		
+		String -> LR parameter
+			lr_save_string();
+		
+		float -> LR parameter
+			lr_param_sprintf(); - eg: lr_param_sprintf("LR_float","%.2f",f);
+			
+		String -> LR parameter  & int -> LR parameter
+			lr_param_sprintf() works for all data type
+		
+		
+		LR_parameter-> String
+			Here string needs to be declared as pointer
+			lr_eval_string();
+			
+			char *lr_eval_string( char *instring  );
+			 example : lr_eval_string("{Lr_param}");
+			 
+			 
+		String -> int
+				syntax :int atoi(char *x);
+				eg: i = atoi(str);
+				
+		int -> string
+			here string needs to be declared as char array.
+			syntax :char[] sprintf();
+			eg: sprintf(str,"%d",i);
+			
+	How to create a LR_parameter
+			click on parameters and create new parameter.
+			Whenever a LR_parameter goes as a input to anywhere it is surrounded with {} flower braces
+	
+	How to convert LR_parameter to int?(Important)
+		There is no direct way to convert a lr_parameter to int. INstead first it must be conveted to string. from there it must be converted to int
+	
+	How can we print the LR paramter?(Important question)
+		we cannot print using lr_output_message directly. we can convert it to other data type like string and print in lr_output message. else we can use lr_param_sprintf() and we can see the value in Runtime data. 
+	
+	Use of Watch & Runtime data
+		Using watch we can only see the values of C data types.
+		In Runtime data we will be able to see the value of LR_parameter
+		No prior declaration is needed for LR_parameter
+		
+===============================================================
+What is the use of toggle breakpoint?
+	Code will execute till the breakpoint and stops there. we can do step by step execution after the or we can execute from there. This is to make sure the code until that point is not breaking or we can execute the code completely until that point and we can check step by step after that. 
+	
+Where do we use conversions?
+		Error handling
+		
+		eg:
+		web_reg_find("Search=Body",
+		"SaveCount=Welcome_count",
+		"Text=Welcome",
+		LAST);
+		
+How to use the HTTP response code in LR?
+	Using int web_get_int_property( const int HttpInfoType);
+	It goes at the end of web request
+	eg: responseCode = web_get_int_property(HTTP_INFO_RETURN_CODE);
+	We can even check with download size, download time, etc;
+	
+What all codes can be used for asserting?
+	web_reg_find();
+	web_get_int_property();
+	
+	
+How can we see the LR_parameter in log? (Important question)
+	Go to runtime settings -> Log -> Extended Log -> parameter substitution
+
+We have only 10 records in paramters, but we run for 11 times? what will happen?
+	It'll take the first record and run the 11th time if the select next row value is sequential. it'll take random when its set as random
+	
+
+Parameters (important topic - go through video section 85,86)
+
+
+==========================================================================================
+
+Corrleation
+
+Why correlation
+	To handle dynamic values which is sent from server as response for the first transaction. We have to send that dynamic value again to make sure the server recognizes the dynamic value is the same as the response of first transaction
+	Dynamic values are values which change from iteration to iteration
+	Browser can handle these dynamic values but VuGen cant
+	Hence correlation is needed in VuGen in order to handle these dynamic values
+	Correlation is a concept needed to handle dynamc values
+	
+	There are some dynamic values in the script which changes from iteration to iteration
+	Since these values are dynamic in nature, their value changes with each execution.
+	So, there is a need for these dynamic values to be captured from server response and pass it subsequently to any part of script.
+	Process of capuring these values using web_reg_save_param_ex function and pass it whenever required is called correlation.
+	
+Why Session IDs are dynamic? what is the need?(Previous interview question)
+=========================================
+How to do correlation?
+	1. LR paramter is created to handle dynamic values in correlation
+	2. Automatic Correlation
+	   Manual Correlation
+	3. web_reg_save_param_ex is placed above the response of the request it was first discovered
+	4. We can identify a value is dynamic or not by recording the script twice and comparing
+	5. Manual correlation can be done in two ways
+		1. Snapshot view - Search in each response
+		2. Check for the value in Output -> Code generation. From there find the resource. Take it for correlation
+	Note:	
+		From code generation find the request and from snapshot take the LB and RB to correlate
+===============================	 
+SaveLen
+	IF we want to capture only the certain number of letters, we use saveLen
+	if we want to capture only the first 3 letters of the the correlate value we'll give saveLen=3; as one of the arguments in the web_reg_save_param_ex
+		eg: London. saveLen=3; output will be Lon
+
+SaveOffset
+	IF we want to capture text only after the certain number of letters after, we use SaveOffset as one of the  arguments in web_reg_save_param_ex. 
+		eg: London after saveOffset=3; will take value don
+====================================
+web_reg_save_param_ex using ORD = ALL
+	-> when there are mutliple dynamic values with the same LB and RB values, that when we use this function
+	-> This stores the multiple dynamic values in a LR Parameter array. One LR paramter variable having multiple values. We dont have to explictily mention that LR parameter is an array. it'll automatically store the value in an array
+	-> By default if ordinal is not mentioned, Ordinal=1 is considered. Script will consider the first instance of the correlated value
+===================================	
+How to select randomly
+	-> To select randomly from the array of LR parameter use function 
+			char *lr_paramarr_random( const char * paramArrayName);
+			
+			eg:
+			random_dept_city = lr_paramarr_random("depart_city"); -> to pick random city from array
+			lr_save_string(random_dept_city,"PRrandom_dept_city");  ->  string to LR parameter
+			(or) lr_param_sprintf("PRrandom_dept_city","%s",random_dept_city); -> String to parameter while printing the value in log
+			
+Note:			
+we cannot use the str directly into request, we have to conert it to a LR parameter and then only we could use in request
+=====================================
+-> To select a certain index from the array of LR parameter use function
+			char * lr_paramarr_idx( const char * paramArrayName, unsigned int index);
+	
+		eg:
+		index_dept_city = lr_paramarr_idx("depart_city",8);
+		lr_param_sprintf("PRrandom_dept_city","%s",index_dept_city);
+		
+-> instead of ordinal = ALL, we can give specific number to take that boundaries value alone and give it in runtime data. It'll take that value only
+	
+	web_reg_save_param_ex(
+		"ParamName=depart_city",
+		"LB=option value=\"",
+		"RB=\">",
+		"Ordinal=5",
+		SEARCH_FILTERS,
+		LAST);
+		
+Note:
+	Ordinal = All is same as Match no - 0 we give in regular expression extractor to take all the correlated values of the expression in Jmeter
+	Ordinal = 1 is same as Match no - 1
+	
+Note: 
+	There are two ways to select a certain value from a array of LRparameter
+		-> either pick using index function lr_paramarr_idx
+		-> or correlate that way that it takes only that way by giving the certain value in Ordinal
+==============================================		
+What if LB or RB spread across multiple lines?
+	use \n escape character in between.
+
+what are the escape characters available?
+===================================
+web_reg_save_param_regexp();
+
+What is the difference between .*? and .+?  (Important question)
+	Both are moreover same
+	
+What is the .(dot) , *,? represent?
+
+Groups
+	-> Group is the same as in the Jmeter. The regex which is covered in () is a group.
+	-> If the group is not mentioned it'll take the first group. So check the group correctly and give in the functions
+	
+=================================================================================================================================
+=================================================================================================================================
+Run Vuser as thread vs Run Vuser as process?
+

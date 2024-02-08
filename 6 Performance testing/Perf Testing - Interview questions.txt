@@ -1,0 +1,268 @@
+Testing
+	1. Fuctional testing - Testing the functionality.  eg: Login with correct UserID, PWD. Login with correct UserID, Wrong PWD likewise someother scenarios. 
+		1.1 System Testing - Test the complete integrated system
+		1.2 System Integration Testing
+		1.3 Regression Testing
+		1.4 UAT - User acceptance testing. Enduser testing
+		1.5 Smoke Testing - check Stability of Old functionality
+		1.6 Sanity testing - Check Stabillity of new functionality
+		
+	2. Non Functional testing eg: How fast it is Logging in.
+		2.1 Performance Testing
+		2.2 Security Testing
+		2.3 Compatibility Testing
+		2.4 Usability Testing
+		2.5 Failover Testing
+		
+
+Functional testing - Bugs/Defects
+Performance testing - BottleNecks       Deviation from the Requirements is called Bug or Bottleneck or vulnerabilities.
+Security testing - Vulnerabilities
+
+Performance testers are required to identify performance bottlenecks but not defects.
+
+Performance testing
+
+Tools used in Performance testing
+	1. LoadRunner (HP)
+	2. Jmeter (Open Soource)
+	3. Performance Center
+	4. Stormrunner Load
+	5. RPT (IBM)
+	6. Microsoft VSTS
+
+Why Performance Testing?
+	What will you do when it takes like 2 minute to give a response for the product you buyed or at the end of ticket booking where you booked putting in money.
+	What if after waiting 2 min it throws webpage error.
+	It'll end up losing customers, revenue
+	
+	1. Bad performance is bad for business
+	2. Lack of proper performance testing results in loss of revenue, loss of credibility, loss of customers
+	3. To identify performance Bottlenecks
+	
+Performance testing is expensinve compared to other testing
+	1. Tools are expensive
+	2. performance testers (Resources are expensive)
+	3. Full scale infrastructure is required. (In Functional testing a part of build is enough)
+	
+Why Applications become slow?
+	1. As multiple users use the application at same time, Load increases, performance decreases. (eg: If we work for 8 hours a day we are comfortable. what if we are working for 14 hours a day, our performance decreases.)
+	2. During Festival offer season, there..........  will be lot of loads on system
+	
+What is performance testing?
+	-> PT is testing an application for speed, stability and scalability in "Production like environment" under virtual user load to meet non functional requirements(NFRs)
+	- Speed : how fast the application responds to your request with current load. In other words, Response time is under SLA. Tested with current peak load	
+	- Stability : Performance should not degrade even after using the application for a very long time. Tested with less than peak load for long time.
+	- Scalability: Applications ability to handle increasing user without performance degradation.
+	
+	Concurrent users -  Users using the application at the same time.
+	While a load is being created, performance needs to be checked.
+	
+	Industrial standard for response - 2 seconds.
+	
+VUsers - Virtual Users
+	We cannot bring in 1000 users to test the application. Instead we use VUsers
+	Using Load generator machine we generate the VUsers.
+	
+Terminologies in PT
+	1. PT : Performance testing
+	2. NFR : Non - Functional Requirements
+	3. Response time : Time taken by the system(or servers) to respond to specific request
+	4. Think time : Time which is spent not doing anything on the system. Think time is the time taken by the end user
+	5. Throughput : Transactions per second. Bytes per second
+
+Performance testing Vs performance engineering
+
+performance testing is a subset of performance engineering
+
+Performance testing usually deals with identifying issues in the application under test.
+Performance engineering not only deals with identifying the issues but also eliminating the same
+
+Performance testing life cycle:
+
+NFR gathering and analysis(NFR) -> Test strategy and planning (Test Plan with WorkLoad Modelling) -> Test design and development(Test script) -> Test execution(Test Results) -> Test result analysis(Test reports) -> BottleNeck analysis -> Fix -> Retest
+
+
+Types of performance testing
+	1. Load Test (Test for Speed)
+		-> Usually before doing a load test a dry run test/smoke test is done to check the script and stability of application.
+		-> This is mandatory test which will be done prior to any test
+		-> This test usually simulate current user load on the application under test.
+		-> Usually Peak load for the application is considered for this test
+		Peak Hour - Maximum users at an hour in the application
+		Use Ramp Up and Ramp down time.. Dont start all users simultaneously.. It helps the server to give correct response.
+	
+	Why Load Test?
+		This test ensures that the application under test is stable and handle expected peak load once the application is deployed.
+
+	2. Stress Test 
+		-> Stress test is conducted by increasing the user load gradually until the application breaks.
+		-> Objective of this test is to obtain the breaking point or saturation point
+		-> Usually once the breaking point is attained there is a noticeable increase of errors and also there is big increase in response time
+	
+	Why Stress test?
+		This is performed to check if application can accept spikes
+
+		
+	3. Endurance test (Test for Stability)
+		-> It is also called as Soak test
+		-> This test is performed for long perios of time(8hrs, 16 hrs, 1 day, 3 day) with expected user load
+		-> Purpose of this test is to identify performance bottlenecks like Memory Leaks, Connection leaks, etc.
+		
+
+What is Memory leak?
+	Variables or data intialized or objects used if not freed or flushed or garbage collected over a period of time, they will take all the memory and the script can run no further and thus resulting in system to be hanged.
+
+garbage collector?
+	Java applications obtain objects in memory as needed. It is the task of garbage collection (GC) in the Java virtual machine (JVM)to automatically determine what memory is no longer being used by a Java application and to recycle this memory for other use.
+	Garbage collection frees the programmer from manually dealing with memory deallocation
+	
+	4. Scalability test
+		-> Test is performed using the user load considering the growth of the application under test down the years
+		-> Still do the laod test with new number of users as per NFR
+		-> This test is performed to check the capability to scale up or scale out in terms of user load.
+		
+	5. Volume test
+		-> It is a load test except that huge data populated in the database
+		-> The data populated in the DB expected down the years
+		-> Purpose of this test is to check if there is any change in the response time with the increase DB volumes.
+
+=================================================================================
+
+Software Architecture
+	An architecture is a combination of software and system components and connections
+	
+	As performance tester Why is it necessary to understand software architecture?
+		Monitoring - Identify the bottlenecks
+	
+	What is a server
+		Software(Computer program) or hardware Which
+			-> Understands your request
+			-> Process your request
+			-> Sends response back	
+		Any software capable of doing above is called a server
+		Software by itself is of no use. It needs to be installed on a hardware
+		So combination of software and hardware is called server
+		File server, Print server, DB server, Application server
+		
+Application Layers
+	-> Presentation Tier(Presentation layer) - Accepts user inputs, displays data and any result computation on the UI
+	-> Logic Tier(Business Logic layer) - This layer process commands, make logical decisions and perform calculations
+	-> Data Tier (Database Management layer) - Here information is stored and retrieved from the DB file system
+	
+	Two Tier Architecture - Client/Server model
+		The two tiers being client and server. It is a burden on either client or server side since two tiers are installed on either client or server end.
+		
+		Thin client
+			Presentation layer is in the client. Business logic layer and Database management layer is on the server
+			Client (Presentation layer) + Server (Business Logic layer & Database management layer)
+			No need of installing code or something.
+			
+		Thick client/Fat client/Heavy client
+			Presentation layer & Business logic layer is on the client. Database management layer is on the server.
+			Client (Presentation layer & Business Logic layer ) + Server (Database management layer)
+			eg : Mobile apps - Whatsapp. Installing something on the client end. 
+			
+	Three tier architecture
+		Client(Presentation layer) + Web App server (Business logic layer) + Database server (Database management layer)
+		
+		Advantages: 
+			-> Separate processor might be present for each application layer
+			-> This architecture is simpler to manage than the fat client model since every tier is on separate server
+			-> Gives better performance than a thin client model
+			-> Can be scaled easily. More servers can be added as demand increases
+			
+	N tier architecture	
+		Client(Presentation layer) + Web Server(Presentation layer built over here) + App Server(Business logic layer) + DB Server(Database management layer)
+		Web server is mandatory for all web application
+		Web server will contain HTML & CSS content. standard template will be available on web server. But varying content based on ip,location are on the app server.
+		
+-> Scaling up(Vertical scaling) - adding further resources, like hard drives and memory, to increase the computing capacity of physical servers. 
+-> Scaling out(Horizontal scaling) - adding more servers to your architecture to spread the workload across more machines
+-> Load balancer - Balances the load between the servers
+		
+
+	Protocol
+		-> For server to understand the client it needs to follow some "Set of rules" or "Protocol". Only then the server can understand the request and then process it.
+		-> Server sends the response back, it needs to follow the set of rules as well
+		-> Every protocol has its own "set of rules"
+		-> Depending on the kind of communication required between Client and server, protocol is selected by the architect.
+		-> HTTP,HTTPS,FTP(File transfer protocol),TCP,SMTP(Simple Mail Transfer Protocol) etc.,
+		
+==============================================================================================================
+NFR gathering
+
+1. Infrastructure details
+	As part of NFR gathering, PT team is supposed to capture the configuration details of both production environment and performance testing environment
+	
+	Data Collected
+	-> Operating system of each server - OS version
+			- Solaris 9, AIX, Redhat Linux
+	-> Hardware configurationof each server - Number of CPU's, speed, memory etc
+			- 1.6 GHz processors with 32MB cache, 16GB Memory, 100GB Hard disks
+	-> Support Software on each server - Web server, Database server
+			- Weblogic 8.1 premium server, Oracle 10G enterprise
+			
+2. Transaction Details
+	As part of NFR, PT team is supposed to captures list of performance critical transactions.
+	
+	What are performance critical transactions:
+	-> Transactions which are executed frequently
+	-> Transactions which are critical for business
+	-> Transactions that are suspected to have high resource intensive
+	
+3. Scalability related data
+	Few years down the line there is a chance that user load on the application might increase because of the business growth
+	Because of this increased load, the performance of the application might get affected.
+	So performance testing team is supposed to capture the future user volume growth
+	
+	example:
+	There is a 100% increase in user load annually.
+	
+4. Workload related data
+	Application usage patterns and transactional volumes for each performance critical business process(transaction) during peak hour is captured as part of this model
+	
+	The data is identified by 
+	-> Interviewing clients
+	-> Analyzinig existing logs
+	
+5. Data related to response times and other metrics
+	As part of NFR collection, PT team is supposed to capture expected response time(RT) related data
+	Example:
+		When application is subjected to 1000 concurrent user load, CPU utilization of the webApp server should never cross 60%
+		
+============================================================================================
+WorkLoad Modelling
+	As part of NFR collection client usually gives "workload related data"
+	Any performance test will run for 1 hour
+	With as many low as possible have the VUser to test the script
+	Pacing is time between two iterations
+	WLM is done for calculating pacing between transaction
+	Depending on Concurrent users the response time varies
+
+	Little's Law
+		N = X * (Rt)
+		N -> No of concurrent users
+		X -> Throughput (Transaction per second - TPS)
+		Rt -> Response time (Seconds)
+		
+		N = X * (Rt+Zt) (For system with think time)
+		Zt -> Think time
+		Industry standard for Zt is 10 Secs
+		
+		Rt + Zt = Script execution time
+		
+		For work load modeling pacing is required to be calculated. So the forumula would be
+		N = X * (Rt + Zt + pacing)
+		
+		TPS = TPH/3600
+		
+=====================================
+layers of OSI
+7. Application layer
+6. Presentation layer
+5. Session layer
+4. Transport layer
+3. Network layer
+2. Data link layer
+1. Physical layer

@@ -1,0 +1,282 @@
+
+
+In VuGen you can run for multiple iteration but not with multiple Vuser
+
+Three Panes
+	Solution Explorer
+	Start page
+	Output
+	
+From View Menu we can choose the panes and layouts
+
+========================================
+
+Steps to create a script
+
+Understand the application under test
+Record various transactions using VuGen
+Enhance the script 
+Playback to make there are no issues with the script
+
+http://localhost:1080/WebTours
+User : jojo
+pwd : bean
+
+==============================================
+Protocol Advisor
+
+Select Record -> Protocol Advisor -> Analyze application
+Try to walk through a variety of business processes to make sure that your results are comprehensive. Click Finish Analyzing to end the analysis and display the results
+As per the results, select the protocol and create new Vuser script
+
+================================================
+VuGen Recording events
+Creating script
+1. Select Protocol
+	Selecting protocol helps the system to understand the transaction between client and server
+2. Actions
+	Actions are the place holder for the code to be saved. 3 default actions get added.Vuser_init, Action, Vuser_end. .c is the format the file is saved. 
+3. Record the script
+
+======================================================
+Why Protocol needs to be set in VuGen before recording?
+	VuGen can record the script only if it knows the type of protocol
+	VuGen is recording the script at the network level.
+	As a performance tester you have to selec the appropriate protocol before you start recording
+	
+	How do I know which protocol to select?
+		1. From the technical design document which has the architecture - where the protocol between client and server used is mentioned
+		
+===========================================================
+-> ctrl+ Space - will give suggestions on code like in eclipse
+-> lr_think_time(x); - think time function
+-> LR code are case sensitive
+-> F1 - Help menu redirects us to the web to understand code and function
+-> functions start with "lr" is applicable to all protocols
+-> functions start with "web" is applicable to http/html protocol
+=======================================================================
+
+At the start of script any functions to be added?
+
+    web_cleanup_cookies();
+	web_cache_cleanup();
+	web_cleanup_auto_headers();
+	
+	these three functions are added which are important in any web script.
+	
+	This is used to clean the cache, cookies and headers after every iteration when running in a loop so that it will be fresh script.
+	
+	one of the good scripting habits.
+	
+Cache
+	Some part of the response from the server is stored on the disk as cache on the first time. This is helpful in opening the webpage faster. This way lot of requests is avoided sending to the server.
+	This is the reason we cleanup cache at the start of script
+	
+	
+=============================================================
+
+Runtime settings
+	Depending on how the Actions are arranged in the Runtime settings, the script flow will work
+	
+	How to run certain action alone in run for a certain number of time?
+		Using "Insert Block" option in the runtime settings. Add the action into the block and give the number of times by double clicking the block
+
+Runtime viewer.
+	Display the runtime viewer from Tools->Options-> Scripting-> Replay->Show runtime viewer while replay	
+	Use Runtime viewer to view the actions performing on the screen.
+	
+Thinktime
+	Enable the thinktime from Runtime settings. Use Random percentage of recorded think time is the most commonly used.
+
+============================================================
+
+HTTP Methods(important topic)
+	GET(web_url() function in LR)
+		The GET method requests a specified resource. Requests using GET should only retrieve data and should have no other effect.
+	
+	POST(web_submit_data() function in LR)
+		The data POSTed might be, for example, an annotation for existing resources; a messgae for a bulletin board, mailing list or comment thread; a block of data that is the result of submitting a web form to a data handling process or an item to add to a database.
+		
+	PUT
+		The PUT method requests that the enclosed entity be stored under the supplied URI. If the URI refers to an already existing resource , it is modified; if the URI does not point to an existing resource, then the server can create the server can create the resource with that URI
+	
+	DELETE
+		The DELETE method deletes the specified resource
+		
+	PUT and DELETE are not used by Performance tester.
+
+====================================================================
+If I record in IE, can I Playback in Google chrome?
+	Using Browser Emulation in Runtime settings. We can choose the browser type,Browser version, Platform.
+	Verify the User-Agent string
+	
+	If the version we are looking for is not available, check in the internet for the User agent version of the browser and use it in Use custom menu.
+	
+	
+===============================================
+Speed Simulation - Runtime settings
+	Used to control the network speed while replaying.
+	1MBps = 1024Kbps
+	1Kbps = 1024bps
+============================================
+
+Comments -  While recording
+
+// single line
+/*   */  Multi line comments
+
+==============================================
+VuGen: Playback with transaction
+
+To see the response times in the log add the following codes
+lr_start_transaction("x");
+lr_end_transaction("x", LR_AUTO);
+
+It'll capture the time taken for the code to exectue between the start and end transaction.
+If think time is inside the start and end then that also will be captured as a part of transaction time.
+
+What is the purpose of LR_AUTO in the lr_end_transaction()?
+LR_AUTO  - Leaving the decision of whether the transaction is fail or pass to the VuGen instead we are giving LR_PASS or LR_FAIL.
+
+How does the pass and fail is determined in LR_AUTO?
+
+
+naming standard for transaction name
+<project_name>_<Script_name>_<Transaction_name>_<Transaction_number>
+
+=================================================================
+Actions
+	-> Multiple actions can be created
+	-> Vuser_init and Vuser_end actions cannot be renamed (Important question)
+	-> Order of the actions in the Solution explorer doesnt matter
+	-> Actions will be executed in the order set in "Runtime settings"	
+	-> An action can be deleted from Runtime setting, yet it will not be deleted from script
+	
+
+	Which function will be used to print out a value to output log in "C" programming language?
+		"Printf"
+	
+	Which function will be used to print out a value to output log in VuGen?
+		lr_output_message();
+	
+	
+Call Actions
+	Main Action can be created and all the other actions will be called from this Action
+	In this case only Main_Action needs to be executed from "Runtime settings"	
+	No need to add the actions separately into the Runtime settings
+	
+=================================================================
+
+HTML based script Vs URL based Script
+
+Embedded Resources
+	When we are clicking URL in browser, without our knowledge we are sending multiple requests to get the response, like for logo there is a request, background colour, etc.
+	Embedded resources are resources that are required for by the HTML page to be fully functional and loaded along with page itself.
+	Embedded resources  - they are found in the developer page of web page. i.e) on clicking ctrl+Shit+I we can see the resources
+	The resources of the page that hit the server and return are the embedded resources.
+	
+	HTML based scripts sends the request of all the embedded resources in one or two web requests in the script. therefore the script is small.
+	Whereas in URL based scripts each resources will have a web request in the script. The script is large.
+	
+	Why URL based scripting is used even though the HTML based scripting is small?
+		Because to capture the response of each resources we are using the URL based scripting.
+		
+	lr_start_sub_transaction("x","parent transaction name");
+	lr_end_sub_transaction("x", LR_AUTO);
+	These two codes helps in recording the response times inside a lr_start_transaction(); lr_end_transaction(); which helps us to record the transaction time of eah resources.
+	
+	
+	web_concurrent_start();
+	web_concurrent_end(); 
+	These two codes are saying that the requests are in parallel.
+	
+	
+================================================	
+	web_submit_data("login.pl_2",
+		"Action=http://localhost:1080/cgi-bin/login.pl",
+		"Method=POST",
+		"RecContentType=text/html",
+		"Referer=http://localhost:1080/cgi-bin/nav.pl?in=home",
+		"Snapshot=t12.inf",
+		"Mode=HTML",
+		ITEMDATA,
+		"Name=userSession", "Value={userSession}", ENDITEM,
+		"Name=username", "Value=jojo", ENDITEM,
+		"Name=password", "Value=bean", ENDITEM,
+		"Name=login.x", "Value=50", ENDITEM,
+		"Name=login.y", "Value=11", ENDITEM,
+		"Name=JSFormSubmit", "Value=off", ENDITEM,
+		LAST);
+		
+		Mode - HTML represents that request/response is in the HTML format of that transaction.
+		Referer - This represents which was the last thing/ from where the current action came from. Like login button is referer of home button.
+		RecContentType - request/ response message will be in this format.
+		Method - HTTP methods like GET, POST
+		
+		
+==========================================================
+HTTP Watch Basic - in browser
+	Similar to developer tools
+	It needs to be installed in internet explorer
+	
+==========================================================
+Check Points
+	Check points are basically assertions to verify if we got the correct response.
+	Two types of CheckPoints are available with VuGen
+		Text CheckPoint
+		Image CheckPoint
+	It verifies if a particular text or image is present on the webpage.
+	By adding the CheckPoint, one can confirm if a particular transaction has passed or failed.
+	
+	Text CheckPoint
+		Checkpoint is placed on a particular text available on the webpage
+		web_reg_find(); function is used for inserting the text check point
+		The function can be added during recording, typed directly in the script or can be added using Steps toolbox
+		
+		example
+		web_reg_find("Search=Body",
+		"Text/IC=Welcome",
+		LAST);
+		
+		The /IC is for ignore case
+		
+		The checkpoint is always added above that transaction.
+		It checks for the text at the body level
+		
+		if the search =  body no mentioned it'll search both header and body for the text
+		
+		web_reg_find() can be added automatically while recording using recordig option. Under record->Recording Options->Http properties->Advanced it is present
+		
+		After checking the checkbox. Just regenreate the script it'll automatically add the web_reg_find
+	
+	Image checkpoint
+		Not mostly used
+		web_image_check();
+		The checkpoint is always added below that transaction.
+		Every image has the ALT (altername image name) or SRC (Server file name) or both.. If we can get hold of one of these we are good to put check point
+		Inspect the element in the browser. from there we can find the src or Alt name
+	
+		->Is there any pre requisite for image checkpoint?(important)	
+			Enable the verification check in the runtime settings ->Internet protocol ->preferences -> Enable image and text checks. Only if the check is enable the check point works
+		
+==========================================================
+Rendezvous Point
+	(It more over does the work like Synchronizing timer in Jmeter)
+	The script will wait at the Rendezvous point till all the Vusers are arrived at that point
+	
+	launch -> Think time -> Rendezvous point -> Login -> Think time -> Logoff transaction
+	
+	lr_rendezvous("x");
+	
+	every Vuser will wait at the Rendezvous point to go to the Login
+	
+	Rendezvous point is used to synchronize all the Vusers to perform a particular transaction at the same point of time
+	When a a Vuser reaches the Rendezvous point, the controller holds execution of the Vuser until all the other participating Vusers reach the point
+	when all the participating Vusers reach the rendezvous point, these Vusers will be released all at once to create a spike
+	
+==============================================================
+Recording Options
+	This setting is needed to be checked first if the script is not gettnig recorded.
+	Network - Mapping and filtering -capture level
+		- socket level data - will record on network using APIs developed by loadrunner itself
+		- WinInet Level data - will record on network using APIs developed by Microsoft windows which loadrunner uses		

@@ -1,0 +1,247 @@
+Correlation
+
+Why Correlation?
+	To handle dynamic values which is sent from server as response for the first transaction. We have to send that dynamic value again to make sure the server recognizes the dynamic value is the same as the response of first transaction
+	Dynamic values are values which change from iteration to iteration
+	Browser can handle these dynamic values but VuGen cant
+	Hence correlation is needed in VuGen in order to handle these dynamic values
+	Correlation is a concept needed to handle dynamic values
+	
+	There are some dynamic values in the script which changes from iteration to iteration
+	Since these values are dynamic in nature, their value changes with each execution.
+	So, there is a need for these dynamic values to be captured from server response and pass it subsequently to any part of script.
+	Process of capuring these values using web_reg_save_param_ex function and pass it whenever required is called correlation.
+	
+Why Session IDs are dynamic? what is the need?
+
+How to do correlation?
+	1. LR paramter is created to handle dynamic values in correlation
+	   LR paramter is used because dynamic values will not be string only or numbers only. Its easy to handle if its a LR parameter
+	   Left Boundary - Dynamic value - Right Boundary
+	   Dynamic value is correlated with the help of left & Right boundary texts
+	   
+	2. Automatic Correlation
+		Scan the script for identifying the values to be correlated
+		VuGen will provide the recommendations
+		Click on the value to be correlated and click on "Apply".
+		
+	   Manual Correlation
+		 
+		 Use notepad to take the left boundary and right boundary text value from the resposne
+		 Use Right -> Inset -> Search in toolbox web_reg_save_param_ex -> here we can enter LB & RB instead of coding it ourself
+		 
+	3. web_reg_save_param_ex is placed above the response of the request it was first discovered
+	
+	4. We can identify a value is dynamic or not by recording the script twice and comparing
+	
+	5. Manual correlation can be done in two ways
+		1. Snapshot view - Search in each response
+		2. Check for the value in Output -> Code generation. From there find the resource. Take it for correlation
+	
+	Note:	
+		From code generation find the request and from snapshot take the LB and RB to correlate
+		
+		
+	SaveLen
+		IF we want to capture only the certain number of letters, we use saveLen
+		if we want to capture only the first 3 letters of the the correlate value we'll give saveLen=3; as one of the arguments in the web_reg_save_param_ex
+		eg: London. saveLen=3; output will be Lon
+		
+	SaveOffset
+		IF we want to capture text only after the certain number of letters after, we use SaveOffset as one of the  arguments in web_reg_save_param_ex. 
+		eg: London after saveOffset=3; will take value don
+		
+	We can use both save offset and Save len combined if needed
+	
+============================================================	
+web_reg_save_param_ex using ORD = ALL
+	-> when there are mutliple dynamic values with the same LB and RB values, that when we use this function
+	-> This stores the multiple dynamic values in a LR Parameter array. One LR paramter variable having multiple values. We dont have to explictily mention that LR parameter is an array. it'll automatically store the value in an array
+	-> By default if ordinal is not mentioned, Ordinal=1 is considered. Script will consider the first instance of the correlated value
+	
+	
+	web_reg_save_param_ex(
+		"ParamName=Outbound_flight",
+		"LB=name=\"outboundFlight\" value=\"",
+		"RB=\" checked=\"checked\"",
+		"Ordinal=All",
+		SEARCH_FILTERS,
+		LAST);
+		
+Ord_All.c(76): Notify: Saving Parameter "depart_city_1 = Frankfurt".
+Ord_All.c(76): Notify: Saving Parameter "depart_city_2 = London".
+Ord_All.c(76): Notify: Saving Parameter "depart_city_3 = Los Angeles".
+Ord_All.c(76): Notify: Saving Parameter "depart_city_4 = Paris".
+Ord_All.c(76): Notify: Saving Parameter "depart_city_5 = Portland".
+Ord_All.c(76): Notify: Saving Parameter "depart_city_6 = San Francisco".
+Ord_All.c(76): Notify: Saving Parameter "depart_city_7 = Seattle".
+Ord_All.c(76): Notify: Saving Parameter "depart_city_8 = Sydney".
+Ord_All.c(76): Notify: Saving Parameter "depart_city_9 = Zurich".
+Ord_All.c(76): Notify: Saving Parameter "arrival_city = Denver".
+Ord_All.c(76): Notify: Saving Parameter "depart_city_10 = Frankfurt".
+Ord_All.c(76): Notify: Saving Parameter "depart_city_11 = London".
+Ord_All.c(76): Notify: Saving Parameter "depart_city_12 = Los Angeles".
+Ord_All.c(76): Notify: Saving Parameter "depart_city_13 = Paris".
+Ord_All.c(76): Notify: Saving Parameter "depart_city_14 = Portland".
+Ord_All.c(76): Notify: Saving Parameter "depart_city_15 = San Francisco".
+Ord_All.c(76): Notify: Saving Parameter "depart_city_16 = Seattle".
+Ord_All.c(76): Notify: Saving Parameter "depart_city_17 = Sydney".
+Ord_All.c(76): Notify: Saving Parameter "depart_city_18 = Zurich".	
+
+	-> From these multiple values select one randomly and use this as a	parameter substitution
+	
+		-> To select randomly from the array of LR parameter use function 
+			char *lr_paramarr_random( const char * paramArrayName);
+			
+			eg:
+			random_dept_city = lr_paramarr_random("depart_city"); -> to pick random city from array
+			lr_save_string(random_dept_city,"PRrandom_dept_city");  ->  string to LR parameter
+			(or) lr_param_sprintf("PRrandom_dept_city","%s",random_dept_city); -> String to parameter while printing the value in log
+			
+Note:			
+we cannot use the str directly into request, we have to conert it to a LR parameter and then only we could use in request
+			
+		-> To select a certain index from the array of LR parameter use function
+			char * lr_paramarr_idx( const char * paramArrayName, unsigned int index);
+	
+		eg:
+		index_dept_city = lr_paramarr_idx("depart_city",8);
+		lr_param_sprintf("PRrandom_dept_city","%s",index_dept_city);
+	
+	
+		
+	-> instead of ordinal = ALL, we can give specific number to take that boundaries value alone and give it in runtime data. It'll take that value only
+	
+	web_reg_save_param_ex(
+		"ParamName=depart_city",
+		"LB=option value=\"",
+		"RB=\">",
+		"Ordinal=5",
+		SEARCH_FILTERS,
+		LAST);
+		
+Ord_All.c(76): Notify: Saving Parameter "arrival_city_1 = Denver".
+Ord_All.c(76): Notify: Saving Parameter "depart_city = Portland".
+Ord_All.c(76): Notify: Saving Parameter "arrival_city_2 = Denver".
+
+Note:
+	Ordinal = All is same as Match no - 0 we give in regular expression extractor to take all the correlated values of the expression in Jmeter
+	Ordinal = 1 is same as Match no - 1
+	
+Note: 
+	There are two ways to select a certain value from a array of LRparameter
+		-> either pick using index function lr_paramarr_idx
+		-> or correlate that way that it takes only that way by giving the certain value in Ordinal
+				
+============================================================================
+What if LB or RB spread across multiple lines?
+	use \n escape character in between.
+	
+	eg: 
+	web_reg_save_param_ex(
+	"paramName=UserSession",
+	"LB=name=\"userSession\" value=\""
+	"RB=\"/>\n<table border",
+	LAST);
+
+what are the escape characters available?
+
+
+=======================================
+Defining rules of correlation
+	A certain feature that is used in every script of your apllication like login, we can define a rule. so that when each script recorded of that application will automatically correlate that login for you
+	
+	Advantage of definfng a rule
+		Once a rule is defined VuGen will correlate for us as soon as recording is done
+	
+	How to create a rule	
+		GO to recording options -> Correlation -> Rules
+		
+		Add the rule. for example look at the recording options for the WebTours application. A rule for sessionID is created
+		Check that check box against webTours, then only while recording it'll record.
+		
+================================================		
+Regular Expression
+	[] -> Single digit or character
+	+ -> 1 or more
+	? -> 0 or 1
+	* -> 0 or More
+	
+		it means it'll compare one by one character
+		[RAM] - it will search for R or A or M on the 1st character
+		[R][A][M] - it will search as 1st character should be R, 2nd character should be A and 3rd should be M
+		[A-Z][A-Z][A-Z] - anything between A-Z on each 3 characters
+		[A-Z][A-Z][A-Z] - this will not compare words with more than or less than the number of characters. It should be exact
+		
+		
+	[A-Z]+ -> It can match any number of characters from A to Z in a single word.
+		eg: so, two, four
+	
+	[A-Z, ]+ -> It can match like A to Z or space
+		eg: I am learning. It can completely search the whole sentence
+	
+
+		[R] [A]+ [M]
+			Valid - RAM, RAAAM
+			Invalid - RM, RMMMM
+		[R] [A]* [M]
+			Valid - RAM, RAAAM, RM
+			Invalid - REM
+		[R] [A]? [M]
+			Valid - RM, RAM
+			Invalid - REM
+			
+			
+
+	
+What is the difference between .*? and .+?  (Important question)
+	Both are moreover same
+	
+What is the .(dot) , *,? represent?
+
+Check the regex in the sections100,101,103
+===============================================================
+web_reg_save_param with regular expression
+
+<option.*?value=".*?">.*?</option>
+
+<option selected="selected" value="Denver">Denver</option>
+<option value="Frankfurt">Frankfurt</option>
+<option value="London">London</option>
+<option value="Los Angeles">Los Angeles</option>
+<option value="Paris">Paris</option>
+<option value="Portland">Portland</option>
+<option value="San Francisco">San Francisco</option>
+<option value="Seattle">Seattle</option>
+<option value="Sydney">Sydney</option>
+<option value="Zurich">Zurich</option>
+
+
+web_reg_save_param_regexp(
+		"ParamName=city",
+		"RegExp=<option(.*?)value=\"(.*?)\">(.*?)</option>",
+		"NotFound=error",
+		"Group=2",
+		"Ordinal=All",
+		SEARCH_FILTERS,
+		LAST);
+		
+		Group is the same as in the Jmeter. The regex which is covered in () is a group.
+		If the group is not mentioned it'll take the first group. So check the group correctly and give in the functions
+		
+		
+		Use notepad++ first and check the regex and put it in the script
+		
+=================================================================
+What if LB and RB are empty in correlation?
+	web_reg_save_param("responsebody","lb=","rb=","search=body",LAST);
+		this will capture the entire respone body. But it has a character limitation
+		
+	To set the web paramters length we can use function
+		web_set_max_html_param_len("10000");
+		This will set the LR paramter to accept 100000 characters
+	
+	web_reg_save_param("responsebody","lb=","rb=","search=headers",LAST);
+		this will capture the entire respone header value in the lr parameter response body
+	
+

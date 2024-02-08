@@ -1,0 +1,31 @@
+Project -> Test Suite -> Test case -> Test step
+
+Groovy script in SoapUi
+	Script is invoked with log, context and testRunner variables
+	
+Log variable
+	Log variable is basically used to print any text or print any variable/value into our console.
+	
+Context variable
+	Context variable is used to access and modify the variables and properties of our test case.
+	Scope of the context lies in the Test Case only
+	Properties outside of test cases level cannot be accessed using context variable
+	
+Testrunner variable
+	Testrunner variable is used to access any variable and properties at any level of the project
+	
+Note: TO access any property using testRunner you have to come through its parent only - rule
+	eg: testRunner.testCase.testSuite.testCases["getEmployee"].getPropertyValue("id")
+	
+	control flow based on above code is:
+		testRunner i.e)Test Step -> testcase i.e)Script -> testSuite i.e)Testing -> testCases i.e)all 3 test case and we are mentioning which test case we want -> getproperty of that test case
+		
+Important interview question:
+	How do you access property from different test cases?
+		with testRunner variable we case traverse throughout the script and get the property as required
+		
+		
+		
+Notes:
+
+xmlAdd.setNodeValue("xpath","value") - to set the value of the node in a XML

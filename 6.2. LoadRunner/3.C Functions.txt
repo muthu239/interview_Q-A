@@ -1,0 +1,105 @@
+Data type
+	in LR - We can have the variable as LR parameter - It can store value of any data type like int, float, string
+	Declaration of varaibles happens at the start of the script
+	
+	lr_output_message(); - is basically printf in LR
+	
+	%d - integer
+	%c - char - Char is declared in single quote
+	%f - float,  %.2f - prints only 2 values after decimal
+	%s - String - char *a; and char a[] re two different ways to decalare string
+	
+	String decalration - char a[] - via array. if declared as array we have assign on the same line. char a[] = "abcd";
+	char *a - via pointer. if declared as pointer we can assign value later.
+	
+	What is globals.h?
+		It is used to cretae global variables.Once variables are declaared with data type here it can be used in script with declaring again. 
+		One of the good scripting practices
+	
+	how are sting compared in C?
+		We can use strcmp function. which can be used to comapre strings
+		
+		Syntax 
+			int strcmp( constchar *string1, const char *string2 );
+		
+		Return value	Description
+		<0				string1 is less than string2
+		0				string1 is the same as string2
+		>0				string1 is greater than string2
+=========================================================================
+
+LR parameter
+	LR parameter can hold value of any data type - strings, float, doule, int
+	
+	we can copy any format value into LR parameter
+	
+	conversion
+		int -> LR parameter
+			lr_save_int(); - eg: lr_save_int(i,"LR_param") 
+		
+		String -> LR parameter
+			lr_save_string();
+		
+		float -> LR parameter
+			lr_param_sprintf(); - eg: lr_param_sprintf("LR_float","%.2f",f);
+			
+		String -> LR parameter  & int -> LR parameter
+			lr_param_sprintf() works for all data type
+		
+		
+		LR_parameter-> String
+		Here string needs to be declared as pointer. Lr parameter must be enclosed in {}
+			lr_eval_string();
+			
+			char *lr_eval_string( char *instring  );
+			 example : lr_eval_string("{Lr_param}");
+			 
+			 
+		String -> int
+				syntax :int atoi(char *x);
+				eg: i = atoi(str);
+				
+		int -> string
+			here string needs to be declared as char array.
+			syntax :char[] sprintf();
+			syntax : sprintf();
+			eg: sprintf(str,"%d",i);
+			
+	How to create a LR_parameter
+			click on parameters and create new parameter.
+			Whenever a LR_parameter goes as a input to anywhere it is surrounded with {} flower braces
+	
+	How to convert LR_parameter to int?(Important)
+		There is no direct way to convert a lr_parameter to int. INstead first it must be conveted to string. from there it must be converted to int
+	
+	Use of Watch & Runtime data
+		Using watch we can only see the values of C data types.
+		In Runtime data we will be able to see the value of LR_parameter
+		No prior declaration is needed for LR_parameter
+=====================================================================
+Where do we use conversions?
+		Error handling
+		
+		eg:
+		web_reg_find("Search=Body",
+		"SaveCount=Welcome_count",
+		"Text=Welcome",
+		LAST);
+		
+		Welcome count is of data type lr_parameter. if we are using it we have to convert the lr parameter to int and we can use it in IF condition or some other assertions.
+		
+	How to use the HTTP response code in LR?
+	Using int web_get_int_property( const int HttpInfoType);
+	It goes at the end of web request
+	eg: responseCode = web_get_int_property(HTTP_INFO_RETURN_CODE);
+	We can even check with download size, download time, etc;
+	
+Note:
+		We can use LR_AUTO at the end of a if case instead of LR_PASS in pass condition because even if we miss to catch any error, LR will help us in finding that 
+		
+What is the use of toggle breakpoint?
+	Code will execute till the breakpoint and stops there. 
+	we can do step by step execution after the or we can execute from there. This is to make sure the code until that point is not breaking or we can execute the code completely until that point and we can check step by step after that. 
+	
+How can we see the LR_parameter in log?
+	Go to runtime settings -> Log -> Extended Log -> parameter substitution

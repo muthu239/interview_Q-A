@@ -1,0 +1,57 @@
+API - Application programming interface
+ API is an interface or communication protocol between a client and a server intended to simplify the building of client side software.
+ 
+REST is a lightweight protocol
+Representational State Transfer (REST) - JSON
+HTTP protocol is followed for the request and response to and from an API
+
+EndPoint/Base URI : Address where API is hosted on the server
+
+HTTP methods which are commonly used to communicate with REST APIs are
+CRUD operations - GET, POST, PUT, DELETE
+
+	-> GET
+		The GET method is used to extract information from the given server using a given URI. While using GET request, it should only extract data and should have no other effect on the data. No Payload/Body required
+		
+		How to send input data in GET?
+			Using Query Parameters
+			
+	-> POST
+		A POST request is used to send data to the server, for example, customer information, file upload, etc. using HTML forms.
+			
+		How to send input data in POST?
+			Using Form Parameters /Body Payload
+			
+	-> PUT
+		Replaces all current representations of the target resource with the uploaded content
+	
+	-> DELETE
+		Removes all current representations of the target resource given by a URI
+		
+	
+Headers/Cookies:
+	Headers represent the meta-data associated with the API request and response. In layman terms, we were sending additional details to API to process our request.
+		Example: Content-type, Authorization details
+		
+Resources:
+	Resources represent API/Collection which can be accessed from the server
+		eg: Google.com/maps
+			Google.com/Search
+			
+			google.com - server  maps - API
+			
+Path parameters:
+	Path parameters are variable parts of a URL path. 
+	They are typically used to point to a specific resource within a collection, such as user identified by ID
+		eg: https://www.google.com/images/1122443
+		
+		1122443 - is the parameters
+	
+Query parameters:
+	Query parameters is used to sort/filter the resources
+	Query parameters are identified with ?""
+	Each query paramter is separated by &
+		eg: https://amazon.com/orders?sort_by=2/20/2020
+		
+End Point request URL can be constructed as below
+	Base URL/resource/(Query/Path) Paramters

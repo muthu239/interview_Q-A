@@ -1,0 +1,171 @@
+What is postman?
+	Postman is a platform for API where you can manage your enire API lifecycle
+	Postman helps us to do development, testing and management of API
+	Postman is an API platform for building and using APIs. Postman simplifies each step of the API lifecycle and streamlines collaboration so you can create better APIs—faster.
+
+HTTP request methods
+	HTTP defines a set of request methods to indicate the desired action to be performed for a given resource. Although they can also be nouns, these request methods are sometimes referred to as HTTP verbs. Each of them implements a different semantic, but some common features are shared by a group of them: e.g. a request method can be safe, idempotent, or cacheable.
+
+GET
+	The GET method requests a representation of the specified resource. Requests using GET should only retrieve data.
+
+HEAD
+	The HEAD method asks for a response identical to a GET request, but without the response body.
+
+POST
+	The POST method submits an entity to the specified resource, often causing a change in state or side effects on the server.
+
+PUT
+	The PUT method replaces all current representations of the target resource with the request payload.
+
+DELETE
+	The DELETE method deletes the specified resource.
+
+CONNECT
+	The CONNECT method establishes a tunnel to the server identified by the target resource.
+
+OPTIONS
+	The OPTIONS method describes the communication options for the target resource.
+
+TRACE
+	The TRACE method performs a message loop-back test along the path to the target resource.
+
+PATCH
+	The PATCH method applies partial modifications to a resource.
+	
+Interview questions:
+	PUT Vs PATCH
+	URL Vs URI
+	Authorization Vs Authentication
+	Authorization - What can you do/What access you have
+	Authentication - who you are
+	
+	
+What is collection?
+	Collection is a group of API requests
+	
+What are variables
+	Variables are key value pair
+	These are elements that can store different values
+
+Why we need variables
+	Reuse the value at multiple locations
+	If required, change can be done at a single place
+	
+When variables are required
+	Some value is repeatedly used at multiple places
+	Extract out all common values and keep them at one place
+
+Environment:
+	An environment is a set of variables that allow you to switch the context of your requests. Eg: we can have variables that are specific to QA and UAT environments and can switch between then while testing based on environment testing
+	
+Global:	
+	Global variables are a set of variables that are always available in a workspace.
+	
+Can create variables at following levels(Scope)
+	Global
+	Collection
+	Environment
+	Data
+	Local
+	
+Can refer variables in	
+	Requests
+	Scripts
+	Collection
+	Environment
+	
+Priority of variables
+	When variables with the same name are present at multiple scopes, when referring the variable the following priority order is followed
+	1.Local > 2.Data > 3.Environment > 4.Collection > 5.Global
+	
+Note:
+	Pre requisite script runs before the execution of script
+	Test script runs after the execution of script
+	
+	
+Get and set variables with scripts
+	
+	Set variables:
+		Global : pm.global.set("name","Edison");
+		Collection : pm.collectionVariables.set("name","BlackWidow");
+		Environment : pm.environment.set("name","Iron man");
+		Local : pm.variables.set("name","Thor");
+		
+	Get variables:
+		Global : pm.globals.get("name");
+		Collection : pm.collectionVariables.get("name");
+		Environment : pm.environment.get("name");
+		Local : pm.variables.get("name");   // access a variable at any scope including local based on priority using this way
+		
+	To remove any variable : pm.environment.unset("name); //example for environment. same for other scope levels
+	
+Postman Environments:
+	Environment is a set of Key-value pairs
+	
+Initial value:
+	Initial value is a value that's set in the element (collection, environment, or globals) where the variable is defined. This value is synced to Postman's servers, and is shared with your team when you share that element. The initial value can be useful when collaborating with teammates.
+
+	Setting an initial value can be useful when sharing elements, but it's important to remember that sensitive data in an initial value will also be shared with others, and potentially with the world. Be careful setting initial values, and consider using secret variables to mask sensitive data.
+
+Current Value:
+	Current value is used when sending a request. These are local values, and aren't synced to Postman's servers. If you change a current value, it won't be persisted in the original shared collection, environment, or globals.
+	Current value is not shared with others unless you choose to persist it.
+	
+Postman Tests
+	Tests in postman are javascript code that is executed after receiving response
+	
+Console
+	console.log()
+	console.warn()
+	console.info()
+	console.error()
+	
+Authorization:
+	Verify the identity
+	
+Why we have authorization and not authentication in Rest APIs/commonly APIs
+	URL we provide to access a API is an endpoint, and it is actually an address to a particular resource
+	When trying to access a resource it is appropriate to call it a authorization rather than authentication.
+	
+Workspace:
+	Workspace is an area where you can group organize and manage your collections
+	
+Monitors
+	MOnitors help to run collections periodically to check the performance and response of api
+	
+Chaining API	
+	Get data from response of One API and refer in another API
+	
+Mock servers
+	Mock servers let you simulate endpoints and their corresponding responses in a collection without actually setting up a back end.
+
+==================================================================================================================================================================
+9 types of API testing.
+
+🔹 Smoke Testing
+This is done post-API development. Validate that APIs are working and nothing fails.
+
+🔹 Functional Testing
+This enables a test plan to be generated from the functional requirements and compared with actual results.
+
+🔹 Integration Testing
+This test integrates a series of API calls and carry out end-to-end tests. The in-service communications and data transfers are evaluated.
+
+🔹 Regression Testing
+This test makes sure that bug fixes or new features should not break the current behavior of APIs.
+
+🔹 Load Testing
+This measures the performance of applications through various loads. We can determine the application’s capacity.
+
+🔹 Stress Testing
+The APIs are specially overloaded to check whether they can function properly.
+
+🔹 Security Testing
+This certifies the APIs against all potential threats from outside.
+
+🔹 UI Testing
+This ensures that the UI can interact with these APIs and display data as required.
+
+🔹 Fuzz Testing
+This sends invalid or unexpected input data to the API and attempts to crash it. It does this by identifying the API vulnerabilities.

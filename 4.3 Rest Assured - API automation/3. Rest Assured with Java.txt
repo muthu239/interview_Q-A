@@ -1,0 +1,136 @@
+Rest Assured:
+	Rest assured enables you to test REST APIs using Java libraries and integrates well with Maven.
+	Rest Assured helpful in API testing and API testing automation workflow
+	
+Rest Assured terminology
+	Base URI - Base domain link where the API is hosted
+	
+URI Vs URL
+
+Rest Assured methods - Based on the methods the complete calling works
+	-> given() - given is the first method to be used whenever you need to automate API with rest assured
+		Request header
+		Parameters
+		Cookies
+		
+	->when() - the when method will get the type of call, which kind of call needed to be hit on the REST API
+		get(resource path)
+		post(resource path)
+		put(resource path)
+		delete(resource path)
+		
+	->then() - inside the then method we need to put assertion on response
+		Assertion on response
+	
+	->extract()
+		extract the response
+		
+		
+Request logging
+	given().log().all(). .. // Log all request specification details including parameters, headers and body
+	given().log().params(). .. // Log only the parameters of the request
+	given().log().body(). .. // Log only the request body
+	given().log().headers(). .. // Log only the request headers
+	given().log().cookies(). .. // Log only the request cookies
+	given().log().method(). .. // Log only the request method
+	given().log().path(). .. // Log only the request path
+	
+Response Logging
+	get("/x").then().log().body() ..
+	get("/x").then().log().ifError(). .. 
+	get("/x").then().log().all(). .. 
+	get("/x").then().log().statusLine(). .. // Only log the status line
+	get("/x").then().log().headers(). .. // Only log the response headers
+	get("/x").then().log().cookies(). .. // Only log the response cookies
+	get("/x").then().log().ifStatusCodeIsEqualTo(302). .. // Only log if the status code is equal to 302
+	get("/x").then().log().ifStatusCodeMatches(matcher). .. // Only log if the status code matches the supplied Hamcrest matcher
+	
+Log if validation fails
+	given().log().ifValidationFails(). ..
+	.. .then().log().ifValidationFails(). .
+	given().config(RestAssured.config().logConfig(logConfig().enableLoggingOfRequestAndResponseIfValidationFails(HEADERS))). ..
+	RestAssured.enableLoggingOfRequestAndResponseIfValidationFails();
+	
+	when().
+      get().
+	then().
+      onFailMessage("Some specific message").
+      statusCode(200);
+	  
+	  
+Serialization & Deserialization
+	- Serialization is the process of converting objects into a stream of data in a Json string data which will be used as body in the request
+	- Serialization and Deserialization process is platform independent, it means you can serialize an object in a platform and deserialize in different platform
+	- POJO(plain old java object) classes are extensivey used for creating json and XML payloads for API
+	- converting java class object to a JSON payload as string to be used as body
+	
+	Use of POJO class,
+		using pojo class we dont need to use request body in a file, and we can generate the data at runtime and we can create as may request as possibles with runtime data
+		
+	use jackson databind maven repo for serialize and deserialize the data
+	
+	
+Automation Framework:
+	Automation framework is not a single tool or process, but it is a collection of tools and processes working together to support automated testing of any application. It integrates various functions like libraries, test data and various reusable models
+	
+Why automation Test framework is required?
+	Maintain a well defined strategy across the test suites
+	Enhanced speed at which testing progresses
+	Maintaining the test code will be easy
+	The URL or Application can be tested accurately
+	Continuous testing of coding and delivery will be achieved
+	
+Types of automation framework
+	- Linear automation framework (Tools which support record and playback follows this approach)
+	- Modular driven framework (Spliting the code as modules and not based on application eg:, current UiPath project)
+	- Behaviour driven framework (eg: cucumber)
+	- Data driven framework (test data will basically drive the automation)
+	- Keyword driven framework
+	- Hybrid testing framework (Mixing of two or more frameworks)
+	
+Our framework components
+	- Core java
+	- TestNG - Execution of tests
+	- Rest assured - REST API
+	- Build tools - For Builds preparation
+	- Jenkins - CI
+	- Log4j - Logging
+	- Reporting - Extent and Surefire
+	
+---------------------------------------------------
+Log4j:
+	Log4j is a fast, flexible and reliable logging framework written in java
+	
+	Why Log4j?
+		- OpenSource
+		- with Log4j, it is possible to store the flow details of our automation in a file or databases.
+		
+	Log4j principal components:
+		- Loggers - Responsible for logging information
+		- Appenders
+		- Layout
+		
+		Loggers:
+			Responsible for logging information
+			Primarily there are 5 kinds of log levels
+				-> All - this level of logging will log everything (it turns all the logs on)
+				-> Debug - Print the debugging information and is helpful in development stage
+				-> Info - print informational message that highlights the progress of the application
+				-> WARN - Print information regarding faulty and unexpected system behavior
+				-> Error - print error message that might allow system to continue
+				-> Fatal - print system critical information which are causing the application to crash
+				-> off - No logging
+		Appenders:
+			It is used to deliver LogEvents to their destination. It decides what will happen with the log information
+			ConsoleAppender logs to standard output
+			File appenders prints log to some files
+			Rolling file appender to a file with maximum size
+			
+		Layouts:
+			It is responsible for formatting logging information in different styles
+			
+==============================================================================================================================================
+Automate REST API using HTTP client
+
+
+

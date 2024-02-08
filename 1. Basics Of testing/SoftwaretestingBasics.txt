@@ -558,6 +558,67 @@ What is the difference between UI and GUI testing?
 	Both UI (User Interface) and GUI (Graphical User Interface) testing fall into functional testing, but they have different focuses. 
 	The main difference between UI Testing and GUI Testing lies in their scope. 
 	UI Testing focuses specifically on the user interface elements and their appearance, while GUI Testing includes testing the both underlying functionality and logic of the graphical components in addition to the user interface.
+=========================================================================================================================================
+
+When is a good time to automate a test?
+	
+    The test can be repeated.
+    The tested feature's behavior does not change regularly.
+    It takes time for a human tester.
+    The test necessitates complex computations.
+    The test confirms that the previous functionality did not break as a result of the new change.
+
+
+When will you avoid automated testing?
+	
+    The software or functionality under test changes regularly. It implies that you must frequently update your automated tests to keep them current. As a result, tests can soon become obsolete and cease to be useful.
+    Exploratory testing is also not appropriate for automated testing. A human tester can investigate software considerably more thoroughly than a computer.
+    Unless the automated tests are programmed or configured to check for UI flaws, they will not find any.
+
+What are some of the best practices in test automation?
+	Select tasks to automate.
+	Based on knowledge and expertise, assign test scenarios.
+	Get rid of uncertainty.
+	Select the appropriate tools and frameworks.
+	Maintain test records in a database of bugs
+
+
+What are some good practices for automation testing?
+	
+    Following naming standards throughout the script
+    Use of appropriate comments
+    Separating codes based on use
+    Avoid duplicate cases
+    Test scripts regularly
+    Adhere to coding conventions
+
+
+What is an automation testing framework?
+	An automation testing framework is a tool or software that follows the guidelines and best practices to ease the automation process. This framework consists of various functional libraries, object details, test data sources, methods, and reusable models to complement the testing.
+	
+How are the automation testing frameworks helpful?
+	
+    Consistency and reliability to get desired goals
+    Helps implement uniform testing throughout the system
+    Easy to manage large and complex code
+    Able to add new cases 
+
+What type of testing framework are available in the industry?
+	
+    Data-driven testing
+    Modularity-driven testing
+    Keyword-driven testing
+    Hybrid testing
+    Model-based testing
+    Code-driven testing
+    Behavior-driven development
+
+What are some ideal and nonideal cases for using Automation testing?
+	Automation is considered ideal in scenarios such as repetitive tasks, regression test cases, humongous data sets, smoke testing, etc. While Automation testing is ideally not suited for random testing, individual test cases, Application changing regularly, ad-hoc testing, exploratory, and user interface, etc. Time and ROI (Return on Investment) play a vital role in selecting the automation testing.
+	
+What is the Robot framework? Provide a brief overview of its architecture.
+	Robot Framework is a growing open-source automation testing framework mostly used for robotic process automation (RPA).
+	The Robot Framework is built in Python and is platform-independent. The majority of the libraries in the ecosystem are open-source as well. It stores test data in files and uses a framework-specific syntax to do so. A test suite has several tests.
 
 =========================================================================================================================================
 Explain the concept of CI/CD
@@ -825,3 +886,4 @@ What motivated you to pursue a career in QA testing, and what keeps you interest
 Describe a situation where you had to work closely with developers, product owners, or other stakeholders to resolve a testing-related issue. How did you ensure effective communication and collaboration?
 
 Have you ever identified a significant risk or potential problem in a project? How did you handle it, and what actions did you take to mitigate the risk?
+

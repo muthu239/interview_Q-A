@@ -1,0 +1,102 @@
+Controller
+
+	Lets say we have created "pruchase order" and "cancel order" scripts using VUGEN
+	We have executed them separately using VUGEN to check if they are working fine
+	Using controller all these scripts will be executed simultaneously
+	Not only simultaneously, but with certain number of Vusers (Which will create the load on the AUT)
+	
+Controller is configured to
+	Number of Vusers
+	Number of scripts to be executed
+	
+What is a test scenario?
+	when there are multiple groups of scripts with Vusers those are called test scenario
+	eg:
+	Script name		LG name		No of Vusers
+	Purchase order	LG1			600
+	Canel order		LG2 		400
+	
+	Here there are 2 test groups which makes them a test sceanario
+	
+Why simutaneously tested? Why not separately?
+	In the real world all these functionalities are happening simultaneously thats why
+	
+Controller
+	-> Execution of test scripts happens using the LR component called controller
+	-> Although it is possible to execute the scripts using VUGEN, Load cannot be applied on the AUT. Execution using VUGEN is done only for debugging purpose.
+	-> Actual load on the AUT can be applied using controller as test can be executed using multiple scripts with multiple Vusers
+	-> Test designed with multiple scripts using multiple Vusers is called Test sceanario
+
+
+Scenario Groups
+		Each script added is a group with the number of Vusers
+
+Load generator
+		We can add the Load generator from Scenario menu
+	
+	
+Scenario schedule
+	
+Basic Schedule
+	It will have only one ramp up(Start Vusers), One steady state (duration) and one ramp down(Stop Vusers)
+Real world schedule
+	We can add ramp up, duration and ramp down based on our need
+	
+	
+Service Level Agreement
+		We can set the SLA, but its very rarely used. These are like the response time should be below this time like that
+	
+Rendezvous
+	When a rendezvous point is added in script verify it in the controller on menu Sceanrio->Rendezvous
+	We can even disable certain Vusers from rendezvous from the same menu. disabled Vusers wont take part in rendezvous
+	
+	
+While script is running we can stop, start, add Vusers
+
+
+How to do you monitor windows resources or How do you monitor servers using controller?
+	Use windows resources graphs under systemResources groups
+	Add the mesaurements which is to be measured
+	
+5% is the allowed failed transaction limit. It is considered as a pass test
+
+what is throughput?
+What is hits per second?
+What is response time?
+
+
+What is the extension of VUGEN file
+	.usr is the extension
+	.lstln - Loadrunner solution
+
+What is the extension of Controller file
+	.lrs - Test sceanario(loadrunner scenario file)
+	.lrr - Test results (loadrunner results file)
+	
+Analyzer	
+After analysis file is saved with extension .lra(Loadrunner analysis)
+================
+IP spoofing
+	This is used to make the system look like load is coming from different IPs though its coming from a single IP source
+	Its creating a impression that multiple IPs are working, so in this case the load balancer understands that the load is coming from different machines and routes to different servers
+	Insted the IP spoofing is not done, the Load balancer knows the transaction coming from a single IP and sends to a single server instead of balancing the load
+	
+Is there a way to check Vuser log after execution from controller?
+	We can check the log during execution in controller.
+	In the results file there is a log folder, in that the log will be stored based on Vuser id
+	
+When should you use IP spoofer solution?
+	when emulating server or router optimizations, based on client's IP
+	
+	
+Why is it important to insert a runtime monitors on controller and Load generator machines during a run test?
+	To ensure that your test architecture can generate the desired load without itself becoming a bottleneck
+	
+Controller will collect the results from LG's and combine them. This process is called?
+	collating the results
+
+You are running a 3 tier web application. Wiht which component must the load generator communicate?
+	Web server
+	
+Script is executed in which of the following component of load runner
+	Load generator/host

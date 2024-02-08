@@ -1,0 +1,91 @@
+SoapUI - Testing tool for webservices and REST APIs.
+API - Application programming interface
+
+
+What is webservices/API?
+	A webservice in very broad terms, is a method of communication between two applications or electronic devices over the world wide web(WWW)
+	Web service is a collection of operations
+	Web Services allows you to expose the functionality of your existing code over the network. Once it is exposed on the network, other application can use the functionality of your program
+	web service is independent of any programmng language. This just works on HTTP protocol.
+	The communicating platforms can be built on different programming language platform, that dosent matter for API.
+	lanugage used for communication with webservices is JSON or XML
+	Testing scope - Request -> Response testing. Our scope of testing will be to check the response received for the request sent on the API request.
+	
+Practical usage of webservices
+	Uber using google maps API to show maps.
+	Zomato having payment API of Gpay to connect to transaction
+	
+	
+Types of webservices
+	Two types of webservices
+	1. Simple Object Access Protocol(SOAP) - XML
+	2. Representational State Transfer (REST) - JSON
+		
+		SOAP is a protocol whereas REST is not a protocol. REST is more of architectural style.
+		
+==================================================================================
+Simple Object Access Protocol (SOAP) services
+	
+	What is SOAP protocol?
+		The SOAP is a protocol for sending and receiving messages between applications without confronting interoperability issue.
+		Underlying language used by SOAP is XML.
+		
+	Endpoint - This is a point where the webservice is hosted. To talk to a webservice the endpoint is provided to the SOAP message.
+	
+	Structure of SOAP message
+		A SOAP message is encoded as an XML document, consisting of an <Envelope> element, which contains an optional <Header> element, and a mandatory <Body> element. The <Fault> element, contained in <Body>, is used for reporting errors.
+		
+		-> The SOAP envelope
+			<Envelope> is the root element in every SOAP message, and contains two child elements, an optional <Header> element, and a mandatory <Body> element.
+		-> The SOAP header
+			<Header> is an optional subelement of the SOAP envelope, and is used to pass application-related information that is to be processed by SOAP nodes along the message path; see The SOAP header.
+		-> The SOAP body
+			<Body> is a mandatory subelement of the SOAP envelope, which contains information intended for the ultimate recipient of the message; see The SOAP body.
+		-> The SOAP fault
+			<Fault> is a subelement of the SOAP body, which is used for reporting errors; see The SOAP fault.
+	
+	For more info on the structure - https://www.ibm.com/docs/en/integration-bus/10.0?topic=soap-structure-message
+
+==================================================================================
+What is WSDL?
+	A WSDL is an XML document that descrbes a webservice. It actually stands for Web Services Definition Language.
+	It specifies the location of the service and the methods of the service using these major elements, datat types using in webservice data elements.
+	Each operation describe the operations that can be performed and the messages involved.
+	This is required for understanding the webservice functionality
+	WSDL definition describes how to access a web service and what operations it will perform
+	WSDL is often used in combination with SOAP and XML Schema to provide web services over the Internet
+	A client program connecting to a web service can read the WSDL to determine what functions are available on the server
+	
+WSDL structure
+	WSDL is an XML document with a <definitions> element at the root
+	the child elements are,
+		<types>,
+		<message>,
+		<portType>
+		<binding>.
+
+	-> <Definition>: 
+		element must be the root element of all WSDL documents. 
+		It defines the name of the web service, 
+		The definitions element is a container of all the other elements..
+	-> <Types>:
+		WSDL <types> element take care of defining the data types that are used by the web service.
+		WSDL allows the types to be defined in separate elements so that the types are reusable with multiple Web services.
+	-> <Message>:
+		The <message> element describes the data being exchanged between the Web service providers and consumers.
+		Each Web Service has two messages: input and output.
+	-> <portType>:
+		<portType> can combine one request and one response message into a single request/response operation. This is most commonly used in SOAP services. A portType can define multiple operations.
+	-> <Binding>:
+		The <binding> element provides specific details on how a portType operation will actually be transmitted over the wire.The bindings can be made available via multiple transports, including HTTP GET, HTTP POST, or SOAP
+	-> <Service>:
+		Web service clients can learn from the service element where to access the service, through which port to access the Web service, and how the communication messages are defined.
+
+	
+Difference between SOAP and WSDL:
+	A SOAP message is a XML document which is used to transmit your data. WSDL is an XML document which describes how to connect and make requests to your web service.
+	Basically SOAP messages are the data you transmit, WSDL tells you what you can do and how to make the calls.
+	SOAP is structure you apply to your message/data for transfer. WSDLs are used only to determine how to make calls to the serivce in the first place.
+	
+	
+

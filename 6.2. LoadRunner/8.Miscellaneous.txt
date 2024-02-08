@@ -1,0 +1,182 @@
+Merging two arrays
+
+Generate a random number between 1 and 100?
+	syntax:
+		i = rand()%101;
+	int nooo;
+	nooo = rand() % 101;
+	lr_output_message("value is %d",nooo);
+
+To get the count of array
+	array_name_count - which will give value in Lr parameter. To use it convert it to int
+	eg:
+		array1_len = atoi(lr_eval_string("{depart_city_count}"));
+
+Merging two array		
+	// we are adding the denver city array atthe end of depart city array.
+	// so we take the count of depart city, convert it to int and add that to array1 so that an new index is created and we can add the denver cities
+	
+	array1_len = atoi(lr_eval_string("{depart_city_count}"));
+	array2_len = atoi(lr_eval_string("{denver_city_count}"));
+	
+	for(i=1;i<=array2_len;i++){
+	
+	sbuff = lr_paramarr_idx("denver_city",i);
+	lr_param_sprintf("newArrayLen","%d",array1_len+i);
+	
+	lr_param_sprintf(lr_eval_string("depart_city_{newArrayLen}"),"%s",sbuff);
+	
+	}
+	
+	
+	randNo = rand() % (array1_len+array2_len+1);
+	sbuff2 = lr_paramarr_idx("depart_city",randNo);
+	
+	lr_param_sprintf("rand_city","%s",sbuff2)
+	
+========================================================================
+How to create a function in VuGen
+	Create a separate C file and add it in extra files and dont forget to inclued it in the globals.h file the file name
+	(or)
+	if you have the function file in local machine, include that in globals.h file with the path of file and we can use that as a function in Actions file
+	eg:
+	#include "D:\ExtraFunctions.c"
+
+===================================================================
+How to create random string in VuGen?
+	random string with random length
+	
+======================================================================
+Difference between web_submit_data and web_submit_form(very Important interview question)
+	These two are used mostly for the same purpose to post any data in the request like login credentials
+	
+	This can be set in the recording option-> Recording-> HTML advanced
+		A script describing user actions(eg: web_link, web_submit_form)
+		A script containing explicit URLS only (eg: web_url, web_submit data)
+	we have to choose the menu accordingly before recording then only we it'll record accordingly
+	
+	whenever a script is recorded in URL based it'll record in web_submit_data only
+
+	web_submit_data
+		performs an unconditional or contextless form submission.It has nothing to do with previous operation
+		
+	web_submit_form
+		It is an action function that submits a form. The web_submit_form function may be executed only in the context of a previous operation
+
+what is contextless
+			Server doesnt know that the user is certain id. in that case there is an extra data sent in web_submit_data like session id to make it understand that
+===================================================================
+paramterize with Each occurence Vs Each iteration (Interview question)
+Each iteration:
+	Value will be same for the parameter it doesnt change till the entire actions execution is completed. No matter how many times used in the action for he entire iteration the value will remain same
+Each Occurence
+	Value will change for the parameter. it changes at every declaration of parameter.
+	
+==============================================================
+Difference between LR_ABORT and LR_EXIT (Important interview question)
+
+LR_ABORT
+	- when abort line is executed, it'll execute whatever is in Vuser_end and ends the execution. The subsequent actions are skipped.
+	- Script doesnt say pass or fail in replay summary. It says as aborted
+	- In controller, we can see that the Vuser execution is stopped once it reached lr_abort. It doesnt move to pass or fail. It moved to "Stopped" state
+	
+LR_EXIT
+	- exits from script, action, iteration
+	Synatax
+		void lr_exit (int continuation_option, int exit_status);
+	
+	-Depending on the exit status the script will be pass or fail
+	- it also enters the vuser end once exit function is gone
+	- using lr_exit we have flexibility to exit cuurent action and continue from next action
+	- In controller, depending on the status of lr_exit the users goes into pass or fail
+	
+=============================================
+Login in one browser, search in other browser, and register flight in other browser (or) How to execute script in multiple browsers at same time? (Imporant interview question)
+
+	Go into the runtime settings in controller. In browser emulation menu we can set the browser the group can use in controller for each groups in that way we can use different browsers for each script
+
+Is it possible to run 5 users for a script in chrome and another 5 users for the same script in edge?
+	yes, we can. By adding the script in 2 groups of 5 Vusers and having the runtime settings for browser emulation accordingly for each group
+	
+Similary if we want cerain number of Vusers to have certain bandwidth, we can have them in separate froups and give the vlaues in network speed emulation runtime settings
+	
+==================================================
+
+How will you record scirpt if LR Vugen is not working?
+	Creating LR script using HAR file
+	Check the setting in Recording options-> Network level and mapping meu and check whether the menu is chosen as Socket level and wininet level
+	
+==================================================
+What is your approach if the controller got crahed before collating the results?(Important interview question)
+	
+================================================
+Response time captured in dynatrace and loadrunner analysis are different for same test why?
+	LR -> will only take pass transactions into account for response time
+	meanwhile Dynatrace -> captures both pass and fail response times
+	
+===========================================
+Does Transaction resposne time include failed transactions?
+	No, it will not consider failed transactions
+===========================================
+What is run until completion in runtime setting?
+	the script will run until every action is executed for every number of iteration its set to execute in runtime setting
+
+=======================================
+What is the delimiter to use LR parameter?
+{} -> default
+we can change the delimiter in tools-> options->Scripting->parameters
+
+================================================
+What are the possible ways to merge graph.
+-> One is during analysis we can merge
+-> In controller te graphs can be merged. Merge is available on the top right of the graph in sandwich menu
+===============================================
+How to write data into a file?
+	
+	1. In order to read or write into a file we must know the file path
+	2. To perform operation on a file we need a variable
+	
+Note:
+	fopen() - Even while reading or writing if a file is not present it will automatically create a new file and open
+		long fopen( const char *filename, const char *access_mode);
+	
+	3. The type of access mode: r, w, a or r+, w+, a+, where the "+" sign indicates that the file must already exist.
+		r = read, w = write, a = append
+		
+	4. To write into a file
+		Writes formatted output to a file.
+			int fprintf( FILE *file_pointer, const char *format_string [, args ] );
+			On success, returns the Total number of characters printed. On error, returns a negative number. 
+		
+		Write unformatted data from a buffer to a stream.
+			size_t fwrite( const void *buffer, size_t size, size_t count, FILE *file_pointer);
+			If successful, the function returns the number of full items (not bytes) successfully written.
+			
+		
+		
+	5. after writing or reading always close the file at the end. If the file is not close with function it is not closed until the 
+	
+	6. Each time the value in the file will be overwrite itself if we dont give access condition as append
+	
+	7. TO read from a file 
+		int fscanf( FILE *file_pointer, const char *format string [, args]);
+			The number of items successfully read. This count does not include any ignored fields. If EOF is returned, an error has occurred before the first assignment could be performed.
+			This cant read the space between  kind of special characters
+			
+		Reads unformatted data from a stream into a buffer.
+		size_t fread( void *buffer, size_t size, size_t count, FILE *file_pointer);
+			Returns the Total number of items read. If this number differs from the requested amount (count parameter) an error has occurred or End Of File has been reached. To determine what happened, call feof or ferror.
+	
+	
+How to read and write in a same file?(Important)
+	Set the access condition as w+ only then we can read and write in the same time
+	else we can read only when we close the file.
+	Once the data is written the cursor is at the last
+	TO read we need the cursor at the start. For that use function rewind()
+	only then we can read the file at the writing time itself
+	
+===========================================
+Diff btwn fwrite and fprintf(Important question)
+Diff btwn fscanf and fread
+How to know the size while scanning to read
+	we can see the size of file in bytes after writing and use that.

@@ -1,0 +1,102 @@
+Analysis
+
+Analysis summary
+
+Hits/second is directly proportional to throughput
+Response time is inversly related to throughput
+
+The SLA is compared with the 90percentile and is given to client
+
+90 percentile response time
+	When we execute a performance test, same transaction will be executed multiple times
+	Since, the same transaction is executed multiple times, multiple response times are catpured
+	Client will be provided with Max, Min, Avg, 90% response times
+	Loadrunner automatically calculates the 90% response times
+	
+	90 percentile is calculated by sorting the response time in ascending order and taking the value
+	
+	90 percentile is not equal to 95 percentile
+	
+	eg:
+	Response times of 10 iteration in ascending order
+	
+	0.5  0.9  1  1.1  1.2  1.8  2.5  3.2   5    8
+									 80%   90%	
+	
+		If 10 people are doing launch transactions, 9 people will have RT of 5 sec or less 
+		
+		
+Hits/second 
+No of requests hitting the server
+Hits/second is directly proportional to throughput
+
+Throughput
+No of requests hitting the server and receiving response is throughput
+Response time is inversly related to throughput
+
+
+What is need to compare hits/second and throughput?
+	If the graphs are not in sync, that there are some bottlenecks in the server.
+	To make sure hits/second is in sync with throughput
+	
+What is the client side monitoring you have done?
+	What all we are viewing in analysis screen is client side only. hits/second,transactionsummary,Running Vusers throughput,etc
+	
+Threads Vs Process(Important)
+	Things that are important on a server and needs to be monitored
+		- RAM(primary memory)
+		- Hard disk (Secondary memory)
+		- Processor
+	Thread - it takes a part and executes.. Thread is a small part of process
+	Multi threading - Taking the code into smaller bits and executing in parallel
+	The whole program plus the threads which are executing the program is called process. Process is one part of CPU resources
+	One process can have any number of threads
+	
+What is an agent in LR?
+	It is the load generator. other name for LG is agent
+
+Important interview questions?
+Run Vuser as thread Vs Run Vuser as process
+	Run Vuser as Thread
+		- when you run Vuser a a thread, LR will launch 1 thread per vuser.
+			eg: if you run 50 Vuser,LR will launch only 1 process(mmdrv.exe) with 50 threads within that single process(if the limits is set to 50, it can be less or more based on what you customize it from the default value which is 50)
+		- Running Vuser as thread will be more effective on keeping the OS resource consumption on the injector's boxes to considerably low as this setting does not have very heavy footprints
+		- As multiple threads running within a single process share the available resource among themselves, it's recommended to use this setting when huge number of vusers are required to run on injector boxes
+	
+	Run Vuser as process
+		- When you run Vuser as process, LR will lauch 1 process (mmdrv.exe) per vuser.
+			eg: if you will run 50 vusers, LR will launch 50 mdrv.exe process
+		- Running vuser as process will be very heavy on OS resources consumption on the injector boxes
+		- As each vuser has its own process and privately allocated resources, its  not recommended to use this setting when huge number of vusers are required to run on the injector boxes
+		
+
+Important interview questions	
+Benchmark results Vs baseline results
+		When baselines and benchmarks are used, they are generally the first and last tests you will execute, respectively
+		
+		Baseline results
+			- Creating a baseline is the process of runing a set of tests to capture performance metric data for the purpose of evaluating the effectiveness of subsequent perfomance-improving changes to the system or application.
+			- with respect to web applications, you can use a baseline to determine whether performance is improving or declining and to find deviations across builds and versions.
+			
+		Benchmarking is the process of comparing your system perfomance against an industry standard that is endorsed by some other organization
+		
+Load test is the intital test. Only if load test passes other tests are done
+
+
+Need for profiling tools
+	Improve knowledge on profiling tools, that will help to be good performance tester.will help to create good profile
+	
+	Popular profiling tools available in the market is dynatrace and Appdynamics
+	
+Instrumentation Vs installation
+
+	
+If overall transaction respone time is 10 sec, can er know which tier is having the issues?
+	yes, using profiling tools
+
+Which option in the analysis tool allows you to focus on a specific measurement within your graph
+	Drill down
+
+What is the first indication of a perfomance problem?
+	The end user experiences higher than expected response time
+	

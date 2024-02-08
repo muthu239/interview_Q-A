@@ -28,6 +28,14 @@ Maven build lifeCycle:
 	7.Deploy : Done in the build environment, copies the final package to the remote repository for sharing with other developers and projects.
 	
 	
+	CLI commands for maven
+			mvn --version -> to verify the version installed in the system
+			mvn compile -> to compile the source code. It will compile only the code in src/main/java
+			mvn test -> executing the tests
+			mvn clean -> To clean the target folder generated while test is build
+			mvn install ->
+			mvn package -> 
+	
 pom.xml file in maven
 	POM.xml - A project object Model or POM is the fundamental unit of work in maven. It is an XML file that contains information about the project and configuration details
 	POM is used by maven to Build the project

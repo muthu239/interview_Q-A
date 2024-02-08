@@ -1,0 +1,34 @@
+Parametrization
+	It is a process by which a hard coded value is replaced with a parameter in the script
+	This option helps the script to execute with multiple values, thereby, simulating a real time scenario
+Steps involved in parametrization
+	Create a parameter
+	Assign the value to the parameter
+	Replace the hard coded value in the script with these paramteres
+	
+How does the VuGen knows the LR paramter?
+	with the help of {} - curly braces, we will use the parameters
+ 
+What is the purpose of LR_EXIT()?
+	It helps to exit the exection based on the condition. 
+		void lr_exit (int continuation_option, int exit_status);
+	
+	There are multiple conditions like
+		-> LR_EXIT_VUSER - Exit without any condition, and go directly to end action
+		-> LR_EXIT_ACTION_AND_CONTINUE - Stop current action, and go to the next action.
+		-> LR_EXIT_ITERATION_AND_CONTINUE - Stop current iteration, and go to the next iteration.If called from within a block iteration, only the block iteration will be exited, and not the global iteration.
+		-> LR_EXIT_VUSER_AFTER_ITERATION - Run until the end of the current iteration and then exit.
+		-> LR_EXIT_VUSER_AFTER_ACTION - Run until the end of the current action and then exit.
+		-> LR_EXIT_MAIN_ITERATION_AND_CONTINUE - Stop current global script run iteration, and go to the next iteration.
+		
+How can we print the LR paramter?
+		we cannot print using lr_output_message directly. we can convert it to other data type like string and print in lr_output message. else we can use lr_param_sprintf() and we can see the value in Runtime data. 
+		
+We have only 10 records, but we run for 11 times? what will happen?
+	It'll take the first record and run the 11th time if the select next row value is sequential. it'll take random when its set as random. if we want unique, we can set as unique
+	
+We can paramterize and print random numers, group name, VUSER ID, Date/Time
+
+There are two ways to create parameter
+	1. Using parameter option in LR
+	2. Using the code. I.e)converting a string or int value to LR parameter

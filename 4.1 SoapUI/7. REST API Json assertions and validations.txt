@@ -1,0 +1,21 @@
+Json
+[] - arrays/Indexes
+{} - Objects
+
+In Json we'll traverse through objects. whereas in XML we'll traverse through nodes
+
+to traverse through json below are the ways
+	1.parentObject.childObject
+	2.parentObject.childObject[index]   -> to use when we know the index of the object
+	3.parentObject.childObject[?(@.object=='Value')].siblingToChildobject  -> to use when the indexes are dynamic and to get the sibling of the object searched
+
+How to deal when indexes are dynamic?
+Syntax :
+photos.photo[?(@.object=='Value')].object
+? -> for regular expression 
+
+photos.photo[?(@.title == 'Altona North')].id
+the above will search for through the index for the title and grab the id of the title
+
+
+

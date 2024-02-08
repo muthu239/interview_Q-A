@@ -1,0 +1,8 @@
+Assertions
+	COntains
+	JSON path existence
+	Valid HTTP status code
+	
+Script assertion - assertion which handles checks with code
+
+How do you handle property from script assertion and from groovy scripting?(Interview question)

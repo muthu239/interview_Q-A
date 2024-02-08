@@ -1,0 +1,83 @@
+Assertions
+	Assertions can be added in test step only. So create a test suite -> test case -> test step -> Add the soap request an add the assertion
+	
+	Below are some of the assertions - basic assertions:
+	Contains - eg: Verify response returning true
+	Not contains - eg: Verify reponse not having null or False value
+	SOAP response - We can verify if the response is of valid SOAP format - eg: verify response is of valid SOAP response
+	HTTP Status code assertion - Verify response have valid HTTP code
+	Response status - Verify that response time is within boundaries
+	Security information exposure - Verify security threat
+	
+	
+To find any node in XML file, we use the XPath mechanism.
+	Xpath match - to verify the response
+	
+	allow wild cards - if we want to have a tag return any value but it should not fail then we use wild card check box in the xpath mathc assertion
+	
+	count() - to verify the number of nodes with the same declaration
+	exists() - to verify if the node tag is available in the xpath
+	text() - will fetch the text from the xpath node where its used
+	
+	
+====================================================================================
+
+Properties in SoapUI
+	1. test case level properties access
+	2. test suite level properties access
+	3. Project level properties access
+	4. Properties test step
+	5. Properties upload from external file
+	6. Properties transfer test step
+	7. Accessing custom properties
+	
+	
+	
+1. test case level properties access
+2. test suite level properties access
+3. Project level properties access	
+	Syntax to access the variables on the properties:
+		${#Level at which the variable is declared#variable name}
+			eg: ${#TestCase#age}
+				${#TestSuite#name}
+	
+	Purpose of custom properties:
+		They are used to declare varaibles at different levels which acts as a a cental place for storing, accessing and modifying variables.
+
+	Interview questions:	
+		How do you define properties?
+			It can be defined in test suite, test case and test step levels. It can be added at all 3 levels
+
+
+4. Properties test step
+
+	Is it possible to declare all the properties into a single file?
+		Yes, it is possible by adding properties to that test step
+	
+	How is properties from added properties step is called?
+		${Properties#varaible_name}
+		eg: ${Properties#department}
+
+	(Important interview question)
+	Why there is no # in front of properties, i.e) in the beginning of the syntax?
+		Because Project, test case, test suite are all generic keywords of SOAP Ui whereas the name of the properties test step is user given value and not a keyword
+	
+		If its a SoapUI keyword then # is required. If not no need to use #
+		
+5. Properties upload from external file
+	syntax:  Key = value
+	Save the file as : .properties file
+	eg: age=12
+	
+6. Properties transfer test step
+	Property transfer is used to get the response of one request and give it as a value for another request
+	Namespace should be declared before parsing the values at source and destination.
+	eg:
+		Login request -> session ID from response
+			Property transfer
+		Session ID is sent in another request -> response
+
+	Alternate way to property transfer without using tool menu 		
+		-> $(testStepName#Request#xpathToNodeFromWhereDataNeedsToBeFetched)
+Note: Each test step has some custom properties and also user cannot add properties on test step level. User is allowed to add properties on test case, test suite and at project level
+
