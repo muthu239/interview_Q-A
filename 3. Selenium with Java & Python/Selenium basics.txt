@@ -681,3 +681,5 @@ Retry only failed tests in Automation
 Execute test in microsoft edge
 	using edge driver we can automate similar to chrome driver.
 	But execution on edge is not much preferred as it is quite unstable and lots of times it cannot identify the locators
+	
+==================================================================================================================================

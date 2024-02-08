@@ -58,6 +58,15 @@ Cucumber have 3 components
 		- Define annotations. Annotations must have ^ at the beginning and $ at  the end
 			eg: @Given("^Go to mycontactsform site$")
 			
+		 - if the feature file consists of "name", then in step definition we will declare the data Type
+				eg: Then Verify Repo "name" is "API-TEST-REPO"
+				
+					@Then("Verify Repo {string} is {string}")
+						public void verify_created_repo_name(String response_key, String repo_name) {}
+						
+		- if the feature file consists of "<name>" then keyword name is used, with scenario outline and examples we can provide varying data 
+			
+			
 	Test runner
 		Cucumber Options
 			Cucumber options are like property file or setting for your test cases containg what you want to execute, where you want to execute and what is the basic criteria for execution
@@ -99,9 +108,25 @@ Cucumber have 3 components
 			
 		Strict:
 			Strict will verify the feature with the step definition file and it will mark your test case failed if any of the step or feature is in pending state or undefined
-					
-			
+			 
+		Tags:
+			Tags are similar to groups in testNG.
+			In testNG groups we used groups to combine test cases and groups.
+			In cucumber we use tags to club the scenarios
+				OR condition in tags : {"@Smoke, @E2E"} - Execute tests that contain either any one of the tags mentioned
+				AND condition in tags : {"@Smoke", "@E2E"} - Execute tests that contains both the tags together
+				
 		
+		Hooks:
+			Hooks in cucumber is similar to AfterTest and BeforeTest annotations in testNG
+			@Before and @After annotations of cucumber class
+				
+How can I run a pre requisite and post execution code?
+	Using Hooks we can do that
+		@Before("@Smoke") -> this will run only for smoke tests and before running the tests
+			
+			
+			
 	Disadvantage of cucumber
 		The process of cucumber is very lengthy where we have to create the feature file which is lengthy, then the coressponding method and so on
 		
@@ -110,7 +135,25 @@ Data driven testing using Cucumber framework
 	1. Simple Data driven - No use Examples keyword
 	2. use Examples & Scenario outline Keyword
 		Note: Withdry run = true, we can check if the values are passed correctly in the keywords correctly for all iterations
-	3. Using tables
+	3. Using DataTables
+		If certain scenario need to run in loop and not using Examples keyword then use Maps to get the Key & value of dataTable 
 		
 		
+=======================================================================================================================================		
 Diff btwn Scenario & scenario outline
+	Scenario outline is required if examples used
+
+
+Notes:
+	It is not required to create separate step definition file for each feature file		
+	Cucumber is smart enough to find out the code in any java file in the stepdefinition package. So any java class the scenario may be created inside the package, cucumber will find it.
+	No need for inheritance and all as the scenario can be written separately yet still the cucumber can call the correct scenario code
+	No need for extent report. Cucumber has its own report
+	
+	
+=======================================================================================================================================
+cucumber reporting - for api
+	We can add as a plugin in POM.XML and we can get the HTML and JSON report
+	This report gives a details report of each step and how much time it took and where it failed
+	very simple to add. And no need to do lot of work around it.
+	

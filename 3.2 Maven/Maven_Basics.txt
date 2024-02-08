@@ -19,13 +19,13 @@ What is build lifeCycle?
 Maven build lifeCycle:
 	Maven is based around the central concept of a build lifeCycle. What this means is that the process for building and distributing a particular artifact(project) is clearly defined
 	
-	Validate :  validate the project is correct and all necessary information is available
-	Compile : Compile the source code of the project
-	Test : Test the compiled source code using a suitable unit testing framework
-	Package :  take the compiled code and pack in its distributable format, such as jar
-	Clean : Clean the projects un necessary files
-	Install : install the package into the local repository, for use as dependency in other projects locally
-	Deploy : Done in the build environment, copies the final package to the remote repository for sharing with other developers and projects.
+	1.Validate :  validate the project is correct and all necessary information is available
+	2.Compile : Compile the source code of the project
+	3.Test : Test the compiled source code using a suitable unit testing framework
+	4.Package :  take the compiled code and pack in its distributable format, such as jar
+	5.Clean : Clean the projects un necessary files
+	6.Install : install the package into the local repository, for use as dependency in other projects locally
+	7.Deploy : Done in the build environment, copies the final package to the remote repository for sharing with other developers and projects.
 	
 	
 pom.xml file in maven

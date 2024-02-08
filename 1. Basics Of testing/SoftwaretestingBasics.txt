@@ -1,0 +1,827 @@
+Explain The Software Development Life Cycle
+	The original software development life cycle consists of 7 stages:
+		1. Planning
+			During planning, project scope and requirements are defined in detail.
+		2. Analysis 
+			Analysis involves gathering requirements and creating specifications
+		3. Design
+			the Design stage transforms requirements into an implementable architecture
+		4. Development
+			Development involves coding, testing, and integration.
+		5. Testing
+			Testing confirms that the software meets requirements
+		6. Deployment
+			the final stage, Deployment is when software is brought to the production environment
+		7. Maintenance
+			Maintenance in fact is an ongoing effort to ensure functionality and make updates to keep up with the changing requirements
+
+Differences between Waterfall Model, V-Model, and Agile Model.
+	Waterfall Model
+		The Waterfall model is a sequential, linear approach to software development. It consists of a series of phases such as requirements gathering, design, implementation, testing, deployment, and maintenance, where each phase must be completed before moving on to the next. The Waterfall model is characterized by its rigid and inflexible structure, which makes it difficult to incorporate changes once a phase is completed.
+		
+	V-Model
+		The V-Model is an extension of the Waterfall model that emphasizes the relationship between testing and development. In the V-Model, the testing activities are planned and executed in parallel with the development activities. Each stage of the development process has a corresponding testing stage that validates the outputs of the previous stage. This approach helps to identify defects early in the development cycle, reducing the cost of fixing them later on.
+		
+	Agile Model
+		Agile is a flexible and iterative approach to software development that emphasizes collaboration, continuous delivery, and rapid feedback. Agile teams work in short development cycles, called sprints, and prioritize working software over comprehensive documentation. Agile methodologies such as Scrum, Kanban, and Extreme Programming (XP) focus on continuous improvement and adaptability, enabling teams to respond quickly to changing requirements.
+		
+		
+Some of the SDLC models are	
+	1. Waterfall SDLC Models
+	2. Iterative SDLC Models 
+	3. V-models 
+	4. Spiral SDLC Models 
+	5. Agile SDLC Models 
+	6. DevOps SDLC Models 
+	7. Rapid Application Development (RAD) SDLC Models 
+	8. Incremental SDLC Models 
+		
+	Ref link : https://www.geeksforgeeks.org/sdlc-models-types-phases-use/?ref=lbp
+		
+===================================================================================================================================
+What is software testing?
+		Software testing is a process to assess the quality, functionality, and performance of a software product before it is launched. 
+		Testers carry out this process either by interacting with the software manually or running test scripts to automatically check for bugs and errors, ensuring that the software functions as intended. 
+		Additionally, software testing is conducted to verify the fulfillment of business logic and identify any gaps in requirements that require immediate attention.
+		Software testing can be divided into two steps: 
+			Verification: 
+				It refers to the set of tasks that ensure that the software correctly implements a specific function. It means “Are we building the product right?”.
+			Validation: 
+				It refers to a different set of tasks that ensure that the software that has been built is traceable to customer requirements. It means “Are we building the right product?”.
+
+	
+Why is software testing important in the software development process?
+		Product quality should be defined in a broader sense than just “a software without bugs”. 
+		Quality encompasses meeting and surpassing customer expectations. 
+		While an application should fulfill its intended functions, it can only attain the label of "high-quality" when it surpasses those expectations. 
+		Software testing does exactly that: it maintains the software quality at a consistent standard, while continuously improving the overall user experience and identifying areas for optimization.
+		
+	
+Explain the Software Testing Life Cycle (STLC)
+	The Software Testing Life Cycle (STLC) is a systematic process that QA teams follow when conducting software testing. The stages in an STLC are designed to achieve high test coverage, while maintaining test efficiency.
+		
+	There are 6 stages in the STLC:
+
+	- Requirement Analysis: 
+		During this stage, software testers collaborate with stakeholders in the development process (developers, business analyst, clients, product owner, etc.) to identify and comprehend test requirements. 
+		The information gathered from this discussion is compiled into the Requirement Traceability Matrix (RTM) document. 
+		This document is the foundation of the test strategy.
+    
+	- Test Planning: 
+		from a comprehensive test strategy, we develop a test plan, in which details about objectives, approach, scope of the testing project, test deliverables, dependencies, environment, risk management, and schedule are noted down. 
+		It is a more granular version of the test strategy.
+    
+	- Test Case Development: 
+		Depending on whether teams want to execute the tests manually or automatically, we’ll have different approaches to this stage. 
+		Certain test cases are more suitable to be executed manually, while some should be automated to save time. 
+		Generally, in manual testing, testers write down the specific steps of the test case in a spreadsheet and document the results there, while in automated testing, the test case is written as a script using a test automation framework like Selenium or an automation testing tool with low-code test authoring feature like Katalon.
+   
+   - Environment Setup: 
+		QA teams set up the hardware-software-network configuration to conduct their testing based on their plan. 
+		There are many environments to run a test on, either locally, remotely, or on cloud.
+		
+    - Test Execution: 
+		The QA team prepares test cases, test scripts, and test data based on clear objectives. 
+		Tests can be done manually or automatically. 
+		Manual testing is used when human insights and judgment are needed, while automation testing is preferred for repetitive flows with minor changes. 
+		Defects found during testing are tracked and reported to the development team, who promptly address them.
+		
+    - Test Cycle Closure: 
+		This is the last stage of Software Testing. Software testers will come together to examine their findings from the tests, assess how well they worked, and record important lessons to remember in the future. 
+		It's important to regularly assess your QA team's software testing procedure to maintain control over all testing activities throughout the STLC phases.
+		
+What is manual testing?
+	Manual testing refers to the process of manually executing test cases to identify defects in applications, without the use of automated tools. 
+	It involves human testers interacting with the system like a real user would and analyzing the results to ensure that the application functions as intended.
+	
+What is automated testing?
+	Automated testing, in contrast with manual testing, uses frameworks and tools to automatically run a suite of test cases. 
+	The whole process from test creation to execution is done with little human intervention, helping to reduce manual effort while increasing testing accuracy and efficiency.
+		
+What is the purpose of test data? How do you create an effective test data set?
+	Usually the software being tested is still in the staging environment where no usage data is available. 
+	Certain test scenarios require data from real users, such as the Login feature test, which involves users typing in certain combinations of usernames and passwords. 
+	In such cases, testers need to prepare a test data set consisting of mock usernames and passwords to simulate actual user interactions with the system. 
+	
+	There are several criteria when creating a test data set:
+		Data Relevance: 
+			is the data relevant to the application being tested? Does it represent real-world scenarios?
+		Data Diversity: 
+			is there a wide variety of data types (valid/invalid/boundary values, special characters, etc.)? Have these data types covered enough input combinations to achieve maximum coverage?
+		Data Completeness: 
+			does the data cover all of the necessary elements required for that particular scenario (for example: mandatory/optional fields)
+		Data Size: 
+			should we use a small or large data set?
+		Data Security: 
+			is there any sensitive/confidential information in the data set? Is the test data properly managed and stored?
+		Data Independence: 
+			is the test data independent from other test cases? Does the test data of this test case interfere with the result of another?
+			
+
+What is shift left testing? How different is it from shift right testing?
+	Shift Left testing	
+		1. Testing Initiation : Starts testing early in the development process
+		2. Objective : Early defect detection and prevention
+		3. Testing Activities : Static testing, unit testing, continuous integration testing
+		4. Collaboration : Collaboration between developers and testers from the beginning
+		5. Defect Discovery : Early detection and resolution of defects
+		6. Time and Cost Impact : Reduces overall development time and cost
+		7. Time-to-Market : Faster delivery due to early defect detection
+		8. Test Automation : Significant reliance on test automation for early testing
+		9. Agile and DevOps Fit : Aligned with Agile and DevOps methodologies
+		10.Feedback Loop : Continuous feedback throughout SDLC
+		11.Risks and Benefits : Reduces risks of major defects reaching production
+		12.Continuous Improvement : Enables continuous improvement based on early feedback
+		
+		
+	Shift right testing
+		1. Testing Initiation : Starts testing after development and deployment
+		2. Objective : Finding issues in production and real-world scenarios
+		3. Testing Activities : Exploratory testing, usability testing, monitoring, and feedback analysis
+		4. Collaboration : Collaboration with operations and customer support teams
+		5. Defect Discovery : Detection of defects in production environments and live usage
+		6. Time and Cost Impact : May increase cost due to issues discovered in production
+		7. Time-to-Market : May impact time-to-market due to post-production issues
+		8. Test Automation : Test automation may be used for continuous monitoring and feedback
+		9. Agile and DevOps Fit : Complements DevOps by focusing on production environments
+		10.Feedback Loop : Continuous feedback from real users and operations
+		11.Risks and Benefits : Identifies issues that may not be apparent during development
+		12.Continuous Improvement : Drives improvements based on real-world usage and customer feedback
+		
+Explain the difference between functional testing and non-functional testing.
+	Functional testing
+		1. Definition : Focuses on verifying the application's functionality
+		2. Objective : Ensure the application works as intended
+		3. Types of Testing : Unit testing, integration testing, system testing, acceptance testin
+		4. Examples : Verifying login functionality, checking search filters, etc.
+		5. Timing : Performed at various stages of development
+	
+	Non Functional testing
+		1. Definition : Assesses aspects not directly related to functionality (performance, security, usability, scalability, etc.)
+		2. Objective : Evaluate non-functional attributes of the application
+		3. Types of Testing : Performance testing, security testing, usability testing, etc.
+		4. Examples : Assessing system performance, security against unauthorized access, etc.
+		5. Timing : Often executed after functional testing
+		
+What is the purpose of test cases and test scenarios?
+	A test case is a specific set of conditions and inputs that are executed to validate a particular aspect of the software functionality, 
+	while a test scenario is a much broader concept, representing the real-world situation being tested. It combines multiple related test cases to verify the behavior of the software.
+
+What is a defect, and how do you report it effectively?
+	A defect is a flaw in a software application causing it to behave in an unintended way. 
+	They are also called bugs, and usually these terms are used interchangeably, although there are some slight nuances between them.
+	
+	To report a defect/bug effectively, there are several recommended best practices:
+
+		-> Try to reproduce it consistently, and describe the exact steps to trigger that issue for the developers to have an easier time addressing it on their end.
+		-> Use defect tracking tool like Jira, Bugzilla, or GitHub Issues to better manage the defect
+		-> Provide a clear and descriptive title to the bug
+		-> Write a high specific description that includes all relevant information about the bug (environment, steps to reproduce, expected behavior, actual behavior, frequency, severity, etc.)
+		-> Add screenshots if need to
+	
+Explain the Bug Life Cycle
+	The bug life cycle is the stages that a bug goes through from the time it is discovered until the time it is resolved or closed. The bug life cycle typically includes the following stages:
+
+    New: 
+		The bug is reported by the tester or user and is in the initial stage. At this stage, the bug is not yet verified by the development team.
+    Assigned: 
+		The bug report is assigned to a developer or development team for review and analysis. The developer reviews the bug report and determines if it is a valid issue.
+    Open: 
+		The developer confirms that the bug report is valid and assigns it the status of "Open". The developer then begins working on a fix for the bug.
+    In Progress: 
+		The developer starts working on fixing the bug. The status of the bug is changed to "In Progress".
+    Fixed: 
+		After the developer fixes the bug, the status of the bug is changed to "Fixed". The developer then passes the bug to the testing team for verification.
+    Verified: 
+		The testing team tests the bug fix to ensure that it has been properly resolved. 
+		If the bug fix is verified, the bug status is changed to "Verified" and is sent back to the development team for deployment.
+    Closed: 
+		Once the bug has been deployed to the production environment and verified by the users, the bug is marked as "Closed". The bug is now considered to be resolved.
+    Reopened: 
+		If the bug resurfaces after being marked as "Closed", it is assigned a status of "Reopened" and sent back to the development team for further analysis and resolution.
+		
+How do you categorize defects? / Describe the process you follow when reporting a bug. What information do you include in a defect report?
+	Testers usually follow this process to report a bug:
+		Reproduce the bug and collect essential details, including reproduction steps, screenshots, logs, and system configurations.
+		Determine the bug’s severity level based on its impact on the application and users.
+		Record the bug in a tracking tool, providing a precise description, expected outcomes, actual results, and reproduction steps.
+		Inform the development team about the bug, collaborating with them to identify the root cause and potential solutions.
+		Consistently monitor the bug’s progress until it is resolved and confirmed as fixed.
+	
+	When reporting bugs, we should categorize them based on their attributes, characteristics, and criteria for easier management, analysis, and troubleshooting later. Here is a list of basic bug categories that you can consider:
+
+    -> Severity (Critical - Major - Medium - low impact to system performance/security)
+    -> Priority (High - Medium - Low urgency)
+    -> Reproducibility (Reproducible, Intermittent, Non-Reproducible, or Cannot Reproduce)
+    -> Root Cause (Coding Error, Design Flaw, Configuration Issue, or User Error, etc.)
+    -> Bug Type (Functional Bugs, Performance Issues, Usability Problems, Security Vulnerabilities, Compatibility Errors, etc.)
+    -> Areas of Impact
+    -> Frequency of Occurrence
+	
+What are the differences between a bug, a defect, and an error?
+	A bug is a coding error in the software that causes it to malfunction during testing. It can result in functional issues, crashes, or performance problems.
+	
+	A defect is a discrepancy between the expected and actual results that is discovered by the developer after the product is released. It refers to issues with the software's behavior or internal features.
+	
+	An error is a mistake or misconception made by a software developer, such as misunderstanding a design notation or typing a variable name incorrectly. Errors can lead to changes in the program's functionality.
+	
+	
+What is the difference between manual testing and automated testing?
+	Automated testing is highly effective for large-scale regression testing with thousands of test cases that need to be executed repeatedly. 
+	Unlike human testers, machines offer unmatched consistency and accuracy, reducing the chances of human errors.
+	
+	However, manual testing excels for smaller projects, ad-hoc testing, and exploratory testing. 
+	Creating automation test scripts for such cases requires more effort than simply testing them manually, mainly for two reasons:
+		-> These test cases are not repetitive, making automation counterintuitive for one-off tasks.
+		-> The goal of these tests is to uncover unknown, hidden bugs, and they are not based on predefined test cases. Human creativity plays a crucial role here, something machines lack.
+		
+Compare manual testing with automation testing
+	Manual testing
+		1. Definition : Software tested manually by humans without automation tools or scripts
+		2. Human intervention : Requires significant human intervention and manual effort
+		3. Speed : Slower
+		4. Reliability : More prone to human error
+		5. Reusability : Test cases cannot be easily reused
+		6. Cost : Can be expensive due to human resources required
+		7. Scope : Limited scope due to time and effort limitations
+		8. Complexity : Unable to handle complex tests that require multiple iterations
+		9. Accuracy : Depends on the skills and experience of the tester
+		10. Maintenance : Easy to maintain since it does not involve complex scripts
+		11. Skillset : Requires skilled and experienced testers
+		
+	Automation Testing
+		1. Definition : Software tested using automation tools or scripts written by humans
+		2. Human intervention : Requires less human intervention
+		3. Speed : Faster
+		4. Reliability : More reliable as it eliminates human error
+		5. Reusability : Test cases can be easily reused
+		6. Cost : Can be expensive upfront due to automation tools setup but cheaper in the long run
+		7. Scope : Wider scope as more tests can be executed in a shorter time
+		8. Complexity : Able to handle complex tests that require multiple iterations
+		9. Accuracy : More accurate as it eliminates human error and follows predetermined rules 
+		10. Maintenance : Requires ongoing maintenance and updates to scripts and tools
+		11. Skillset : Requires skilled automation engineers or developers
+		
+Define the term "test plan" and describe its components.
+	A test plan is like a detailed guide for testing a software system. 
+	It tells us how we'll test, what we'll test, and when we'll test it. 
+	The plan covers everything about the testing, like the goals, resources, and possible risks. 
+	It makes sure that the software works well and is of good quality.
+	
+What is regression testing? Why is automated testing recommended for regression testing?
+	Regression testing is a type of software testing conducted after a code update to ensure that the update introduced no new bugs. 
+	It involves repeatedly testing the same core features of the application, making the task repetitive by nature. 
+	
+	As software evolves and more features are added, the number of regression tests to be executed also increases.
+	When you have a large codebase, manual regression testing becomes time-consuming and impractical. 
+	Automated testing can be executed quickly, allowing faster feedback on code quality. 
+	Automated tests eliminate risks of human errors, and the fast test execution allows for higher test coverage. 
+
+What are the advantages of automated testing tools?
+	Advantages:
+		Better test coverage
+		Faster time to market
+		Better test to accuracy
+		Cost savings and positive ROI
+		Free up resurces
+		
+Explain the Test Pyramid
+	The test pyramid is a testing strategy that represents the distribution of different types of automated tests based on their scope and complexity. It consists of three layers: unit tests at the base, integration tests in the middle, and UI tests at the top.
+	
+Describe the differences between black-box testing, white-box testing, and gray-box testing.
+	Black box testing
+		Black-box testing focuses on testing the functionality of the software without considering its internal code structure or implementation details. 
+		Testers treat the software as a "black box," where they have no knowledge of its internal workings.
+		The goal is to validate that the software meets the specified requirements and performs as expected from an end-user's perspective.
+	
+	White-box testing
+		White-box testing involves testing the internal structure, logic, and code implementation of the software application. 
+		Testers have access to the source code and use this knowledge to design test cases. 
+		The focus is on validating the correctness of the code, ensuring that all statements, branches, and paths are exercised.
+	
+	Gray-box testing	
+		Gray-box testing is a blend of black-box and white-box testing approaches. 
+		Testers have partial knowledge of the internal workings of the software, such as the architecture, algorithms, or database structure. 
+		The level of information provided to testers is limited, striking a balance between the complete ignorance of black-box testing and the full access of white-box testing.
+		
+What Are Test Cases And How Do You Write Test Cases?
+
+	A test case is the set of actions required to validate a particular software feature or functionality. 
+	In software testing, a test case is a detailed document of specifications, input, steps, conditions, and expected outputs regarding the execution of a software test on the AUT.
+	A standard test case typically contains:
+		- Test Case ID
+		- Test Scenario
+		- Test Steps
+		- Prerequisites
+		- Test Data
+		- Expected Results
+		- Actual Results
+		- Test Status
+		
+		
+What Are Some Best Practices In Writing Test Cases?
+	Use clear and concise language
+		Too abstract description, not enough details, or too many details are common mistakes that should be avoided. For example, instead of using the general “Check the purchase functionality", you can write “Check adding a product to cart".
+	Maximize test coverage
+		Ensure different aspects of the software are tested thoroughly with all possible scenarios and edge cases. Use the Requirements Traceability Matrix (RTM) that maps and traces user requirements to ensure all of them are met.
+	Data-driven testing
+		Test data should be realistic and representative of real-world scenarios. For example, if you test a login page, data such as names, email addresses, and passwords should be diverse to cover both positive and negative cases.
+	Review and update
+		Code changes can break existing tests. Tests should be maintained periodically to keep test artifacts up to date with new feature releases, upgrades, and bug fixes.
+
+
+
+How do you prioritize test cases?
+	Certain test cases should be prioritized for execution so that more critical and high-risk areas are tested in advance. 
+	It is also a good practice to manage testing resources or meet project timelines. 
+	There are several approaches to test case prioritization:
+	
+	-> Risk-based approach: 
+		identify the higher-risk areas to test first (critical functionalities, high-impact on bottom line, complex modules, modules with many dependencies, or components with history of defects)
+	-> Functional approach: 
+		identify test cases for core features to test first
+	-> Frequency approach: 
+		prioritize test cases for components that are heavily used by users
+    -> Integration points: 
+		depending on the scope of the test project, we can prioritize test cases for critical connection points between software components
+    -> Performance-critical scenarios: 
+		prioritize test cases related to performance-critical scenarios. This ensures that the software is ready for high volume of traffic
+    -> Security approach: 
+		identify areas that have high security risks to test first
+    -> Priority from stakeholders: 
+		take into account the input and priorities of key stakeholders, such as project managers, product owners, and end-users
+		
+		
+List out key differences between test cases and test scenarios		
+	Test cases:
+		Definition - A detailed set of steps to execute a specific test
+		Level of detail - Highly specific
+		Purpose - To verify a specific functionality or requirement
+		Input parameters - Specific test data and conditions
+		Number of executions - Single execution for each test case
+		Test coverage - Narrow and focused on a single functionality
+		
+	Test Scenario:
+		Definition - A high-level concept of what to test, including the environment
+		Level of detail - Broad and general
+		Purpose - To test multiple functionalities or requirements together
+		Input parameters - General data and conditions that can be applied to multiple tests
+		Number of executions - Multiple executions for each test scenario, covering multiple cases
+		Test coverage - Broad and covering multiple functionalities
+
+
+		
+What is the purpose of the traceability matrix in software testing?
+	The traceability matrix in software testing is a crucial document for ensuring comprehensive test coverage and establishing a clear link between various artifacts throughout the software development and testing life cycle. 
+	Its primary purpose is to trace and manage the relationships between requirements, test cases, and other relevant artifacts.
+	
+	
+======================================================================================================================================
+Principles of Testing
+	
+    All the tests should meet the customer’s requirements.
+    To make our software testing should be performed by a third party.
+    Exhaustive testing is not possible. As we need the optimal amount of testing based on the risk assessment of the application. 
+    All the tests to be conducted should be planned before implementing it 
+    It follows the Pareto rule(80/20 rule) which states that 80% of errors come from 20% of program components. 
+    Start testing with small parts and extend it to large parts. 
+    
+	
+Types of Testing
+	
+    Unit Testing
+		Unit testing is a method of testing individual units or components of a software application. 
+		It is typically done by developers and is used to ensure that the individual units of the software are working as intended. 
+		Unit tests are usually automated and are designed to test specific parts of the code, such as a particular function or method. 
+		Unit testing is done at the lowest level of the software development process, where individual units of code are tested in isolation.
+		It’s important to keep in mind that Unit Testing is only one aspect of software testing and it should be used in combination with other types of testing such as integration testing, functional testing, and acceptance testing to ensure that the software meets the needs of its users.
+		
+		Advantages of Unit Testing: Some of the advantages of Unit Testing are listed below
+			It helps to identify bugs early in the development process before they become more difficult and expensive to fix.
+			It helps to ensure that changes to the code do not introduce new bugs.
+			It makes the code more modular and easier to understand and maintain.
+			It helps to improve the overall quality and reliability of the software.
+		
+		Examples:
+			a) In a program we are checking if the loop, method, or function is working fine.
+			b) Misunderstood or incorrect, arithmetic precedence.
+			c) Incorrect initialization.
+			
+    Integration Testing
+		Integration testing is a method of testing how different units or components of a software application interact with each other. 
+		It is used to identify and resolve any issues that may arise when different units of the software are combined. 
+		Integration testing is typically done after unit testing and before functional testing and is used to verify that the different units of the software work together as intended.
+		
+		Different Ways of Performing Integration Testing: 
+			Top-down integration testing: 
+				It starts with the highest-level modules and differentiates them from lower-level modules.
+			Bottom-up integration testing: 
+				It starts with the lowest-level modules and integrates them with higher-level modules.
+			Big-Bang integration testing: 
+				It combines all the modules and integrates them all at once.
+			Incremental integration testing: 
+				It integrates the modules in small groups, testing each group as it is added.
+				
+		Advantages of Integrating Testing
+			It helps to identify and resolve issues that may arise when different units of the software are combined.
+			It helps to ensure that the different units of the software work together as intended.
+			It helps to improve the overall reliability and stability of the software.
+			It’s important to keep in mind that Integration testing is essential for complex systems where different components are integrated together.
+			As with unit testing, integration testing is only one aspect of software testing and it should be used in combination with other types of testing such as unit testing, functional testing, and acceptance testing to ensure that the software meets the needs of its users.
+		
+		Example:
+			(a) Black Box testing:- It is used for validation. In this, we ignore internal working mechanisms and focus on what is the output?.
+			(b) White box testing:- It is used for verification. In this, we focus on internal mechanisms i.e. how the output is achieved?.
+
+
+	Regression Testing
+		Regression testing is a method of testing that is used to ensure that changes made to the software do not introduce new bugs or cause existing functionality to break. 
+		It is typically done after changes have been made to the code, such as bug fixes or new features, and is used to verify that the software still works as intended.
+		
+		Regression testing can be performed in different ways, such as:
+			Retesting: 
+				This involves testing the entire application or specific functionality that was affected by the changes.
+			Re–execution: 
+				This involves running a previously executed test suite to ensure that the changes did not break any existing functionality.
+			Comparison: 
+				This involves comparing the current version of the software with a previous version to ensure that the changes did not break any existing functionality.
+
+		Advantages of Regression Testing
+			It helps to ensure that changes made to the software do not introduce new bugs or cause existing functionality to break.
+			It helps to ensure that the software continues to work as intended after changes have been made.
+			It helps to improve the overall reliability and stability of the software.
+			It’s important to keep in mind that regression testing is an ongoing process that should be done throughout the software development lifecycle to ensure that the software continues to work as intended. It should be automated as much as possible to save time and resources. Additionally, it’s important to have a well-defined regression test suite that covers
+
+		Example:
+			In school records, suppose we have module staff, students, and finance combining these modules and checking if the integration of these modules works fine in regression testing.
+		
+		
+	Smoke Testing
+		Smoke Testing is done to make sure that the software under testing is ready or stable for further testing 		
+		It is called a smoke test as the testing of an initial pass is done to check if it did not catch fire or smoke in the initial switch-on. 
+		
+		Example:
+			If the project has 2 modules so before going to the module make sure that module 1 works properly.
+		
+	Alpha Testing
+		Alpha testing is a type of validation testing. It is a type of acceptance testing that is done before the product is released to customers. It is typically done by QA people. 
+		
+		Example:
+			When software testing is performed internally within the organisation.
+		
+	Beta Testing
+		The beta test is conducted at one or more customer sites by the end-user of the software. This version is released for a limited number of users for testing in a real-time environment.
+		
+		Example:
+			When software testing is performed for the limited number of people.
+			
+    System Testing
+		System Testing is carried out on the whole system in the context of either system requirement specifications or functional requirement specifications or in the context of both. 
+		The software is tested such that it works fine for the different operating systems. 
+		It is covered under the black box testing technique. 
+		In this, we just focus on the required input and output without focusing on internal work. 
+		In this, we have security testing, recovery testing, stress testing, and performance testing.
+		
+		Example: 
+			This includes functional as well as nonfunctional testing.
+		
+ 
+	Object-Oriented Testing
+
+		Object-Oriented Testing testing is a combination of various testing techniques that help to verify and validate object-oriented software. This testing is done in the following manner: 
+
+			Testing of Requirements,
+			Design and Analysis of Testing,
+			Testing of Code,
+			Integration testing,
+			System testing,
+			User Testing.
+
+    Acceptance Testing
+		Acceptance testing is done by the customers to check whether the delivered products perform the desired tasks or not, as stated in the requirements. 
+		We use Object-Oriented Testing for discussing test plans and for executing the projects.
+		
+	Functional Testing	
+    Performance Testing
+    Security Testing
+	Sanity testing
+    User Acceptance Testing
+
+
+	
+What is exploratory testing?
+	Exploratory testing is an unscripted, manual software testing type where testers examine the system with no pre-established test cases and no previous exposure to the system. 
+	Instead of following a strict test plan, they jump straight to testing and make spontaneous decisions about what to test on the fly. 
+	
+Exploratory testing Vs Adhoc testing
+	Exploratory testing
+		1. Approach : Systematic and structured
+		2. Planning : Testers design and execute tests on the fly based on their knowledge and expertise
+		3. Test Execution : Involves simultaneous test design, execution, and learning
+		4. Purpose : To explore the software, find issues, and gain a deeper understanding
+		5. Documentation : Notes and observations are documented during testing
+		6. Test Case Creation : Test cases may be created on-the-fly but are not pre-planned
+		7. Skill Requirement : Requires skilled and experienced testers
+		8. Reproducibility : Test cases can be reproduced to validate and fix issues
+		9. Test Coverage : Can cover specific areas or explore new paths during testing
+		10. Flexibility : Adapts to changing conditions or discoveries during testing
+		11. Intentional Testing : Still focused on testing specific aspects of the software
+		12. Maturity : Evolved and recognized testing approach
+		
+	Adhoc testing
+		1. Approach : Unplanned and unstructured
+		2. Planning : Testers test without a predefined plan or test cases
+		3. Test Execution : Testing occurs without predefined steps or guidelines
+		4. Purpose : Typically used for quick checks and informal testing
+		5. Documentation : Minimal or no formal documentation of testing activities
+		6. Test Case Creation : No pre-defined test cases or test scripts
+		7. Skill Requirement : Can be performed by any team member without specific testing skills
+		8. Reproducibility : Lack of predefined test cases may lead to difficulty reproducing bugs
+		9. Test Coverage : Coverage may be limited and dependent on tester knowledge
+		10. Flexibility : Provides flexibility to test based on the tester's intuition
+		11. Intentional Testing : More often used to check the software in an unstructured manner
+		12. Maturity : Considered less mature or formal than structured testing method
+		
+		
+What are the differences between regression testing and retesting?
+	Retesting literally means “test again” for a specific reason. Retesting takes place when a defect in the source code is fixed or when a particular test case fails in the final execution and needs to be re-run. It is done to confirm that the defect has actually been fixed and that no new bug surfaces from it. 
+	
+	Regression testing is performed to find out whether the updates or changes had caused new defects in the existing functions. This step would ensure the unification of the software.
+	
+	Retesting solely focuses on the failed test cases while regression testing is applied to those that have passed, in order to check for unexpected new bugs. Another important note is that retesting includes error verifications, in contrast to regression testing, which includes error localization.
+
+
+Smoke testing Vs Sanity testing
+	
+	
+What is the difference between UI and GUI testing?	
+	Both UI (User Interface) and GUI (Graphical User Interface) testing fall into functional testing, but they have different focuses. 
+	The main difference between UI Testing and GUI Testing lies in their scope. 
+	UI Testing focuses specifically on the user interface elements and their appearance, while GUI Testing includes testing the both underlying functionality and logic of the graphical components in addition to the user interface.
+
+=========================================================================================================================================
+Explain the concept of CI/CD
+	CI/CD stands for Continuous Integration and Continuous Delivery (or Continuous Deployment), and it is a set of practices and principles used in software development to streamline the process of building, testing, and delivering software changes to production. 
+	The ultimate goal of CI/CD is to enable faster, more reliable, and more frequent delivery of software updates to end-users while maintaining high-quality standards.
+	
+	Continuous Integration is the practice of frequently integrating code changes from multiple developers into a shared repository. 
+	Developers commit their code changes to this repository multiple times a day. 
+	Each commit triggers an automated build and a series of tests to ensure that the newly added code integrates well with the existing codebase without introducing critical defects.
+	
+	Continuous Delivery is the practice of automating the software release process to ensure that the application is always in a deployable state.
+	With CD, any changes that pass the automated tests in the CI stage are automatically deployed to a staging or pre-production environment. 
+	This process reduces the risk of human error during the release process and ensures that the software is consistently and quickly available for testing and validation.
+	
+Discuss the advantages and disadvantages of open-source testing tools in a project.
+	Advantages
+		Free to use, no license fees
+		Active communities provide assistance
+		Can be tailored to project needs
+		Source code is accessible for modification
+		Frequent updates and improvements
+		Not tied to a specific vendor
+		Large user base, abundant online resources
+		
+	Disadvantages
+		Limited Support
+		Steep Learning Curve
+		Lack of Comprehensive Documentation
+		Integration Challenges
+		Occasional bugs or issues	
+		Requires careful consideration of security
+		May not offer certain enterprise-level capabilities
+		
+		
+Explain the concept of parallel test execution. How do you implement parallel testing to optimize test execution time?
+
+	Parallel test execution is a testing technique in which multiple test cases are executed simultaneously on different threads or machines. 
+	The goal of parallel testing is to optimize test execution time and improve the overall efficiency of the testing process. 
+	By running tests in parallel, testing time can be significantly reduced, allowing faster feedback and quicker identification of defects.
+
+	The main benefits of parallel test execution are:
+		- Reduced test execution time
+		- Faster feedback
+		- Improved test coverage
+		- Optimized resource allocation
+		- Enhanced productivity
+
+
+What is an Object Repository?
+	In software testing, an object repository is a central storage location that holds all the information about the objects or elements of the application being tested. 
+	It is a key component of test automation frameworks and is used to store and manage the properties and attributes of user interface (UI) elements or objects.
+	
+Why do we need an Object Repository?
+	Modularity: 
+		Test scripts can refer to objects by name or identifier stored in the repository, making them more readable and maintainable.
+    Centralization: 
+		All object-related information is stored centrally in the repository, making it easier to update, maintain, and manage the objects, especially when there are changes in the application's UI.
+    Reusability: 
+		Testers can reuse the same objects across multiple test scripts, promoting reusability and reducing redundancy in test automation code.
+    Enhanced Collaboration: 
+		The object repository can be accessed by the entire test team, promoting collaboration and consistency in identifying and managing objects.
+
+What are the tools which you can use for defect tracking?
+	Any list of the most popular bug management systems should include Bugzilla, JIRA, Assembla, Redmine, Trac, OnTime, and HP Quality Center. Bugzilla, Redmine, and Trac are freely available, open-source software, while Assembla and OnTime are offered in the form of software as a service. All of these options support manual bug entry, but Bugzilla, JIRA, and HP Quality Center also support some kind of API so that you can plug in third-party tools in order to enter new bug reports.
+
+What is cross-browser testing?
+	Cross-browser testing is the process of testing web applications or websites across multiple web browsers and their versions to ensure compatibility and consistency in functionality, design, and user experience.
+	
+Why do you need cross-browser testing?
+	Cross-browser testing is essential because web browsers differ in their rendering engines, HTML/CSS support, JavaScript execution, and user behavior, which can lead to inconsistencies and errors in web pages or applications. 
+	Conducting cross-browser testing helps identify and fix these issues, ensuring that the web application or website works as intended across all major web browsers and platforms, providing a consistent user experience to all users.
+	
+============================================================================================================================================
+How to develop a good test strategy?
+	When creating a test strategy document, we can make a table containing the listed items. 
+	Then, have a brainstorming session with key stakeholders (project manager, business analyst, QA Lead, and Development Team Lead) to gather the necessary information for each item. 
+	Here are some questions to ask:
+		Test Goals/Objectives:
+			What are the specific goals and objectives of the testing effort?
+			Which functionalities or features should be tested?
+			Are there any performance or usability targets to achieve?
+			How will the success of the testing effort be measured?
+			
+		Sprint Timelines:
+			What is the duration of each sprint?
+			When does each sprint start and end?
+			Are there any milestones or deadlines within each sprint?
+			How will the testing activities be aligned with the sprint timelines?
+			
+		Lifecycle of Tasks/Tickets:
+			What is the process for capturing and tracking tasks or tickets?
+			How will tasks or tickets flow through different stages (e.g., new, in progress, resolved)?
+			Who is responsible for assigning, updating, and closing tasks or tickets?
+			Is there a specific tool or system used for managing tasks or tickets?
+			
+		Test Approach:
+			Will it be manual testing, automated testing, or a combination of both?
+			How will the test approach align with the development process (e.g., Agile, Waterfall)?
+			
+		Testing Types:
+			What types of testing will be performed (e.g., functional testing, performance testing, security testing)?
+			Are there any specific criteria or standards for each testing type?
+			How will each testing type be prioritized and scheduled?
+			Are there any dependencies for certain testing types?
+		
+		Roles and Responsibilities:
+			What are the different roles involved in the testing process?
+			What are the responsibilities of each role?
+		
+		Testing Tools:
+			What are the preferred testing tools for different testing activities (open source/vendor-based)?
+			Are there any specific criteria for selecting testing tools?
+			How will the testing tools be integrated into the overall testing process?
+			Is there a plan for training and support in effectively using the testing tools?
+			
+		
+How to manage changes in testing requirements?
+	There should always be a contingency plan in case some variables in the test plan need adjustment. 
+	When adjustments have to be made, we need to communicate with relevant stakeholders (project managers, developers, business analysts, etc.) to clarify the reasons, objectives, and scope of the change. 
+	After that, we will adapt the test plan, update the test artifacts, and continue with the test cycle according to the updated test plan.
+	
+What are some key metrics to measure testing success?
+	Test Coverage: 
+		the extent to which the software has been tested with respect to specific criteria
+    Defect Density: 
+		the number of defects (bugs) found in a specific software component or module, divided by the size or complexity of that component
+    Defect Removal Efficiency (DRE): 
+		the ratio of defects found and fixed during testing to the total number of defects found throughout the entire development lifecycle. 
+		A higher DRE value indicates that testing is effective in catching and fixing defects early in the development process
+    Test Pass Rate: 
+		the percentage of test cases that have passed successfully out of the total executed test cases. 
+		It indicates the overall success of the testing effort
+    Test Automation Coverage: 
+		the percentage of test cases that have been automated
+		
+How do you ensure that the testing team is aligned with the development team and the product roadmap?
+    Involve testing team members in project planning and product roadmap discussions from the beginning.
+    Attend sprint planning meetings, product backlog refinement sessions, and other relevant meetings to understand upcoming features and changes.
+    Promote regular communication between development and testing teams to share progress, updates, and challenges.
+    Utilize common tools for issue tracking, project management, and test case management to foster collaboration and transparency.
+    Define and track key performance indicators (KPIs) that measure the progress and quality of the project.
+    Consider having developers participate in testing activities like unit testing and code reviews, and testers assist in test automation.
+
+How do you ensure that test cases are comprehensive and cover all possible scenarios?
+	Even though it's not possible to test every possible situation, testers should go beyond the common conditions and explore other scenarios.
+	Besides the regular tests, we should also think about unusual or unexpected situations (edge cases and negative scenarios), which involve uncommon inputs or usage patterns. 
+	By considering these cases, we can improve the coverage of your testing. 
+	Attackers often target non-standard scenarios, so testing them is essential to enhance the effectiveness of our tests.
+	
+What are defect triage meetings?
+	Defect triage meetings are an important part of the software development and testing process. 
+	They are typically held to prioritize and manage the defects (bugs) found during testing or reported by users. 
+	The primary goal of defect triage meetings is to decide which defects should be addressed first and how they should be resolved.
+
+What are entry and exit criteria?
+	Entry criteria are the conditions that need to be fulfilled before testing can begin. They ensure that the testing environment is prepared, and the testing team has the necessary information and resources to start testing. Entry criteria may include:
+		Requirements Baseline
+		Test Plan Approval
+		Test Environment Readiness
+		Test Data Availability
+		Test Case Preparation
+		Test Resources
+
+	Similarly, exit criteria are the conditions that must be met for testing to be considered complete, and the software is ready for the next phase or release. These criteria ensure that the software meets the required quality standards before moving forward, including:
+		Test Case Execution
+		Defect Closure
+		Test Coverage
+		Stability
+		Performance Targets
+		User Acceptance
+		
+When faced with limited time to test a complex software application, how would you prioritize your testing efforts and ensure sufficient coverage of critical areas? What factors would you consider in making these decisions?
+	The process here would be to first conduct exploratory testing to understand the software application and detect the first bugs. 
+	This exploratory session will provide the tester with insights into the current state of the application and help them identify the areas that should be focused on the most in future test runs. 
+	
+	The priority of the project would be on the test cases with highest business impact or urgency. 
+
+	After that, the dev team and the QA team will have a meeting to discuss and write a test plan, outlining all of the important variables in the project, including:
+
+    - Objectives
+    - Approach
+    - Scope
+    - Test Deliverables
+    - Dependencies
+    - Test Environment
+    - Risk Management
+    - Schedule
+    - Roles and Responsibilities
+	
+===========================================================================================================================================
+Can you provide an example of a particularly challenging defect you have identified and resolved in your previous projects?
+	Step 1: 
+		Describe the defect in detail, including how it was identified (e.g., through testing, customer feedback, etc.)
+	Step 2: 
+		Explain why it was particularly challenging.
+	Step 3: 
+		Outline the steps you took to resolve the defect
+	Step 4: 
+		Discuss any obstacles you faced and your rationale to overcoming it.
+	Step 5: 
+		Explain how you ensure that the defect was fully resolved and the impact it had on the project and stakeholders.
+	Step 6: 
+		Reflect on what you learned from this experience.
+		
+How to test a pen? Explain software testing techniques in the context of testing a pen.
+	1. Functional Testing
+		Verify that the pen writes smoothly, ink flows consistently, and the pen cap securely covers the tip.
+	2. Boundary Testing
+		Test the pen's ink level at minimum and maximum to check behavior at the boundaries.
+	3. Negative Testing
+		Ensure the pen does not write when no ink is present and behaves correctly when the cap is missing.
+	4. Stress Testing
+		Apply excessive pressure while writing to check the pen's durability and ink leakage.
+	5. Compatibility Testing
+		Test the pen on various surfaces (paper, glass, plastic) to ensure it writes smoothly on different materials.
+	6. Performance Testing
+		Evaluate the pen's writing speed and ink flow to meet performance expectations.
+	7. Usability Testing
+		Assess the pen's grip, comfort, and ease of use to ensure it is user-friendly
+	8. Reliability Testing
+		Test the pen under continuous writing to check its reliability during extended usage
+	9. Installation Testing
+		Verify that multi-part pens assemble easily and securely during usage.
+	10. Exploratory Testing
+		Creatively test the pen to uncover any potential hidden defects or unique scenarios.
+	11. Regression Testing
+		Repeatedly test the pen's core functionalities after any changes, such as ink replacement or design modifications.
+	12. User Acceptance Testing
+		Have potential users evaluate the pen's writing quality and other features to ensure it meets their expectations.
+	13. Security Testing
+		Ensure the pen cap securely covers the tip, preventing ink leaks or staining.
+	14. Recovery Testing
+		Accidentally drop the pen to verify if it remains functional or breaks upon impact.
+	15. Compliance Testing
+		If applicable, test the pen against industry standards or regulations.
+	
+
+Give some examples of high-priority and low-severity defects.
+	Defects can be prioritized based on their severity and impact on the software application. Let's look at an example of an ecommerce website. 
+	
+	High-priority defects:
+		Checkout process failure, preventing users from completing transactions.
+		The payment processing system is not working correctly, causing errors or failed transactions.
+		User's personal information is not properly secured or is vulnerable to hacking.
+		The inventory management system is not working correctly, resulting in incorrect product availability information.
+		Search functionality is not working correctly, making it difficult for users to find products they are looking for.
+     
+
+	Low-severity defects:
+		Minor formatting or styling issues on product or checkout pages.
+		Navigation issues, such as links not working or menus not displaying correctly.
+		Spelling or grammatical errors.
+		Issues that affect only a small subset of users or have a low frequency of occurrence, such as errors in product reviews or ratings.
+		
+Can you provide an overview of your experience as a QA tester? How many years have you been working in this role?
+
+Describe a challenging testing project you have worked on in the past. What were the key challenges you faced, and how did you overcome them?
+
+Have you worked on both manual and automated testing projects? Could you share examples of projects where you utilized both approaches?
+
+What tools and technologies have you worked with in your testing projects? Which ones are you most proficient in?
+
+What motivated you to pursue a career in QA testing, and what keeps you interested in this field?
+
+Describe a situation where you had to work closely with developers, product owners, or other stakeholders to resolve a testing-related issue. How did you ensure effective communication and collaboration?
+
+Have you ever identified a significant risk or potential problem in a project? How did you handle it, and what actions did you take to mitigate the risk?

@@ -112,3 +112,58 @@ Common good practices on Automation
 	Always put yourself in the shoes of user. That will give a clear perspective.
 	Generalise the code as much as possible as reusable code
 	
+	
+How do you choose a tool/framework for automated testing?
+	Some criteria when it comes to tool selection for test automation:
+
+    -> Functionality: 
+		the tool should have the necessary functionalities to create, run, report, and debug tests. Additionally, assess whether the tool’s strength (e.g., API testing) matches your testing needs most.
+    -> Usability: 
+		the automated testing tool should have an easy-to-navigate UI with clear instructions to help you perform your tests effectively.
+    -> Scalability: 
+		the tool should be scalable to meet the demands of your testing needs, both now and in the future, as your software evolves and grows.
+    -> Integration: 
+		a good automation testing tool should be able to integrate with other tools in your system, such as CI/CD, bug tracking, or ALM, and test management to help streamline the testing process.
+    -> Support: 
+		the tool should have good customer support and a vibrant community, with resources such as forums, online tutorials, and knowledge bases. 
+    -> Security: 
+		the tool should have adequate security measures in place to protect your data and ensure that your tests are performed securely.
+    -> Reputation: 
+		The tool should have a good reputation in the testing community, with positive reviews and recommendations from other users and experts.
+	
+
+	
+How would you choose the right framework for a project?
+
+Several criteria to consider when choosing a test automation framework for your project include:
+
+    Project Requirements: 
+		Assess the specific requirements of the project, including the application's complexity, supported technologies, and types of tests needed (e.g., functional, regression, performance).
+    Team Expertise: 
+		Evaluate the skillset and experience of the testing team members. Choose a framework that aligns with their expertise and allows them to work efficiently.
+    Scalability and Reusability: 
+		Look for frameworks that support scalability and encourage code reusability to avoid duplication of efforts.
+    Tool Integration: 
+		Consider the compatibility of the framework with the test automation tools and technologies that the team intends to use.
+    Maintenance Effort: 
+		Assess the effort required to maintain the test scripts and framework components in the long run.
+    Community Support: 
+		Check if the framework has an active community and reliable support channels to address issues and queries.
+    Reporting and Logging: 
+		Ensure that the framework provides comprehensive reporting and logging capabilities to aid in result analysis and debugging.
+    Flexibility and Customization: 
+		Look for frameworks that can be customized to meet specific project needs and accommodate future changes.
+    Proof of Concept (POC): 
+		Conduct a small Proof of Concept (POC) to evaluate the framework's suitability and effectiveness in addressing the project's requirements
+		
+
+How do you ensure test case reusability and maintainability in your test suites?
+
+    Break down test cases into smaller, independent modules or functions.
+    Each module should focus on testing a specific feature or functionality.
+    Use a centralized object repository to store and manage object details.
+    Separate object details from test scripts for easier maintenance.
+    Decouple test data from test scripts using data-driven testing techniques.
+    Store test data in external files (e.g., CSV, Excel, or databases) to facilitate easy updates and reusability.
+    Use test automation frameworks (e.g., TestNG, JUnit, Robot Framework) to provide structure.
+    Leverage libraries or utilities for common test tasks, such as logging, reporting, and data handling.

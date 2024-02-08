@@ -1,4 +1,4 @@
-re --version ->to check version of git
+git --version ->to check version of git
 git help config (or) git config --help ->to get the help page to read about syntax
 git config --global user.name "*username*" -> to add global usernmae
 git config --global user.emai "*usermail*" -> to add global mail

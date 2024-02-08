@@ -1,0 +1,105 @@
+Selenium Grid - Selenium 3
+	Selenium grid is distributed text execution environment
+	Selenium grid is a part of the selenium suite that specializes in running multiple tests across different browsers, operating systems, and machines in parallel
+	
+	What is Need for selenium grid
+		Selenium webdriver will execute your test cases on a single machine. Some of the concerns with webdriver are,
+			1. What if you want to execute your test cases for different operating systems?
+			2. How to run test cases in the different version of the same browser?
+			3. How to run your test cases in multiple browsers?
+			4. Why should a scenario wait for execution of other test cases even if it does not depend upon any test cases?
+			
+		
+	Benefits of selenium grid
+		1. Selenium grid gives the flexibility to distribute your test cases for execution
+		2. Reduces batch processing time
+		3. Can perform multi browser testing
+		4. Can perform multi os testing
+		
+	
+	Selenium grid is an stand alone project
+	you will get the selenium jar
+	
+	To run the selenium grid,user need to run the selenium grid jar via command
+		command : java -jar <Selenium_jar_name> -role hub
+		
+		verify selenium grid via URL in Local
+				http://localhost:4444/grid/console
+		
+	
+	Selenium Hub
+		Selenium Hub is windows/Linux machine, which will be used as execution engine in selenium grid.
+		Selenium Hub is central machine, which will be connected via several machines(nodes) over the network
+		Selenium Hub will be used as execution engine to execute selenium tests in parallel and send the commands to various machine
+		There is only one hub in the selenium grid
+		
+		Create selenium Hub
+			To create selenium hub, user needs to start the selenium jar
+			User needs to provide the Role 'Hub' in the selenium jar execution command
+				command: java -jar <selenium_jar_name> -role hub
+				
+			verify selenium hub via URL in Local
+				http://localhost:4444/grid/console
+				
+			Nodes should register to http://localhost:4444/grid/register/
+			Clients should connect to http://localhost:4444/wd/hub
+			
+	Selenium Node
+		Selenium node is the machine where actual execution will run
+		Test case will execute on selenium node
+		There can be multiple nodes in selenium grid
+		Each selenium node communicates with the selenium hub and performs test case assigned to it
+		Nodes can be launched on multiple machines with different platforms and browsers
+		
+		Create selenium node
+			To create selenium Node, selenium hub must be started
+			Selenium Jar must be present on the machine where you want to start the selenium node
+			To start the selenium node/make the machine selenium node. Run the command
+			
+			command: java -jar <selenium_jar> -role webdriver -hub 
+			http://<ip_of_selelniumHub>:4444/grid/register -port 5556
+						
+			To verify you can visit http://<hub_ip>:4444/grid/console on any machine
+			
+	
+			
+	Browser on selenium nodes
+		Browser instance and browsers are specific to requirements
+		Number of nodes could be specific to requirements
+		Start selenium hub
+		Start Selenium node
+		
+	Create instance of specific browser on selenium node
+		command : -browser browserName = <Browser_name>
+		
+	We can define number of instance of any browser in selenium node
+		command : -browser browserName = <name>, maxinstances = <Number_of_instances>
+		
+	Why session is required?
+		Define Number of session on selenium Node
+			command : -maxSession 5
+			
+		Now we have defined 5 sessions. It measn it doesnt matter how many instances are available, at a time selenium will invoke only 5 instances
+		
+	Can we open multiple nodes on the single machine?
+		yes, it is possible to open more than node with a single machine but it is not preferrable
+		
+	Selenium node : configure drivers
+		We need to tell the driver location to selenium node
+		
+		Define Chrome driver to selenium node:
+			Invoke selenium hub first
+			Invoke the selenium node and append the driver path in command
+				-Dwebdriver.chrome.driver=<Driver_location>
+				
+			complete command:
+				java -Dwebdriver.chrome.driver = <Driver_location> -jar <jar_name> -role webdriver -hub <Hub_location> -port 5556 - browser browserName = chrome
+				
+			eg: Chrome + IE + Edge + Firefox
+				java -Dwebdriver.chrome.driver=D:\Drivers\chromedriver.exe  -Dwebdriver.ie.driver=D:\Drivers\IEDriverServer.exe  -Dwebdriver.edge.driver=D:\Drivers\MicrosoftWebDriver.exe  -Dwebdriver.firefox.driver=D:\Drivers\geckodriver.exe  -jar selenium-Grid.jar  -role webdriver -hub http://192.168.0.101:4444/grid/register/ -port 5556 -browser browserName=chrome -browser browserName=iexplore -browser  browserName=edge -browser  browserName=firefox
+	
+	
+	Selenium grid :  TestNG
+		To run the testcases with selenium grid on the remote machine, you need to use RemoteWebDriver
+		RemoteWebDriver is an implementation class of the webDriver interface that a testscript developer can use to execute their test scripts via the RemoteWebDriver server in a remote machine
+		
