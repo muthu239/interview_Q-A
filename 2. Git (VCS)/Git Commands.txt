@@ -63,7 +63,7 @@ git revert *commit id* "*message*" -> to add a commit to undo a change that was 
 
 git branch -D *branch name* -> to delete the branch. To delete you should not be checked out into that branch. 
 
-git push origin --delete *branch name* -> to delete the branch fro repository which was already deleted in local 
+git push origin --delete *branch name* -> to delete the branch from repository which was already deleted in local 
 
 git pull -> to copy the remote repository to local repos 
 

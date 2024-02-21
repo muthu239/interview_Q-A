@@ -1,0 +1,97 @@
+1. Does JVM create object of main class? (important)
+	No, JVM doesnt create the object of main class
+	The reason for main() static in java is to make sure that the main() method can be called without any instance
+	
+	For example:
+		//Not main is abstract
+		abstract class Main{
+			public static void main(String args[]){
+			system.out.println|("Hello");
+		
+		}
+		
+	Still the output here is "Hello" printed
+	
+	Since we can create an object for abstract classes in Java, it is guaranteed that object of the class with main() is not created by JVM
+	
+
+2. Can we override static method in Java? (Important)
+	No, We cannot override the static function in java. But we can overload the static method in Java.
+	
+	Why you can't override but overload?
+		Static method is bonded during compile time using Type of reference variable and not object.
+		As per java coding convention, static methods should be accessed by class name rather than object.
+		In Short static method can be overloaded,but can not be overridden in java
+		
+		
+3. What is method Hiding in Java?
+	If we declare, another static method with the same signature in derived class(child class) than the static method of super class will be hidden, and any call to that static method in subclass will go to the static method declared in that class itself. THis is known as method hiding in Java
+	
+				public class ParentClass {
+				 
+				 public static void printMe(){
+				 System.out.println("Static Method form Super Class");
+				 }
+				}
+				public class ChildClass extends ParentClass {
+				 public static void printMe(){
+				 System.out.println("Static Method form child Class");
+				 }
+				}
+
+
+				Now create another class and call the printMe() method of both classes.
+
+				public class OverrideStatic {
+				 
+				 public static void main(String args[]){
+				 
+				 ParentClass PClass = new ParentClass();
+				 //This should call the PrintMe method of parent Class
+				 PClass.printMe();
+				  
+				  
+				 PClass = new ChildClass();
+				 //As per Overriding this should call the Child PrintMe method
+				 //But it will call parant PrintMe method because of Type PClass
+				 PClass.printMe();
+				  
+				 ChildClass cClass = new ChildClass();
+				 //Will call the Child Static method
+				 cClass.printMe();
+				 }
+				}
+				Output Will be:
+				Static Method form Super Class
+				Static Method form Super Class
+				Static Method form child Class
+		
+		Now as per method overriding; if a method is overridden then a call is resolved by type of object during runtime. Which means, in our test class OverrideStatic, PClass.printMe(); should call Child class’ printMe() method, because reference variable of type Parent is referring an object of Child, but instead it call printMe()() method of Parent class itself.
+		This happens, because static methods are resolved or bonded during compile time, and only information which is available, and used by the compiler is the type of reference variable. Since PClass was reference variable of the Parent type, printMe() method from Parent class was called.
+
+		Now, In order to prove that static method can be hidden, if we call ChildClass.printMe() or cClass.printMe(), it will call printMe() method fromChild class.
+
+		This means static methods can not overridden in Java, they can only be hidden. This also answers, Why static method can not be overridden in Java, because they are resolved during compile time.
+		
+		
+Optimized way to search an sorted array? - Binary search
+Optimized way to Sort - Quick sort
+
+Is Main method compulsory in java?
+	The answer to this question depends on version of java you are using. Prior to JDK 5, main method was not mandatory in a java program.
+	You could write your full code under static block and it ran normally. 
+	The static block is first executed as soon as the class is loaded before the main(); method is invoked and therefore before the main() is called. 
+	main is usually declared as static method and hence Java doesn’t need an object to call main method.   
+	However, From JDK6 main method is mandatory. If your program doesn’t contain main method, then you will get a run-time error “main method not found in the class”. 
+	Note that your program will successfully compile in this case, but at run-time, it will throw error.
+	
+			// This program will successfully run
+			// prior to JDK 5
+			public class Test 
+			{
+				// static block
+				static
+				{
+					System.out.println("program is running without main() method");
+				}
+			}
