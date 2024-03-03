@@ -25,7 +25,7 @@ Performance testing
 
 Tools used in Performance testing
 	1. LoadRunner (HP)
-	2. Jmeter (Open Soource)
+	2. Jmeter (Open Source)
 	3. Performance Center
 	4. Stormrunner Load
 	5. RPT (IBM)
@@ -40,7 +40,7 @@ Why Performance Testing?
 	2. Lack of proper performance testing results in loss of revenue, loss of credibility, loss of customers
 	3. To identify performance Bottlenecks
 	
-Performance testing is expensinve compared to other testing
+Performance testing is expensive compared to other testing
 	1. Tools are expensive
 	2. performance testers (Resources are expensive)
 	3. Full scale infrastructure is required. (In Functional testing a part of build is enough)

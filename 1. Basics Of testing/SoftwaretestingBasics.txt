@@ -1,4 +1,9 @@
 Explain The Software Development Life Cycle
+	Two types of software development
+		1. Sequential (Waterfall, V-Model) - End user sees the application / gives feedback only once i.e) at the end of the lifecycle
+		2. Incremental
+		3. Iterative (Agile)
+
 	The original software development life cycle consists of 7 stages:
 		1. Planning
 			During planning, project scope and requirements are defined in detail.
@@ -25,6 +30,12 @@ Differences between Waterfall Model, V-Model, and Agile Model.
 	Agile Model
 		Agile is a flexible and iterative approach to software development that emphasizes collaboration, continuous delivery, and rapid feedback. Agile teams work in short development cycles, called sprints, and prioritize working software over comprehensive documentation. Agile methodologies such as Scrum, Kanban, and Extreme Programming (XP) focus on continuous improvement and adaptability, enabling teams to respond quickly to changing requirements.
 		
+		In agile we have 4 values and 12 principles
+		
+	Scrum
+		Scrum is way to apply the agile principle
+		
+		Vision/Product Backlog -> User Story -> Sprint backlog -> 2-4 weeks --> retrospective 
 		
 Some of the SDLC models are	
 	1. Waterfall SDLC Models
@@ -37,19 +48,57 @@ Some of the SDLC models are
 	8. Incremental SDLC Models 
 		
 	Ref link : https://www.geeksforgeeks.org/sdlc-models-types-phases-use/?ref=lbp
+	
+Purpose of Stand up meeting
+	What I did yesterday
+	What I am doing today
+	List of blockers
+	
+Iterative Vs Sequential
+
+In sequential we have requirements - fixed, We have to estimate - time & effort
+In Iterative model we have estimate - requirements based on the fixed time & effort
+
 		
 ===================================================================================================================================
 What is software testing?
-		Software testing is a process to assess the quality, functionality, and performance of a software product before it is launched. 
+		Software testing is a process to assess the quality, functionality, and performance of a software product before it is launched and reduce the risk of software failure. 
 		Testers carry out this process either by interacting with the software manually or running test scripts to automatically check for bugs and errors, ensuring that the software functions as intended. 
 		Additionally, software testing is conducted to verify the fulfillment of business logic and identify any gaps in requirements that require immediate attention.
+		
 		Software testing can be divided into two steps: 
-			Verification: 
+			Verification: - Requirements/Developer POV [Unit testing, Integration testing, Automated testing]
 				It refers to the set of tasks that ensure that the software correctly implements a specific function. It means “Are we building the product right?”.
-			Validation: 
+			Validation: - Users/Customer POV [User acceptance testing, usability testing]
 				It refers to a different set of tasks that ensure that the software that has been built is traceable to customer requirements. It means “Are we building the right product?”.
+				
+			Common for both - Regression testing, System testing, Beta testing
 
+
+Difference between Dynamic testing and Static testing
+	Dynamic testing - We give a input and verify the output. eg: testing a web application
+		Dynamic testing assesses the feasibility of a software program by giving input and examining output.
+		The code must compile and run in dynamic testing
+		Dynamic testing will look at the functional behavior of software systems such as memory usage and performance.
+		dynamic testing will try to find active bugs
 	
+	
+	Static testing - Reviewing a design is example of static testing / Reviewing code
+		Static testing will analyze the code, requirements documents and design documents
+		Static testing can be performed without the application running.
+		Static testing essentially gives an assessment of code
+
+Objectives of testing
+	Work - product evaluation
+	Requirement fulfillment
+	Building confidence
+	finding Defects
+	Preventing defects
+	Providing information to stakeholders
+	Reduce risk
+	Compliance
+		
+		
 Why is software testing important in the software development process?
 		Product quality should be defined in a broader sense than just “a software without bugs”. 
 		Quality encompasses meeting and surpassing customer expectations. 
@@ -224,7 +273,9 @@ What are the differences between a bug, a defect, and an error?
 	A defect is a discrepancy between the expected and actual results that is discovered by the developer after the product is released. It refers to issues with the software's behavior or internal features.
 	
 	An error is a mistake or misconception made by a software developer, such as misunderstanding a design notation or typing a variable name incorrectly. Errors can lead to changes in the program's functionality.
-	
+
+How to prevent defects? [interview question]
+	By making sure that the software is aligned with requirements while tesing
 	
 What is the difference between manual testing and automated testing?
 	Automated testing is highly effective for large-scale regression testing with thousands of test cases that need to be executed repeatedly. 
@@ -303,6 +354,16 @@ Describe the differences between black-box testing, white-box testing, and gray-
 		Gray-box testing is a blend of black-box and white-box testing approaches. 
 		Testers have partial knowledge of the internal workings of the software, such as the architecture, algorithms, or database structure. 
 		The level of information provided to testers is limited, striking a balance between the complete ignorance of black-box testing and the full access of white-box testing.
+		
+		
+		
+Black Box testing techniques
+	1. Equivalence partitioning  eg : age
+	2. Boundary value analysis 	 eg:  mark & grading students
+	3. Decision table testing	eg: 2^n  n-> No of questions 2-> for yes/No questions(Choices)
+	4. State transition testing	eg:  ATM machine enter pin
+	5. Pairwise testing
+	
 		
 What Are Test Cases And How Do You Write Test Cases?
 
@@ -385,8 +446,30 @@ Principles of Testing
     All the tests to be conducted should be planned before implementing it 
     It follows the Pareto rule(80/20 rule) which states that 80% of errors come from 20% of program components. 
     Start testing with small parts and extend it to large parts. 
-    
+
+
+Test Levels
+	Test levels are groups of test activities that are organized and managed together
+	Each test level is an instance of the test process
+	Test levels are related to other activities within the software development lifecycle
 	
+	-> Unit testing
+	-> Integration testing
+	-> System testing
+	-> Acceptance testing
+	
+
+Types of tesing
+	Fucntional testing
+	Non functional testing
+	Black Box testing
+	White Box testing
+	Dynamic testing
+	Static testing
+	Retesting
+	Regression testing
+	Smoke testing
+
 Types of Testing
 	
     Unit Testing
@@ -558,6 +641,7 @@ What is the difference between UI and GUI testing?
 	Both UI (User Interface) and GUI (Graphical User Interface) testing fall into functional testing, but they have different focuses. 
 	The main difference between UI Testing and GUI Testing lies in their scope. 
 	UI Testing focuses specifically on the user interface elements and their appearance, while GUI Testing includes testing the both underlying functionality and logic of the graphical components in addition to the user interface.
+	
 =========================================================================================================================================
 
 When is a good time to automate a test?
@@ -807,7 +891,28 @@ When faced with limited time to test a complex software application, how would y
     - Risk Management
     - Schedule
     - Roles and Responsibilities
+===========================================================================================================================================	
+Root cause analysis
+	Root cause analysis tools are used to support quality management. 
+	They identify and solve problems by allowing you to see the root causes of issues that you’re dealing with.
+	With good root cause analysis tools, you’re able to dig down and see why your operations are running the way they are. 
+	You’ll see common defects and errors, so you can make the changes that are necessary to help your business grow successfully
 	
+	1. Pareto Charts
+		Pareto charts show the ordered frequency counts of data
+		These charts are often used to identify areas to focus on first in process improvement. Pareto charts show the ordered frequency counts of values for the different levels of a categorical or nominal variable. 
+		The charts are based on the “80/20” rule.
+		The 80/20 Rule (also known as the Pareto principle or the law of the vital few & trivial many) states that, for many events, roughly 80% of the effects come from 20% of the causes.
+		
+	2. Failure Mode and Effect Analysis (FMEA)
+		Failure Mode and Effects Analysis (FMEA) is a structured way to identify and address potential problems, or failures and their resulting effects on the system or process before an adverse event occurs. 
+		In comparison, root cause analysis (RCA) is a structured way to address problems after they occur.
+		
+	3. 5 Whys
+		Five whys (5 whys) is a problem-solving method that explores the underlying cause-and-effect of particular problems. 
+		The primary goal is to determine the root cause of a defect or a problem by successively asking the question “Why?”.
+		
+		
 ===========================================================================================================================================
 Can you provide an example of a particularly challenging defect you have identified and resolved in your previous projects?
 	Step 1: 
@@ -887,3 +992,55 @@ Describe a situation where you had to work closely with developers, product owne
 
 Have you ever identified a significant risk or potential problem in a project? How did you handle it, and what actions did you take to mitigate the risk?
 
+
+latent defect
+Defect cascading
+Defect masking
+fuzz testing
+
+
+===================================================================================================================================
+Agile 4 values
+	- Individuals & interactions over processes & Tools
+	- Working software over comprehensive documentation
+	- Customer collabration over Contract negotiation
+	- Responding to change over following a plan
+	
+Agile 12 Principles
+	1. Highest priority is to satisfy the customer through early and continuous delivery of valuable software
+	2. Deliver working software frequently, at intervals of between a few weeks to few months, with a preference to the shorter timescale
+	3. Working software is the primary measure of progress
+	4. Welcome changing requirements, even late in development. Agile processes harness change for the customers competitive advantage
+	5. Continuous attention to technical excellence and good design enhances agility
+	6. Agile processes promote sustainable development. The sponsors, developers and users should be able to maintain a constant pace indefinitely
+	7. Simplicity - The art of maximizing the amount of work not done - is essential
+	8. Build projects around motivated individuals. Give them the environment and support they need and trust them to get the job done
+	9. The build architectures, requirements and designs emerge from self organizing teams
+	10. Business people and developers must work together daily throughout the project
+	11. The most efficient and effective method of conveying information to and within development team is face to face conversation
+	12. At regular interval, the team reflects on how to become more effective, then tunes and adjusts its behavior accordingly
+	
+User story
+	user stories are written to capture requirements from the perspective of developers, testers and business representatives. The user stories must address both functional and non-functional characteristics
+	
+Scrum practices
+	Sprint:
+		Scrum divides a project into iterations(called sprints) of fixed length (usually two to four weeks)
+	Product increment:
+		Each sprint results in a potentially releasable/shippable product (called an increment)
+	Product backlog:
+		The product owner manages a prioritized list of planned product items. The product backlog evolves from sprint to sprint (Backlog refinement)
+	Sprint backlog:
+		At the start of each sprint, the scrum team selects a set of highest priority items from the product backlog.
+		Since the scrum team, not the product owner, selects the items to be realized within the sprint, the selection is referred to as being on the pull principle rather than the push principle.
+	Definition of done:
+		To make sure that there is a potentially releasable product at the end of each sprint, the scrum team discusses and defines appropriate criteria for sprint completion
+		The dicussion deepens the teams understanding of the backlog items and the product requirements
+	Timeboxing:
+		Only those tasks that the team expects to finish within the sprint are part of the sprint backlog. If the development team cannot finish a task, it is moved back into the product backlog
+	Transparency:
+		The development team reports and updates sprint status on a daily basis at a meeting called the daily scrum. This makes the progress of the current sprint visible to everyone
+		
+	Retrospective meetings:
+		Retrospective is a meeting held at the end of each iteration to discuss what was successful, what could be improved and how to incorporate the improvements in future iterations
+	
