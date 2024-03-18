@@ -55,3 +55,176 @@ Query parameters:
 		
 End Point request URL can be constructed as below
 	Base URL/resource/(Query/Path) Paramters
+	
+	
+=======================================================================================================
+What is an API?
+		An API (application programming interface) can be thought of as a bridge that initiates a conversation among the software components. 
+		It is a set of instructions that establishes a dialogue session between components of a software with another, like a user wishes to access a location via GPS, the necessary API will fetch the needful information from the server and generate a response to the user.
+		
+		To state it very simply, an API is an interface that receives an input from the user and gets the response from a valid source.
+		
+		Few popular API's are -
+			Google Maps API - This API lets developers integrate Google Maps on a webpage or a mobile device.
+			YouTube API's - With this API, developers can integrate YouTube videos into an application or website. 
+
+API Testing
+	API testing is about verifying whether an API abides by the instruction set and delivers the expected functionality.
+	Api Testing is entirely different from GUI Testing and mainly concentrates on the business logic layer of the software architecture. 
+	This testing won't concentrate on the look and feel of an application.
+	
+	Api Testing requires an application to interact with API. In order to test an API, you will need to
+		Use Testing Tool to drive the API
+		Write your own code to test the API
+		
+	Set-up of API Test environment
+		Api Testing is different than other testing types as GUI is not available, and yet you are required to setup initial environment that invokes API with required set of parameters and then finally examines the test result.
+		Hence, Setting up a testing environment for API testing seems a little complex.
+		Database and server should be configured as per the application requirements.
+		Once the installation is done, API Function should be called to check whether that API is working.
+		
+	
+	An application generally has three essential components:
+		
+		Data Layer - This layer is about data retrieval from a data source.
+		Logic Layer - The logic layer represents an application's structure, that is, this layer is responsible for processing requests sent by the user, deciding what to do with the request and how to respond to it.
+		Presentation Layer - This is the uppermost layer which provides an interface to the users. This layer interacts with the user to get requests, translating the results fetched into something comprehensible by the user.
+			
+		API testing is thus to ensure that it performs in the most optimal manner. API testing requires a software to make calls to an API just the same way as in a real world scenario.
+		
+	Types of Output of an API
+		Output of API could be
+			Any type of data
+			Status (say Pass or Fail)
+			Call to another API function.
+			
+		Examples:
+			Any Type of Data (Request -> Response)
+				There is an API function which should add two integer numbers. -> Long add(int a, int b)
+				The numbers have to be given as input parameters. The output should be a summation of two integer numbers. This output needs to be verified with expected outcome.
+				Calling needs to be done such as -> add (1234, 5656)
+				Exceptions have to be handled if the number is exceeding the integer limit. Positive and negative testing is required.
+				
+			Status (say Pass or Fail)
+				Consider the below API function - Lock() , Unlock() , Delete()
+					They return any value such as True (in case of success) or false (In case of error) as an output.
+					Test Case would be, can call the functions in any of the script and later check for changes either in the database or the Application GUI.
+			
+			Calling of another API / Event
+				First API function can be used for deleting a specified record in the table and this function in turn calls another function to REFRESH the database.
+				
+	
+	Test Cases for API Testing:
+		Return value based on input condition: 
+			it is relatively easy to test, as input can be defined and results can be authenticated
+			
+		Does not return anything: 
+			When there is no return value, behavior of API on the system to be checked
+			
+		Trigger some other API/event/interrupt: 
+			If output of an API triggers some event or interrupt, then those events and interrupt listeners should be tracked
+			
+		Update data structure: 
+			Updating data structure will have some outcome or effect on the system, and that should be authenticated
+			
+		Modify certain resources: 
+			If API call modifies some resources then it should be validated by accessing respective resources
+			
+	
+			
+	Need for API Testing
+		Generally we conduct software testing to find bugs in an application, to offer an error free product to our clients. 
+		The performance of API is also important considering that it is responsible for processing user requests. 
+		An important dimension to API testing is security as well. 
+		If an API is vulnerable to security threats, the product as a whole may suffer and as a result we may lose out on our client base. 
+		If API fails to offer an edge, then irrespective of how easily an application is available, it won't gain acceptance among people.
+		
+	Beginning with API testing:
+		Before gearing up for testing the API, it is essential to take into consideration few important points:
+		-> The various aspects that need to be tested.
+		-> Select an environment that is best suitable for API testing.
+		-> The most important is to determine the target audience for whom the API is intended for.
+		-> The aspects that need to be tested.
+		-> Setting the priorities for testing.
+		-> Identifying the possible set of mishaps in the event of any failure.
+		-> Evaluating pass and fail results and determining the degree of impact it can have on the system.
+		
+		Now once we define clearly what are our requirements, we need to decide why do we want to test our API and what purpose shall it serve.
+		
+	API testing Checklist:
+		After discussing the do's and dont's of API testing and analyzing the importance of the same, we can summaries the entire concept in brief.
+
+		HTTP Validations:
+			While testing an API, HTTP methods like GET, HEAD, PUT, DELETE etc. are idempotent methods
+			Validate user authentication, trying to access an API using HTTP authentication header
+			Verifying various error/authentication codes, to ensure validation of a response. Some of the validation codes include 404 (server not found), 201 (request fulfilled), 204 (no content) and so on
+			4xx vs 5xx errors are worth mentioning as they help to reflect client side and server side errors respectively.
+			To ensure best network performance, HTTP compression mechanisms should be applied to API’s being tested. (HTTP compression is a technique to facilitate efficient bandwidth between client and the server)
+			
+		API Validations:
+			An API must ideally support format conversion, say, JSON to XML or vice versa
+			Check with API version number to verify whether that specific version is compatible with the device being used
+			An API must be strong enough to handle bulk operations, therefore it is necessary to build an API in such a manner
+			Pagination is an important factor that helps to reduce unnecessary computations at the server, as pagination indexes a document in pages
+			An API must efficiently handle errors that arise during an application's duration of operation.
+
+		Content:
+			Type of contents such as +JSON, JSON HAL and XTML, should be included while testing an API, is an important aspect from an API testing perspective.
+			While taking RESTful API's into consideration, a feature named HATEOAS, an acronym for Hypermedia as the Engine of Application State, is a REST constraint provides an effective way for a client to interact with any network application.
+			An API's date and time must adhere to the time zone specifications meant for a particular locale
+				
+		Security, apart from the aforementioned points, is an inevitable factor in determining the effectiveness of API testing. Cyber-crime has been at its peak for quite some time, prevalent in the present day as well. Hence the significance of 'security' cannot be denied to pursue a strong and quality application.
+		
+	Types of Bugs that API testing detects
+		Fails to handle error conditions gracefully
+		Unused flags
+		Missing or duplicate functionality
+		Reliability Issues. Difficulty in connecting and getting a response from API.
+		Security Issues
+		Multi-threading issues
+		Performance Issues. API response time is very high.
+		Improper errors/warning to caller
+		Incorrect handling of valid argument values
+		Response Data is not structured correctly (JSON or XML)
+		
+	Approach of API Testing
+		Understanding the functionality of the API program and clearly define the scope of the program
+		Apply testing techniques such as equivalence classes, boundary value analysis and error guessing and write test cases for the API
+		Input Parameters for the API need to be planned and defined appropriately
+		Execute the test cases and compare expected and actual results.
+		
+	Difference between API Testing and Unit Testing?
+		Unit Testing
+			Developers perform it
+			Small units are tested in isolation
+			Developer can access the source code
+			Aims to find programmer errors and code coverage
+			Limited in scope
+			Usually ran before check-in
+			
+		API Testing
+			Testers perform it
+			Is a means to end-to-end testing
+			Testers treat API as black-box
+			Multiple functionalities can be checked
+			Performance testing can also be done
+			All functional issues are tested
+			Broader in scope
+			Ran after build is created
+			
+	When to use PUT or POST in RESTful Web Service
+		One of the most common confusion among web developers is the choice of PUT or POST HTTP method for creating or updating a resource while developing RESTful Web Services. Since both can be used to submit data, you can use either POST or PUT to create or update a resource.
+
+		Many web developers want to use PUT for creating a resource on the server because it's idempotent. No matter, how many times you call the PUT, the state of the resource will not jeopardize. Since the possibility of re-submission is real on a slow network, using PUT to create resource makes it easy, as you don't need to worry about user clicking the submit button multiple times. But, the key point to remember is that when you use PUT to create a resource, you need to provide the id e.g.
+
+		PUT /book/{id}
+		
+		Since most of the system want to keep control of id i.e. they want to generate id by their own in the database, rather than client specifying the id, PUT doesn't seem to be the right method to create a resource. It also poses the challenge of multiple clients creating a resource with the same id and instead of creating they end up updating the resource.
+
+		Even though POST is not idempotent, it is a better choice for creating resource because it doesn't require a user to provide the id of the resource. Instead, when POST method completes it return the id and URI of the newly created resource in the location header. Allowing the user to further update the resource because it has both id and URI of the resource.
+
+		Similarly, PUT is the better choice for updating resource because you already have an id for the resource and its idempotent, so even if the user submits multiple PUT request the state of the resource will not be compromised.
+
+		The short answer is, use POST to create a resource and use PUT to update the resource. It's not mandatory, but this seems more logical unless you can foresee any issue which completely changes the opinion.
+		
+		

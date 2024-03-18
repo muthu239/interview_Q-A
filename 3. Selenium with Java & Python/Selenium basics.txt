@@ -384,7 +384,7 @@ Waits in selenium
 				- presenceOfElementLocated(locator)
 				- textToBePresentInElement(locator,text)
 				- title()
-				- titleIs(title)
+				- titles(title)
 				- visibilityOf(Element)
 				
 		-> FluentWait

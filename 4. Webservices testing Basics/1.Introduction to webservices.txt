@@ -49,12 +49,12 @@ Simple Object Access Protocol (SOAP) services
 ==================================================================================
 What is WSDL?
 	A WSDL is an XML document that descrbes a webservice. It actually stands for Web Services Definition Language.
-	It specifies the location of the service and the methods of the service using these major elements, datat types using in webservice data elements.
+	It specifies the location of the service and the methods of the service using these major elements, data types using in webservice data elements.
 	Each operation describe the operations that can be performed and the messages involved.
 	This is required for understanding the webservice functionality
 	WSDL definition describes how to access a web service and what operations it will perform
 	WSDL is often used in combination with SOAP and XML Schema to provide web services over the Internet
-	A client program connecting to a web service can read the WSDL to determine what functions are available on the server
+	A client program connecting to a web service can read the WSDL to determine what functions are available on the servers
 	
 WSDL structure
 	WSDL is an XML document with a <definitions> element at the root
