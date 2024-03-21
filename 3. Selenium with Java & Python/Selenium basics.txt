@@ -15,6 +15,8 @@ How will you minimize a screen?
 How will you switch window in selenium 3
 How to pass keyboard shortcut to selenium?
 How to scroll using selenium without JS executor?
+How do you verify the colour using selenium?
+
 
 
 
@@ -136,7 +138,7 @@ Whats new in Selenium 4
 				In selenium 3 to handle mulitple windows, a new object with the webdriver has to be crteated and then window handlers are used to handle the new window
 			
 			selenium 4, the limitation is addressed and completely removed
-				newWindow function that allows user to create and switch to a new window/tab without creating a new WebDriver object
+				newWindow function that allows user to create and switch to a "NEW" window/tab without creating a new WebDriver object
 					driver.switchTo().newWindow(WindowType.WINDOW);
 					driver.switchTo().newWindow(WindowType.Tab);
 			
@@ -212,10 +214,10 @@ WebDriver [Important topic for interview]
 			The browser driver is the same regardless of the language used for automation
 			
 	Working internal logic flow of a selenium script:[important Q]
-	A http request is created  and sent to browser driver for each selenium instruction or commands
-	A browser driver receives the http request through http server
-	http server decides all steps to perform instructions which are executed on browser.
-	Execution status is sent back to http server which is sent back to automation script
+		A http request is created  and sent to browser driver for each selenium instruction or commands
+		A browser driver receives the http request through http server
+		http server decides all steps to perform instructions which are executed on browser.
+		Execution status is sent back to http server which is sent back to automation script
 	
 		
 
@@ -240,7 +242,7 @@ Options Class:
 		
 	Methods of Options Class
 		setBinary(): 
-			This is used to provide the binary exe path of Browser. This method is used when ever tester want to perform the version testing in selenium
+			This is used to provide the binary exe path of Browser. This method is used whenever tester want to perform the version testing in selenium
 				
 		setAcceptInsecureCerts(): 
 			This is used to bypass the authentication certificate or SSL certificate to test the website. This method accepts boolean parameter, if true driver accepts the certificate and proceeds further, if false is passed and site has SSL then driver will stop the execution as it cannot process further due to SSL.
@@ -263,6 +265,10 @@ Options Class:
 			This is used when page load takes much time. 
 			Three type page load strategy: Normal,Eager,None
 			
+			Strategy Ready State	Notes
+			normal	 complete	    Used by default, waits for all resources to download
+			eager	 interactive	DOM access is ready, but other resources like images may still be loading
+			none	 Any	        Does not block WebDriver at all
 =========================================================================================================================================	
 WebElement:
 	Anything present on the webpage such as textbox,text, button, link, table,radio button, checkbox etc are called as webelement
@@ -387,7 +393,27 @@ Waits in selenium
 				- titles(title)
 				- visibilityOf(Element)
 				
+				eg:
+					WebDriverWait wait = new WebDriverWait(driver, 30);
+					wait.until(ExpectedConditions.alertIsPresent());
+				
 		-> FluentWait
+			Fluent Wait in Selenium marks the maximum amount of time for Selenium WebDriver to wait for a certain condition (web element) becomes visible. It also defines how frequently WebDriver will check if the condition appears before throwing the “ElementNotVisibleException”.
+			
+			To put it simply, Fluent Wait looks for a web element repeatedly at regular intervals until timeout happens or until the object is found.
+			
+			example:
+				//Declare and initialise a fluent wait
+					FluentWait wait = new FluentWait(driver);
+				//Specify the timout of the wait
+					wait.withTimeout(5000, TimeUnit.MILLISECONDS);
+				//Sepcify polling time
+					wait.pollingEvery(250, TimeUnit.MILLISECONDS);
+				//Specify what exceptions to ignore
+					wait.ignoring(NoSuchElementException.class)
+
+				//This is how we specify the condition to wait on.
+					wait.until(ExpectedConditions.alertIsPresent());
 	
 	
 	
@@ -471,6 +497,25 @@ How to handle frame and iFrames?
 		defaultContent(); 
 			in selenium it helps to switch the context to top most frame which is main page
 			driver.switchTo().defaultContent();
+			
+		Difference between driver.switchTo().parentFrame() and driver.switchTo().defaultContent()? [Important question]
+			driver.switchTo().defaultContent();
+				This will pass the control to the main document which contains the iframes
+
+			driver.switchTo().parentFrame();
+				This will pass the control to the imminent parent frame of the current frame
+		
+			Example::
+				main body
+				{
+				frame1
+				{
+				frame2
+				frame3 (we are here currently)
+				}
+				}
+			Now using driver.switchTo().defaultContent(); will pass the control to main body
+			And using driver.switchTo().parentFrame(); will pass the control to frame1.
 			
 	
 Verify visibility of web-element on web page
@@ -593,7 +638,16 @@ Handle Mouse & keyboard events in selenium
 			Actions action = new Actions(driver);
 			action.clickAndHold(src).moveToElement(trgt).release(trgt).build().perform();
 		
-	How to handle Keyboard shortcuts
+	How to handle Keyboard shortcuts [important]
+		Actions action =  new Actions(driver)
+              action.keyDown(Keys.SHIFT)
+                .sendKeys("a")
+                .keyUp(Keys.SHIFT)
+                .sendKeys("b")
+                .perform();
+				
+		Keydown - Press key
+		keyup - Release key
 		
 	
 	

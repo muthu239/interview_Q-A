@@ -226,5 +226,3 @@ API Testing
 		Similarly, PUT is the better choice for updating resource because you already have an id for the resource and its idempotent, so even if the user submits multiple PUT request the state of the resource will not be compromised.
 
 		The short answer is, use POST to create a resource and use PUT to update the resource. It's not mandatory, but this seems more logical unless you can foresee any issue which completely changes the opinion.
-		
-		

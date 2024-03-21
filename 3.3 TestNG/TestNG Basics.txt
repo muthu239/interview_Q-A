@@ -44,7 +44,7 @@ List of TestNG annotations and their use
 	@Listeners : 
 		Defines listeners on a test classes
 	@Parameters : 
-		Describes how to pass parameters to a @Test method.
+		Describes how to pass parameters to a @Test method.  eg: @Parameters({"userName", "password"})
 	@Test : 
 		Marks a method as part of the test
 		
@@ -118,12 +118,13 @@ Assertion:
 		- assertAll() is used at end, so that it collects all the soft assertions and marks our testcase pass or fail based on all the assertion outputs.
 		- All assertion will work with Soft assertion too
 		- We should instantiate a SoftAssert object within @Test method. 
-		Scope of SoftAssert should only be within Test method only.
+		Scope of SoftAssert should be within Test method only.
 		
 Test grouping
 	Grouping is a feature through which you can easily categorise your test cases based on requirement
 	User can assign any Group to Testcase by passing group name to @Test annotation
-	Synatax : @Test(groups = {"groupname"})
+	Synatax : @Test(groups = {"groupname"})   
+	eg: @Test(groups={"Regression", "Sanity"})
 	User can maintain the execution of groups via testng.xml
 	After grouping in selenium we can specify the include and exclude in testng.xml
 	<include> - it tells testng.xml that which group we need to execute
@@ -133,6 +134,7 @@ Test dependency
 	Dependency is a feature in TestNG that allows a test method to depend on a single or a group of test methods.
 	User needs to pass attribute dependsOnMethods to a @Test annotation and pass the dependent test method name
 	Syntax : @Test(dependsOnMethods = {"testMethodName"})
+	eg : @Test(dependsOnMethods={"process","init"})
 	
 	
 Test parametrization:
@@ -149,11 +151,14 @@ Test parametrization:
 		User needs to create an XML file which will store the parameters
 		All parameters would be in key-value pair
 		In the test, add annotation @Parameters and pass the key to this annotation
+		eg: @Parameters({"userName", "password"})
 		
 	2. Data Provider : 
 		- Data provider is used to supply test data to test case
-		- Data provider is annotation in TestNG, which attach with a method that returns the data set in the form of two dimensional object array Object[][]
-		- The first array represents a data set wheras the second array contains the parameter values
+		- Data provider is annotation in TestNG, which attach with a method that returns the data set in the form of two dimensional object array Object[][]  eg: @DataProvider(name = "TestType")
+					eg: @Test(dataProvider = "scenarioData", dataProviderClass=DataProviderSource.class)
+					
+		- The first array represents a data set whereas the second array contains the parameter values
 		- DataProvider is key of data driven testing framework
 		- The DataProvider method can be in the same test class or one of its super classes. It is also possible to provide DataProvider in another class but then the method has to be static
 		- User can also provide a name to it using the name attribute of the DataProvider annotation but this is optional. If one hasnt provided the name, name of the method will be used to refer to it.

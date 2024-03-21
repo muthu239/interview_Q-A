@@ -201,7 +201,7 @@ Explain the difference between functional testing and non-functional testing.
 	Functional testing
 		1. Definition : Focuses on verifying the application's functionality
 		2. Objective : Ensure the application works as intended
-		3. Types of Testing : Unit testing, integration testing, system testing, acceptance testin
+		3. Types of Testing : Unit testing, integration testing, system testing, acceptance testing
 		4. Examples : Verifying login functionality, checking search filters, etc.
 		5. Timing : Performed at various stages of development
 	
@@ -505,7 +505,7 @@ Types of Testing
 			Incremental integration testing: 
 				It integrates the modules in small groups, testing each group as it is added.
 				
-		Advantages of Integrating Testing
+		Advantages of Integration Testing
 			It helps to identify and resolve issues that may arise when different units of the software are combined.
 			It helps to ensure that the different units of the software work together as intended.
 			It helps to improve the overall reliability and stability of the software.
@@ -513,9 +513,9 @@ Types of Testing
 			As with unit testing, integration testing is only one aspect of software testing and it should be used in combination with other types of testing such as unit testing, functional testing, and acceptance testing to ensure that the software meets the needs of its users.
 		
 		Example:
-			(a) Black Box testing:- It is used for validation. In this, we ignore internal working mechanisms and focus on what is the output?.
-			(b) White box testing:- It is used for verification. In this, we focus on internal mechanisms i.e. how the output is achieved?.
-
+			(a)	White box testing:- It is used for verification. In this, we focus on internal mechanisms i.e. how the output is achieved?.
+			(b) Black Box testing:- It is used for validation. In this, we ignore internal working mechanisms and focus on what is the output?.
+			 
 
 	Regression Testing
 		Regression testing is a method of testing that is used to ensure that changes made to the software do not introduce new bugs or cause existing functionality to break. 
@@ -588,6 +588,7 @@ Types of Testing
     Performance Testing
     Security Testing
 	Sanity testing
+		Sanity testing is used to validate the changes made to one or few specific parts of the application in order to make sure that the software is still functioning as expected after a small change or a bug fix. 
     User Acceptance Testing
 
 

@@ -73,7 +73,7 @@ git reset --mixed -> to undo the changes to the working directory and staging ar
 
 git reset --hard *commit id* -> to reset to that commit id change and it will not have history of commit done after the commit id
 
-git merge --abort -> to exit the merge process and return back to the state befor merging began
+git merge --abort -> to exit the merge process and return back to the state before merging began
  
 git log --oneline ->to get smaller commit id
 

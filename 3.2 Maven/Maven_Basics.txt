@@ -15,6 +15,7 @@ Maven central repository
 	Maven has a central repository where all the 3rd party jars and open source projects available with versions which can be used
 	
 What is build lifeCycle?
+	process for building and distributing a particular artifact(project)
 	
 Maven build lifeCycle:
 	Maven is based around the central concept of a build lifeCycle. What this means is that the process for building and distributing a particular artifact(project) is clearly defined
@@ -33,8 +34,8 @@ Maven build lifeCycle:
 			mvn compile -> to compile the source code. It will compile only the code in src/main/java
 			mvn test -> executing the tests
 			mvn clean -> To clean the target folder generated while test is build
-			mvn install ->
-			mvn package -> 
+			mvn install -> builds the Maven project and installs the project files ( JAR , WAR , pom. xml , etc.) to the local repository
+			mvn package -> 	Builds the project and packages the resulting JAR file into the target directory
 	
 pom.xml file in maven
 	POM.xml - A project object Model or POM is the fundamental unit of work in maven. It is an XML file that contains information about the project and configuration details
