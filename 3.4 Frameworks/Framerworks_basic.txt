@@ -53,7 +53,7 @@ Data driven framework:
 		Test execution - TestNG
 		Report - Extent report
 		Logger - Extent logger(belongs to Extent report)
-		Assert - Soft Assert is used
+		Assert - Soft Assert is used - part of TestNG
 		Screenshot - Screenshots are taken on Failure using the method created
 		BaseUI class - Containing commmon methods of UI functionalities
 		
@@ -68,16 +68,25 @@ Why POM?
 	The second benefit is the object repository is independent of test cases, so we can use the same object repository for a different purpose with different tests
 	Methods get more relaistic names which can be easily mapped with the operation happening in UI
 	
-What is page Factory?
+POM Vs PageFactory?
+
+POM
 	'Page object model' is way of representing an application in a test framework
-	'Page Factory' is one way of implementing the 'Page Object Model' by initializing the web elements you want to interact with within the page Object when you create an instance of it.
+	Finding web elements using By
+	Page Object Model is a design pattern
+	In POM, one needs to initialize every page object individually
 	
-The implementation would be like when you are performing some operation which will redirect you to a new page then that particular operation should create the object of the new page and return it
-
-In this particular implementation if particular operation is not navigating you on a new page, then this will not return anything or this will return something
-But if a particular function is redirecting you to a new page, then that function must return the object of the new page class
-
-At runtime it will return null pointer exception if it cannot find the object
+PageFactory	
+	'Page Factory' is one way of implementing the 'Page Object Model' by initializing the web elements you want to interact with within the page Object when you create an instance of it.
+	Page Factory is a class provided by Selenium WebDriver to support Page Object Design pattern
+	In Page Factory, testers use @FindBy annotation. The initElements method is used to initialize web elements. Similarly, one can use @FindBy with different location strategies to find web elements and perform actions on them
+	In PageFactory, all page objects are initialized by using the initElements() method
+	
+What is POM?	
+	The implementation would be like when you are performing some operation which will redirect you to a new page then that particular operation should create the object of the new page and return it
+	In this particular implementation if particular operation is not navigating you on a new page, then this will not return anything or this will return something
+	But if a particular function is redirecting you to a new page, then that function must return the object of the new page class
+	At runtime it will return null pointer exception if it cannot find the object
 
 Challenges with POM
 	How driver instances will be shared? - Resolved with help of pageFactory
@@ -94,6 +103,39 @@ What is Extent report?
 	
 Why use TestNG with extent report?
 	TestNG by default creates some reporting, using that particular reporting, extent report works with that by creating a far more optimised report
+	
+	
+Log4j:
+	Log4j is a fast, flexible and reliable logging framework written in java
+	
+	Why Log4j?
+		- OpenSource
+		- with Log4j, it is possible to store the flow details of our automation in a file or databases.
+		
+	Log4j principal components:
+		- Loggers - Responsible for logging information
+		- Appenders
+		- Layout
+		
+		Loggers:
+			Responsible for logging information
+			Primarily there are 5 kinds of log levels
+				-> All - this level of logging will log everything (it turns all the logs on)
+				-> Debug - Print the debugging information and is helpful in development stage
+				-> Info - print informational message that highlights the progress of the application
+				-> WARN - Print information regarding faulty and unexpected system behavior
+				-> Error - print error message that might allow system to continue
+				-> Fatal - print system critical information which are causing the application to crash
+				-> off - No logging
+		Appenders:
+			It is used to deliver LogEvents to their destination. It decides what will happen with the log information
+			ConsoleAppender logs to standard output
+			File appenders prints log to some files
+			Rolling file appender to a file with maximum size
+			
+		Layouts:
+			It is responsible for formatting logging information in different styles
+
 	
 ===============================================================================================================================
 Why screenshots is required?

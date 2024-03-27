@@ -665,7 +665,7 @@ What are some of the best practices in test automation?
 	Based on knowledge and expertise, assign test scenarios.
 	Get rid of uncertainty.
 	Select the appropriate tools and frameworks.
-	Maintain test records in a database of bugs
+	Maintain test records in a database of bugs.
 
 
 What are some good practices for automation testing?

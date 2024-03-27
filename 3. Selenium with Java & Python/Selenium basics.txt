@@ -11,12 +11,31 @@ Selenium programming language support:
 Issue might come with framework utils file path and all the file paths
 
 does minimize exist in selenium?
+	In selenium 4 it exists. but not in selenium 3
 How will you minimize a screen?
+	int width = 600; int height = 400; 
+	Dimension dimension = new Dimension(width, height); 
+	driver. manage(). window(). setSize(dimension);
+	
+	With selenium4 we have minimize method
+		driver.manage().window().minimize();
+	
 How will you switch window in selenium 3
+	driver.switchTo().window(String GUID)
+	
 How to pass keyboard shortcut to selenium?
+	driver.findElement(By.xpath("xpath")).sendKeys(Keys.PAGE_DOWN)
+	
 How to scroll using selenium without JS executor?
+	driver.findElement(By.xpath("xpath")).sendKeys(Keys.PAGE_DOWN)
+		or
+	WebElement element = driver.findElement(By.cssSelector("ur selector"));//u can use By.xpath or By.id here
+	Actions actions = new Actions(driver);
+	actions.moveToElement(element);
+	actions.perform();
+	
 How do you verify the colour using selenium?
-
+	getCssValue() and verify
 
 
 
@@ -181,7 +200,8 @@ Web application  ------->       |						----------------->
 							
 ==========================================================================================================================================
 How to run the test in headless mode and How can we achieve headless browser execution?
-
+ChromeOptions co = new ChromeOptions
+co.setHeadless(true);
 
 =========================================================================================================================================
 WebDriver [Important topic for interview]
@@ -252,13 +272,24 @@ Options Class:
 				
 		setHeadLess(): 
 			Headless means no UI. Selenium helps user to run the Tests in headless browser and make the Browser HeadLess.
+				eg:
+					FirefoxOptions fo = new FirefoxOptions();
+					fo.setHeadless(true);		
+		
 		
 		addArguments(): 
 			This method is used when user wants to open the Browser with some specific permissions. 
 			Like : disable Infobar(eg: Chrome is running by automated software), Manage Browser Notifications(like pop up on the left saying know your location, wants to send notification, pop up disabled which has allow & block options)
-			
+				eg:
+					ChromeOptions co = new ChromeOptions();
+					co.addArguments("--disable-infobars");
+					co.addArguments("--disable-notifications");
+				
 		setUnhandledPromptBehaviour(): 
 			This method helps the user to handle the un handled alert, when we dont know when a javascript alert pop ups this method can be used
+				eg:
+					ChromeOptions co = new ChromeOptions();
+					co.setUnhandledPromptBehaviour(UnexpectedAlertBehaviour.ACCEPT);
 				
 			
 		setPageLoadStrategy(): 
@@ -269,6 +300,10 @@ Options Class:
 			normal	 complete	    Used by default, waits for all resources to download
 			eager	 interactive	DOM access is ready, but other resources like images may still be loading
 			none	 Any	        Does not block WebDriver at all
+			
+			eg:
+				ChromeOptions co = new ChromeOptions();
+				co.setPageLoadStrategy(PageLoadStrategy.EAGER);
 =========================================================================================================================================	
 WebElement:
 	Anything present on the webpage such as textbox,text, button, link, table,radio button, checkbox etc are called as webelement
@@ -449,9 +484,12 @@ getAttribute()
 	getAttribute method is used to extract the text value of an attribute from a HTML tag
 	Text of place holder can be extracted using getAttribute
 	
+		webelement.getAttribute(“AttributeName") -> To print the attribute value in the web element
+		webelement.getAttribute(“value”) -> To print the values we have passed in text box
 	eg:
 		//to get a placeholder text //get attribute works on webElement
 		System.out.println(driver.findElement(By.xpath("//input[@id = 'pass']")).getAttribute("placeholder"));
+		
 		
 sendKeys in selenium
 	To enter text in a field
@@ -486,7 +524,11 @@ How to handle frame and iFrames?
 	To work with iFrames, first we need to switch selenium focus into iFrame
 	We can handle frames/iFrames present in the webpage using drivers.switchTo() command in webdriver
 	Look at the DOM structure of a page that contains an iFrame you will never be able to find inner content of iFrame. And you wont be able to interact with it via the DOM
-	
+		
+		driver.switchTo().frame(String id) -  To switch into frame
+		driver.switchTo().frame(String name) - To switch into frame
+		driver.switchTo().frame(webelement) - To switch into frame
+		
 	How to identify the iFrame is there are not?
 		We can identify iFrame by ID, name, element and index
 			driver.switchTo().frame("//iframe[@id = 'id_value']");
@@ -570,6 +612,10 @@ Handle multiple Browser windows/Tab
 	Selenium provides native support to handle multiple windows
 	Selenium use GUID to identify the application and work on it
 	
+	driver.switchTo().window(String URL)
+	driver.switchTo().window(String title)
+	driver.switchTo().window(Window ID)
+	
 	Methods to work with Multiple windows:
 		getWindowHandle() - will get the GUID of the tab
 		getWindowHandles()
@@ -587,9 +633,11 @@ Handle multiple Browser windows/Tab
 			System.out.println(mainPageId);
 			System.out.println(secondPageId);
 		
-		
 			//Switching to the second page
 			driver.switchTo().window(secondPageId);
+			
+			//To switch to parent window
+			driver.switchTo().defaultContent();
 		
 Handle alerts 
 	Alerts in webpage used to get the attention of user
@@ -612,10 +660,20 @@ Handle alerts
 		Alert alt = driver.switchTo().alert();
 		alt.accept();
 		
+	GetText from alert without using getText method
+		JavascriptExecutor js = (JavascriptExecutor)driver;
+		String text = js.executeScript("return window.alert.myAlertText;");
+		System.out.println(text);
+
+
 		
-Handle Mouse & keyboard events in selenium
+		
+Handle Mouse & keyboard events in selenium - Actions class
 	Actions class in selenium supports to perform all the operations related with mouse and keyboard
 	Actions class will not help to switch window/tab like we can do with ctrl+tab key
+	Whenever Actions methods takes place we use or end that method with perform() to perform that method.
+	If we use one method to perform we use perform();
+	If we use more than one method in one line of code we use buid().perform();
 	
 	Builder pattern:
 		Builder pattern is used to build the composite pattern to perform some action. In action class that can be completed by build() method
@@ -654,7 +712,7 @@ Handle Mouse & keyboard events in selenium
 Handle webTables:
 	What is webtable
 		Webtable is table of rows and columns in HTML
-		 tr -> table rows th -> table header td-> table columns
+		 tr -> table rows th -> table header td-> table columns table -> table
 		Using list of webelements and entering the right xpath we can fetch the desired value at ease with webtable
 		
 Handle Ajax auto suggestion
@@ -673,9 +731,11 @@ Javascript executor:
 		If selenium is not able to perform a action in webpage then javascript executor can help in that case
 		Typecast the driver object into javascript executor, then we can perform any webpage action
 	
+		
 	use javascript executor for some operations like 
 		- open website
 			eg: 
+				JavascriptExecutor js = (JavascriptExecutor) driver;
 				js.executeScript("window.location = 'https://www.rediff.com/'");
 				
 		- verify page loaded completely
@@ -684,6 +744,7 @@ Javascript executor:
 		- Type text with javascript executor
 			eg:
 				js.executeScript("arguments[0].value = 'abc@xyz.com'", userName);.
+				
 				
 		- Click via js executor
 			eg:
@@ -699,6 +760,7 @@ Javascript executor:
 				js.executeScript("arguments[0].scrollIntoView(true)", webElement);
 				
 		- Highlight the element on webpage
+			js.executeScript("arguments[0].setAttribute('style','background:yellow')",textHighlight);
 		
 		- to check the page is completely loaded using js
 			eg:
@@ -709,12 +771,27 @@ Javascript executor:
 			eg:
 				Boolean jsState = (Boolean) js.executeScript("return window.jQuery != undefined && jQuery.active ==0;");
 	
+		-GetText from alert without using getText method
+			JavascriptExecutor js = (JavascriptExecutor)driver;
+			String text = js.executeScript("return window.alert.myAlertText;");
+			System.out.println(text);
 		
 	How to scroll using js executor?
 		JavascriptExecutor js = (JavascriptExecutor)driver;
 		js.executeScript("window.location = 'https://www.rediff.com/'");
 		js.executeScript("window.scrollBy(0,3000)");
+		
+		-> arguments[0].setAttribute('value','input txt') - To pass any input text in textbox
+		-> return arguments[0].getAttribute('value') - Retrieve the values of user entered text
+		-> arguments[0].click() - For button click
+		-> arguments[0].scrollIntoView(false) - Scroll down
+		-> arguments[0].scrollIntoView(true) - Scroll up
 	
+	Scroll by
+	scrollto
+	ScrollIntoView
+	MoveToElement
+	sendKeys(Keys.pageDown)
 	
 File upload in selenium
 	Selenium cannot interact with OS, so with the help of sendKeys method we can send in the filepath which will upload the file
@@ -737,3 +814,47 @@ Execute test in microsoft edge
 	But execution on edge is not much preferred as it is quite unstable and lots of times it cannot identify the locators
 	
 ==================================================================================================================================
+driver.get(URL) Vs driver.navigate().to("URL")
+	
+	driver.get(URL)
+		It is responsible for loading the page and waits until the page has finished loading.
+		It cannot track the history of the browser.
+		In single page applications get() refreshes page.
+		
+	driver.navigate().to(URL)
+		It is only responsible for redirecting the page and then returning immediately.
+		It maintains the browser history and cookies, so we can use forward and backward button to navigate between the pages.
+		In single page applications while navigate().to() navigates to the page by changing URL like doing forward/backward
+	
+	 
+/to get the url of the current page
+	String url = driver.getCurrentUrl();
+
+Take screenshot:
+	TakesScreenshot takeScreenShot = (TakesScreenshot) driver;
+	File sourceFile = takeScreenShot.getScreenshotAs(OutputType.FILE);
+	File destFile = new File(System.getProperty("user.dir") + "\\Screenshots\\" + DateUtils.getTimeStamp() + ".png");
+	FileUtils.copyFile(sourceFile, destFile);
+	
+	
+How to get CSS values using selenium
+	Disadvantage of getAttribute
+		we cannot get value of each attribute separately using getAttribute()
+		eg:
+			<p style="color:green;font-size:24px;">Green tech</p>
+			
+			->Style attribute is way of declaring CSS properties of HTML element
+			-> Each attribute has a name and value separated by colon(:)
+			-> Each property declaration is separated by semicolon (;)
+			
+			webElement element = driver.findElement(By.xpath(//p[text() = 'Green Tech']))
+			sysout(element.getAttribute("style"));
+			
+			output: color:green;font-size:24px;
+				
+		instead we can use getCssValue();
+			eg: system.out.println(element.getCssValue("color"));             // 400
+				system.out.println(element.getCssValue("font-weight"));       //rgba(28,30,33,1)
+				system.out.println(element.getCssValue("font-size"));		  //12px
+				system.out.println(element.getCssValue("background-color"));  //rgba(255,255,255,1)
+				system.out.println(element.getCssValue("text-align"));		  //center
