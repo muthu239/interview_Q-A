@@ -1,0 +1,47 @@
+What is cypress?
+	Cypress is a next generation front end automation testing tool built for the modern web applications
+	
+How cypress is unique from other automation tools?
+	Cypress automatically waits for commands and assertions before moving on. By default Cypress has a timeout of 4 seconds.
+	Ability to test edge testcases by mocking the server response of APIs
+	Cypress takes snapshots as your test runs. We can hover over each commands in the command log to see exactly what happened at each step.
+	Because of its architectural design, cypress delivers fast, consistent and reliable test execution compared to other automation tools
+	View videos of your entire tests execution when run from the cypress dashboard
+	
+	Cypress is built on Node.js and comes packaged as npm module
+	As it is built on Node.Js, it uses javascript for writing tests. But 90% of coding can be done using cypress inbuit commands.\
+	Cypress also bundles with JQuery and inherits many of JQuery methods for UI components identification
+	
+CyPress Pros
+	Complete framework
+	Very fast
+	More stable
+	Not require solid programming skills
+	Test and Mock APIs
+	Dont need test environment
+	
+Cypress Cons
+	No IE and safari support. Only chrome and chromium engine based browsers(Edge, Mozilla)
+	Asynchronous code
+	No mobile but mobile view
+	Single domain and single tab
+	Not friendly with iframes
+	
+Cypress Vs Selenium[Important]?
+
+======================================================================================================================================
+Cypress architecture
+	Most testing tools (Like selenium) operate by running outside of the browser and executing remote commands across the network. 
+	But cypress engine directly operates inside the browser. In other words, it is the browser that is executing your test code
+	This enables cypress to listen and modify the browser behavior at run time by manipulating DOM and altering network requests and responses on the fly.
+	Cypress open doors to New Kind of testing having ultimate control over your application
+	
+Cypress components
+	Test runner
+	Dashboard services
+	
+	
+===================================================================================================================================
+How to open cypress test runner
+	Using terminal cmd : npx cypress open
+	
