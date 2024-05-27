@@ -52,7 +52,7 @@ Why TestNG.xml?
 	TestNG.xml is a XML file which is present at the root location of your project
 	TestNG XML file allows user to configure a test suite and execute it from the command line or ant script
 	TestNG XML file control the complete execution flow
-	TestNG XML file used to define the parametes for test suite/case
+	TestNG XML file used to define the parameters for test suite/case
 	TestNG XMl file allow include and exclude tests from execution
 	TestNG XML follows specific order of XML tags
 	TestNG XML support multiple Test executions

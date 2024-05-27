@@ -38,11 +38,11 @@ Simple Object Access Protocol (SOAP) services
 		-> The SOAP envelope
 			<Envelope> is the root element in every SOAP message, and contains two child elements, an optional <Header> element, and a mandatory <Body> element.
 		-> The SOAP header
-			<Header> is an optional subelement of the SOAP envelope, and is used to pass application-related information that is to be processed by SOAP nodes along the message path; see The SOAP header.
+			<Header> is an optional subelement of the SOAP envelope, and is used to pass application-related information that is to be processed by SOAP nodes along the message path;
 		-> The SOAP body
-			<Body> is a mandatory subelement of the SOAP envelope, which contains information intended for the ultimate recipient of the message; see The SOAP body.
+			<Body> is a mandatory subelement of the SOAP envelope, which contains information intended for the ultimate recipient of the message; 
 		-> The SOAP fault
-			<Fault> is a subelement of the SOAP body, which is used for reporting errors; see The SOAP fault.
+			<Fault> is a subelement of the SOAP body, which is used for reporting errors; 
 	
 	For more info on the structure - https://www.ibm.com/docs/en/integration-bus/10.0?topic=soap-structure-message
 
@@ -61,7 +61,7 @@ WSDL structure
 	the child elements are,
 		<types>,
 		<message>,
-		<portType>
+		<portType>,
 		<binding>.
 
 	-> <Definition>: 

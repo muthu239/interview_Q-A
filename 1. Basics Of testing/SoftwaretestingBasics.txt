@@ -892,6 +892,11 @@ When faced with limited time to test a complex software application, how would y
     - Risk Management
     - Schedule
     - Roles and Responsibilities
+	
+	
+Test Plan Vs Test strategy
+	A Test Plan outlines the approach, scope, objectives, resources, and schedule for testing a specific project or product. 
+	A Test Strategy defines the high-level approach to testing for an organization or a project, guiding the overall testing process.
 ===========================================================================================================================================	
 Root cause analysis
 	Root cause analysis tools are used to support quality management. 
@@ -1044,4 +1049,20 @@ Scrum practices
 		
 	Retrospective meetings:
 		Retrospective is a meeting held at the end of each iteration to discuss what was successful, what could be improved and how to incorporate the improvements in future iterations
+
 	
+𝐈𝐧 𝐓𝐞𝐬𝐭 𝐀𝐮𝐭𝐨𝐦𝐚𝐭𝐢𝐨𝐧, 𝐚𝐫𝐞 𝐂𝐈/𝐂𝐃 𝐢𝐧𝐭𝐞𝐠𝐫𝐚𝐭𝐢𝐨𝐧 𝐮𝐬𝐞𝐝 𝐨𝐧𝐥𝐲 𝐟𝐨𝐫 𝐬𝐜𝐡𝐞𝐝𝐮𝐥𝐢𝐧𝐠 𝐭𝐡𝐞 𝐭𝐞𝐬𝐭 𝐫𝐮𝐧𝐬?
+
+No, CI/CD tools offers more than just scheduling the runs. For ex. -
+
+1. 𝐁𝐮𝐢𝐥𝐝 𝐀𝐮𝐭𝐨𝐦𝐚𝐭𝐢𝐨𝐧: Compiling source code, resolving dependencies, and packaging the code into deployable artifacts.
+
+2. 𝐕𝐞𝐫𝐬𝐢𝐨𝐧 𝐂𝐨𝐧𝐭𝐫𝐨𝐥 𝐈𝐧𝐭𝐞𝐠𝐫𝐚𝐭𝐢𝐨𝐧: Pulling code changes from version control systems (e.g., Git), triggering builds, and managing branches.
+
+3. 𝐄𝐧𝐯𝐢𝐫𝐨𝐧𝐦𝐞𝐧𝐭 𝐏𝐫𝐨𝐯𝐢𝐬𝐢𝐨𝐧𝐢𝐧𝐠: Setting up and tearing down environments for testing, staging, and production using infrastructure as code (e.g., Docker, Kubernetes).
+
+4. 𝐒𝐞𝐜𝐮𝐫𝐢𝐭𝐲 𝐓𝐞𝐬𝐭𝐢𝐧𝐠: Integrating security scanning tools to check for vulnerabilities in the codebase and dependencies.
+
+5. 𝐀𝐫𝐭𝐢𝐟𝐚𝐜𝐭 𝐌𝐚𝐧𝐚𝐠𝐞𝐦𝐞𝐧𝐭: Storing and managing build artifacts and deployment packages.
+
+6. 𝐑𝐨𝐥𝐥𝐛𝐚𝐜𝐤𝐬: Automatically rolling back deployments if tests fail or if issues are detected in production.

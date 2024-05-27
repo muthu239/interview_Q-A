@@ -82,6 +82,17 @@ PageFactory
 	In Page Factory, testers use @FindBy annotation. The initElements method is used to initialize web elements. Similarly, one can use @FindBy with different location strategies to find web elements and perform actions on them
 	In PageFactory, all page objects are initialized by using the initElements() method
 	
+		Annotations in Page Factory
+			@FindBy: 
+				This is used to identify web elements with just one defined criterion. It can be used to locate the following: id, name, className, CSS, XPath, tagName, linkText, and partialLinkText.
+			@FindBys: 
+				This is used to point to web elements with more than one criteria and must match all. An AND conditional relationship is used to identify the web elements based on the various criteria defined.
+			@FindAll: 
+				This is similar to the @FindBys, but it needs to match at least one of the criteria. In this case, an OR conditional relationship is used.
+			@CacheLookUp: 
+				The end goal of this annotation is to make the code execute faster. It’s used mostly for WebElements in a test case. For the specific element, it keeps the WebElement in the cache memory after the first time it’s run.
+	
+	
 What is POM?	
 	The implementation would be like when you are performing some operation which will redirect you to a new page then that particular operation should create the object of the new page and return it
 	In this particular implementation if particular operation is not navigating you on a new page, then this will not return anything or this will return something

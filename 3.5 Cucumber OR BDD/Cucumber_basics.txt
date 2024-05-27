@@ -23,8 +23,9 @@ Cucumber framework
 Cucumber have 3 components
 	1. Feature file
 		Feature file should have .feature extension
-		Feature file have all keywords (feature, Given, When, Then, As,*..)
+		Feature file have all keywords (feature, Given, When, Then, And, *, As, But, Rule, Background, Scenario, Scenario Outline)
 		Feature file contains scenario related to that feature
+			Reference - https://cucumber.io/docs/gherkin/reference/
 	
 		
 	2. Step definition file
