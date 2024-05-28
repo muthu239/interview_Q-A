@@ -43,5 +43,143 @@ Cypress components
 	
 ===================================================================================================================================
 How to open cypress test runner
-	Using terminal cmd : npx cypress open
+	Using terminal cmd : npx cypress open (or) ./node_modules/.bin/cypress open
 	
+How to run cypress all test cases using cmd
+	using terminal cmd : npx cypress run (or) ./node_modules/.bin/cypress run
+	
+How to run specific test case using cmd
+	using terminal cmd : npx cypress run --record --spec "path to file"
+	
+How to run test case using terminal but with headed mode.
+	using terminal cmd :  npx cypress run --headed (or) ./node_modules/.bin/cypress run --headed
+	
+How to run test case in preferred browser
+	using terminal cmd : npx cypress run --browser chrome (or) ./node_modules/.bin/cypress run --browser chrome
+	
+Note:[Important]
+	If the execution is done using cmd line, then the execution is done in headless mode and in electron browser.
+	
+	
+	
+In javascript terminology any test script is called spec file
+Mocha and jasmine are some of the Javascript framework.
+
+================================================================================================================================
+Fixtures folder - should have the test data file
+integration folder - all our code should be written inside the integration folder
+Support folder - Reusable methods are put in the support folder
+Cypress.config.js - config file for the entire framework. Created when the cypress is launched for first time
+=====================================================================================================================================
+Cypress prefers Mocha framework. other framework also supported
+
+describe('My first test suite', function()
+{
+    it('My FirstTest Case', function(){
+
+		//test step
+    })
+
+    it('My SecondTest Case', function(){
+
+		//test step
+    })
+})
+
+=============================================================================================================
+Locators
+	Cypress only supports CSS selectors
+	
+	CSS selector
+		CSS selector is the combination of an element selector and a selector value
+		CSS selector is a path pattern that can use web elements attributes to locate a web element in a webpage
+		Like xpath, CSS selector can also locate web elements having no ID, class or name
+		
+		CSS selector - ID:
+			syntax: <HTML tag><#><value of ID attribute>
+			eg: input#login1 
+			input#login1  is same as #login1
+			
+		CSS selector - Class:
+			synatx : <HTML tag><.><value of Class attribute>
+			eg : input.signinbtn
+			input.signinbtn is same as .signinbtn
+			
+		CSS selector - Attribute:
+			synatx : <HTML tag><[attribute = value of attribute]>
+			eg : input[type='submit'], input[title = 'Sign In']
+			
+		wild card in CSS:
+			User can use wild card characters in css selector to find the element ^,$,* are wild card characters present in the css selector in selenium
+			
+			^ (carrat character) : when the starting part of the attribute value is fixed
+				Syntax : HTMLtag[attribute^ = 'value']
+				eg : input[id^='username']
+				
+			$ (Dollar character) : when the ending part of the attribute value is fixed
+				Syntax : HTMLtag[attribute$ = 'value']
+				eg: label[abc$ = '__abcd']
+				
+			* (asterisk character) : when the fixed attribute value is in middle
+				Syntax : HTMLtag[attribute* = 'value']
+				eg: div[name* = 'username']
+				
+		CSS combinators
+			Combinator explains the relationship between the css selectors
+			4 CSS combinators are in CSS selector
+			
+			Descendant selector: 
+				space is descendant combinator
+				The descendant selector matched all elements that are descendants of a specified element
+					eg : table[role='presentation'] tbody tr td label[for='email'] - Identify username on web-page.
+				
+			Child selector:
+				> is the child selector
+				the child selector selects all elements that are the immediate children of a specified element
+					eg : div[class^='pvl']>div 
+				
+			Adjacent sibling selector:
+				+ is used for the adjacent sibling combinator
+				The adjacent sibling selector selects a element that is adjacent siblings of a specified element
+					eg: div[id='fullname_field'] + div
+					
+			General sibling:
+				~ is used for the general sibling combinator
+				All the siblings of a defined css selector of a webpage
+					eg : div[id='fullname_field'] ~ div
+
+
+
+==============================================================================================================
+cy.visit() - To launch a url
+	example :  cy.visit('http://localhost:3000')
+	
+cy.get('locator') - Get one or more DOM elements by node name: input, button, etc.
+	example : cy.get('.search-keyword')
+	
+cy.get('locator').type('value') - Type into a DOM element.
+	example : cy.get('.search-keyword').type('cauliflower')
+	
+How to type a value in a box and click enter? (ex:"hello" + press Enter)
+   cy.get('input').type('hello{enter}')
+   
+cy.wait("milliseconds") - To add wait
+	example : cy.wait(2000)
+	
+	
+cy.get('locator : visible') - Handling invisible elements. this will find only visible elements and filters out the invisible elements
+	example : cy.get('.product:visible');
+	
+
+
+==================================================================================================================== 
+Assertions
+	should - Create an assertion. Assertions are automatically retried until they pass or time out.
+	Should is assertion type of Chaijs Assertion library
+	
+	// Assert on the href of the location
+		cy.location('href').should('contain', '/tag/tutorials/')
+	
+	//Assert on lenght comparison
+		cy.get('.product').should('have.length',4);
+		Asserts that the target's length property is equal to the given number n
