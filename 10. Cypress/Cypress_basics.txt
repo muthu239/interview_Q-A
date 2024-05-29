@@ -170,8 +170,67 @@ cy.wait("milliseconds") - To add wait
 cy.get('locator : visible') - Handling invisible elements. this will find only visible elements and filters out the invisible elements
 	example : cy.get('.product:visible');
 	
+cy.get('locator').find('child locator') - find calls predicate once for each element of the array, in ascending order, until it finds one where predicate returns true. If such an element is found, find immediately returns that element value. Otherwise, find returns undefined.
+Returns the value of the first element in the array where predicate is true, and undefined otherwise.
+	example : cy.get('.products').find('.product')
+	
+cy.get('locator').find('child locator').eq(index) - Get A DOM element at a specific index in an array of elements.
+	 example : cy.get('.products').find('.product').eq(2);
+	 
+cy.contains('text') - Get the DOM element containing the text. DOM elements can contain more than the desired text and still match. Additionally, Cypress prefers some DOM elements over the deepest element found.. 
+	example :  cy.get('.products').find('.product').eq(2).contains('ADD TO CART')
+	
+	
+cy.click() - to click a button
+	example : cy.get('.products').find('.product').eq(2).containsCypress('ADD TO CART').click();
 
 
+each() - to iterate through an array like structure (arrays or objects with length property)
+	 cy.get('.products').find('.product').each(($e1, index, $list) => {
+        const textVeg = $e1.find('h4.product-name').text()
+
+        if(textVeg.includes('Cashews')){
+           cy.wrap($e1).contains('ADD TO CART').click()
+        }
+    
+    })
+
+
+
+wrap() - Yield the element passed into .wrap()
+	// wraps DOM element
+	cy.get('form').within(($form) => {
+	// more commands
+	cy.wrap($form).should('have.class', 'form-container')
+	})
+	
+
+
+
+	
+	
+Difference between JQuery methods and cypress commands?	
+	.text() - Get the combined text contents of each element in the set of matched elements, including their descendants. text is not a cypress command. It is a JQuery method.
+	
+	A resolved cypress command will return a JQuery object, using that we can use the .text() method
+		
+		example: cy.get('.products').find('.product').each(($e1, index, $list) => {  -> this is a resolved hence we were able to get text in next line 
+				const textVeg = $e1.find('h4.product-name').text()
+				cy.log(textVeg)
+				})
+	
+	
+Aliasing
+	Assign an alias for later use. Reference the alias later within a cy.get() or cy.wait() command with a @ prefix. You can alias DOM elements, routes, stubs and spies.
+	
+	example : cy.get('.products').as('productLocator')
+				
+			  cy.get('@productLocator').find('.product').eq(2).contains('ADD TO CART').click();
+			
+			
+cy.log() and console.log()	
+	console.log() will print the log value in the browser console inside developer options got using ctrl+shift+i
+	cy.log() - will print the log value in the run on the cypress test runner
 ==================================================================================================================== 
 Assertions
 	should - Create an assertion. Assertions are automatically retried until they pass or time out.
@@ -183,3 +242,25 @@ Assertions
 	//Assert on lenght comparison
 		cy.get('.product').should('have.length',4);
 		Asserts that the target's length property is equal to the given number n
+		
+
+==================================================================================================================
+Notes:
+	Navigating to URL - visit
+	Through command line, cypress runs in headless in electron
+	update configurations in cypress.json which overrides exisiting behavior
+	Cypress supports CSS selectors only
+	We can see what happened on every step with screenshot and error message in cypress
+	Handling of click, type, text()
+	Iterating over the array of web elements using each
+	Non cypress commands cannot resolve promise by themselves, we need to manually resolve it by then()
+	Aliasing to reuse locators
+	
+	
+===================================================================================================================	
+Cypress is asynchronous, but why it is executing like its synchronous?(Important)
+	Cypress is asynchronous in nature and there is no guarantee in sequence of execution, but cypress takes care of it.
+	Every asynchronous step returns a promise. Promise comes with rejection, resolved (or) pending state
+	.then() - this method is used to hold the execution of next step until the current step is resolved. But this is taken care by cypress. and user doesnt have to include this method each time
+	So while executing it will behave like synchronous step by step execution
+	
