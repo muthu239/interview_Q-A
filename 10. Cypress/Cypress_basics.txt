@@ -205,8 +205,6 @@ wrap() - Yield the element passed into .wrap()
 	})
 	
 
-
-
 	
 	
 Difference between JQuery methods and cypress commands?	
@@ -231,10 +229,53 @@ Aliasing
 cy.log() and console.log()	
 	console.log() will print the log value in the browser console inside developer options got using ctrl+shift+i
 	cy.log() - will print the log value in the run on the cypress test runner
+	
+	
+	
+Checkbox and Radiobutton - .check() 
+	Check checkbox(es) or radio(s). This element must be an <input> with type checkbox or radio.
+	
+	example : cy.get('#checkBoxOption1').check()
+	
+	// Check first radio element using common locator
+		cy.get('[type="radio"]').first().check()
+	
+	//Check multiple checkboxes at same time having same locators
+        cy.get('input[type = "checkbox"]').check(['option2', 'option3'])
+	
+	// .uncheck() - Uncheck the checkbox. No uncheck on radio buttons
+		cy.get('#checkBoxOption1').uncheck().should('not.be.checked')
+	
+	
+Handling Static and Dynamic dropdowns
+	Static dropdowns - .select()
+		cy.get('select').select('option2')
+		
+	Dynamic dropdowns - find common locator element and traverse through and click on the expected value
+		
+		example:
+			cy.get('#autocomplete').type('ind')
+			cy.get('.ui-menu-item div').each(($e1, index, $list) => {
+	
+				if($e1.text() === "India"){
+					cy.wrap($e1).click()
+				}
+			})
+
+
+Handling visible and invisible elements
+	example:
+		cy.get('#displayed-text').should('be.visible')
+        cy.get('#hide-textbox').click()
+        cy.get('#displayed-text').should('not.be.visible')
+        cy.get('#show-textbox').click()
+        cy.get('#displayed-text').should('be.visible')
 ==================================================================================================================== 
 Assertions
 	should - Create an assertion. Assertions are automatically retried until they pass or time out.
 	Should is assertion type of Chaijs Assertion library
+	For behaviour related assertion, the value in should() starts with be.
+	If property related assertion, the value in should() starts with have.
 	
 	// Assert on the href of the location
 		cy.location('href').should('contain', '/tag/tutorials/')
@@ -243,6 +284,14 @@ Assertions
 		cy.get('.product').should('have.length',4);
 		Asserts that the target's length property is equal to the given number n
 		
+	//Assert on check box checked
+		cy.get('#checkBoxOption1').check().should('be.checked')
+		
+	//assert if text is displayed correctly
+		cy.get('.brand').should('have.text','GREENKART')
+		
+	// Assert with two conditions on a single element - use and after should. No need to keep on adding should
+		cy.get('#checkBoxOption1').check().should('be.checked').and('have.value','option1')  -> option1 value from HTML value locator
 
 ==================================================================================================================
 Notes:
