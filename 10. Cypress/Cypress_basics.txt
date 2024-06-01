@@ -109,6 +109,11 @@ Locators
 			synatx : <HTML tag><[attribute = value of attribute]>
 			eg : input[type='submit'], input[title = 'Sign In']
 			
+		CSS selector child traversing
+			if there are locators with same tags at the same level, and we want choose by index
+				eg: tr td:nth-child(2)
+					this will list the 2nd td tag on the td tags
+			
 		wild card in CSS:
 			User can use wild card characters in css selector to find the element ^,$,* are wild card characters present in the css selector in selenium
 			
@@ -150,40 +155,51 @@ Locators
 
 
 
+How to verify the CSS selector is correct for the locator with console?
+	Open the console in browser and the enter the CSS selector in format of $("CSS selector") and hit enter
+		example: $(".search-keyword")
+		
+	This will highlight the element in UI
+		
+
 ==============================================================================================================
 cy.visit() - To launch a url
 	example :  cy.visit('http://localhost:3000')
-	
+----------------------------------------------------------------------------------------------------------------------------------	
 cy.get('locator') - Get one or more DOM elements by node name: input, button, etc.
 	example : cy.get('.search-keyword')
-	
+----------------------------------------------------------------------------------------------------------------------------------	
 cy.get('locator').type('value') - Type into a DOM element.
 	example : cy.get('.search-keyword').type('cauliflower')
-	
+----------------------------------------------------------------------------------------------------------------------------------	
 How to type a value in a box and click enter? (ex:"hello" + press Enter)
    cy.get('input').type('hello{enter}')
-   
+----------------------------------------------------------------------------------------------------------------------------------   
 cy.wait("milliseconds") - To add wait
 	example : cy.wait(2000)
 	
-	
+----------------------------------------------------------------------------------------------------------------------------------	
 cy.get('locator : visible') - Handling invisible elements. this will find only visible elements and filters out the invisible elements
 	example : cy.get('.product:visible');
-	
+----------------------------------------------------------------------------------------------------------------------------------	
 cy.get('locator').find('child locator') - find calls predicate once for each element of the array, in ascending order, until it finds one where predicate returns true. If such an element is found, find immediately returns that element value. Otherwise, find returns undefined.
 Returns the value of the first element in the array where predicate is true, and undefined otherwise.
 	example : cy.get('.products').find('.product')
-	
+----------------------------------------------------------------------------------------------------------------------------------	
 cy.get('locator').find('child locator').eq(index) - Get A DOM element at a specific index in an array of elements.
 	 example : cy.get('.products').find('.product').eq(2);
-	 
-cy.contains('text') - Get the DOM element containing the text. DOM elements can contain more than the desired text and still match. Additionally, Cypress prefers some DOM elements over the deepest element found.. 
-	example :  cy.get('.products').find('.product').eq(2).contains('ADD TO CART')
+----------------------------------------------------------------------------------------------------------------------------------	 
+cy.contains('text') - Get the DOM element containing the text. DOM elements can contain more than the desired text and still match. Additionally, Cypress prefers some DOM elements over the deepest element found..
+	Syntax : cy.contains('text') [or] cy.contains('locator','text')
 	
+	example :  cy.get('.products').find('.product').eq(2).contains('ADD TO CART')
+				cy.contains('Top')
+				cy.contains('button',year)
+----------------------------------------------------------------------------------------------------------------------------------	
 	
 cy.click() - to click a button
 	example : cy.get('.products').find('.product').eq(2).containsCypress('ADD TO CART').click();
-
+----------------------------------------------------------------------------------------------------------------------------------
 
 each() - to iterate through an array like structure (arrays or objects with length property)
 	 cy.get('.products').find('.product').each(($e1, index, $list) => {
@@ -194,9 +210,20 @@ each() - to iterate through an array like structure (arrays or objects with leng
         }
     
     })
-
-
-
+----------------------------------------------------------------------------------------------------------------------------------
+How to get value associated with attribute?
+	Using jQuery method prop()
+	prop() - method gets the property value for only the first element in the matched set
+	we cannot directly use jQuery method with cypress command, like text method. So we have to resolve that
+		example:
+			 cy.get('#openwindow').then(function(element){
+			 
+            const url = element.prop('href')
+        })
+	
+	
+	
+----------------------------------------------------------------------------------------------------------------------------------
 wrap() - Yield the element passed into .wrap()
 	// wraps DOM element
 	cy.get('form').within(($form) => {
@@ -206,7 +233,7 @@ wrap() - Yield the element passed into .wrap()
 	
 
 	
-	
+----------------------------------------------------------------------------------------------------------------------------------	
 Difference between JQuery methods and cypress commands?	
 	.text() - Get the combined text contents of each element in the set of matched elements, including their descendants. text is not a cypress command. It is a JQuery method.
 	
@@ -217,7 +244,7 @@ Difference between JQuery methods and cypress commands?
 				cy.log(textVeg)
 				})
 	
-	
+----------------------------------------------------------------------------------------------------------------------------------	
 Aliasing
 	Assign an alias for later use. Reference the alias later within a cy.get() or cy.wait() command with a @ prefix. You can alias DOM elements, routes, stubs and spies.
 	
@@ -225,13 +252,13 @@ Aliasing
 				
 			  cy.get('@productLocator').find('.product').eq(2).contains('ADD TO CART').click();
 			
-			
+----------------------------------------------------------------------------------------------------------------------------------			
 cy.log() and console.log()	
 	console.log() will print the log value in the browser console inside developer options got using ctrl+shift+i
 	cy.log() - will print the log value in the run on the cypress test runner
 	
 	
-	
+----------------------------------------------------------------------------------------------------------------------------------	
 Checkbox and Radiobutton - .check() 
 	Check checkbox(es) or radio(s). This element must be an <input> with type checkbox or radio.
 	
@@ -246,7 +273,7 @@ Checkbox and Radiobutton - .check()
 	// .uncheck() - Uncheck the checkbox. No uncheck on radio buttons
 		cy.get('#checkBoxOption1').uncheck().should('not.be.checked')
 	
-	
+----------------------------------------------------------------------------------------------------------------------------------	
 Handling Static and Dynamic dropdowns
 	Static dropdowns - .select()
 		cy.get('select').select('option2')
@@ -262,15 +289,159 @@ Handling Static and Dynamic dropdowns
 				}
 			})
 
-
-Handling visible and invisible elements
+----------------------------------------------------------------------------------------------------------------------------------
+Finding visible and invisible elements using assertion
 	example:
 		cy.get('#displayed-text').should('be.visible')
         cy.get('#hide-textbox').click()
         cy.get('#displayed-text').should('not.be.visible')
         cy.get('#show-textbox').click()
         cy.get('#displayed-text').should('be.visible')
-==================================================================================================================== 
+----------------------------------------------------------------------------------------------------------------------------------		
+Clicking an invisible element
+	we can use force click to click the invisible element
+		cy.contains('Top').click({force:true}) 
+----------------------------------------------------------------------------------------------------------------------------------		
+Handling Alerts
+	Cypress auto accepts alerts and pop ups
+	
+	How to get text from alert pop ups
+		When an alert is present on the web page the following event is triggered automatically "window:alert"
+			
+			Event name : window:alert
+			Yields : the alert text(String)
+			Description : Fires when your app calls the global window:alert() method. Cypress will auto accept alerts. You cannot change this behavior.
+			
+		cy.on() - These events come from Cypress as it issues commands and reacts to their state. These are all useful to listen to for debugging purposes. 
+		on() - Fires when your app calls the global window.alert() method. Cypress will auto accept alerts. You cannot change this behavior.
+		example: cy.on('window:alert')
+	
+		example to get text:
+			cy.on('window:alert',(str)=> {
+
+            //Mocha
+            expect(str).to.equal('Hello , share this practice page and share your knowledge')
+
+        })
+		
+	How to get text from confirm pop ups
+		Event Name : window:confirm
+		yields : the confirmation text(String)
+		Description : Fires when your app calls the global window.confirm() method. Cypress will auto accept confirmations. Return false from this event and the confirmation will be canceled.
+		
+		example : 
+			cy.on('window:confirm',(str)=> {
+            expect(str).to.equal('Hello , Are you sure you want to confirm?')
+
+        })
+		
+	How to get text from uncaught exception?
+		Event Name : uncaught:exception
+		yields : the error(Object), Mocha runnable(Object)
+		Description : Fires when an uncaught exception occurs in your application. Cypress will fail the test when this fires. Return false from this event and cypress will not fail the test. Also useful for debugging purposes because actual error instance is provided to you
+	
+	
+	How to click cancel on the cofirm pop up
+		cy.on(‘window:confirm’, () => false);   -> will simulate the click of ‘Cancel’ button.
+		cy.on(‘window:confirm’, () => true);    -> will simulate the click of ‘OK’ button.
+		
+----------------------------------------------------------------------------------------------------------------------------------		
+Handling child tab
+	Cypress by default, have its scope of testing only in the browser tab initally invoked
+	Cypress cannot switch by default to other tab/window
+	TO handle in cypress, we have make the url to load in the current tab we are working from the start
+	To do that, in the HTML DOM locator of that link which navigates to new tab, there will be a attribute called target = '_blank' -> this is responsible for navigating to new tab
+	Using Jquery we will rebuild the page 
+	
+	invoke() - Invoke a function on the previously yielded subject.
+	removeAttr - will remove the attribute during runtime
+	target - is the attribute we are removing in this test
+	
+	example : cy.get('#opentab').invoke('removeAttr','target').click()
+	
+	Cypress does not support cross domain origin by default. We have to do a work around.
+	
+	cy.origin() - Enables running Cypress commands in a secondary origin.
+	We have to put all the functions that are performed in the second tab inside this origin
+	
+	example: 			
+		cy.origin('https://www.qaclickacademy.com/',() =>{
+
+            cy.get('#navbarSupportedContent a[href*="about.html"]').click()
+        })
+
+	Handle switching tab without removing attribute?
+		we can get the href attribute which will contain the URL for the tab it is going to launch. with that URL, use cy.visit(URL) and navigate to that page.
+		But, if the URL is navigating to a different domain, then cypress will stop the execution, as cypress does not support cross domain by default. We can do work around with cy.origin() after cy.visit()
+			example:
+				cy.get('#opentab').then(function(element){
+				const url = element.prop('href')
+				cy.visit(url)
+				cy.origin(url,() =>{
+				cy.get('#navbarSupportedContent a[href*="about.html"]').click()
+			})
+	
+----------------------------------------------------------------------------------------------------------------------------------	
+Handling child window or switching window
+
+
+----------------------------------------------------------------------------------------------------------------------------------
+Handle frames with cypress
+	To handle frames, we have to install a plugin
+	
+	To install iframe plugin : use cmd : npm install -D cypress-iframe
+	
+	cy.frameLoaded('locator of frame') - Load the frame	
+	cy.iframe().find() - switching to that iframe and finding the locators inside that frame
+	
+	example:
+		cy.frameLoaded('#courses-iframe')
+		cy.iframe().find('a[href*="mentorship"]').eq(0).click()
+        cy.iframe().find('h1[class*="pricing-title"]').should('have.length',2)
+	
+	
+	
+
+----------------------------------------------------------------------------------------------------------------------------------
+Handle web table
+	
+	cy.next() - will get the immediately following sibling of each DOM element within a set of DOM elements
+	
+	Using the CSS selectors properly we can traverse through the web table
+	Upon traversing, if the sibling element is required use next() method accordingly.
+	
+	example:
+		cy.get('tr td:nth-child(2)').each(($e1, index, $list) => {
+
+        const text = $e1.text()
+
+        if(text.includes('Python')){
+            cy.get('tr td:nth-child(2)').eq(index).next().then(function(price){
+
+                const priceText = price.text()
+                expect(priceText).to.equal('25')
+
+
+            })
+        }
+----------------------------------------------------------------------------------------------------------------------------------	
+Handling mouse hover
+	cypress does not support mouse hover related methods.
+	To handle mouse hover functionality, we are using jQuery method show() 
+	the show() method in jQuery is used to display the hidden and selected elements
+	
+	example:
+	 cy.get('.mouse-hover-content').invoke('show')
+	 cy.contains('Top').click()
+	
+	if we dont want to have the hover visible and we want only to click the menu on the hover we can use force click, which is a feature of cypress
+	cy.contains('Top').click({force:true}) 
+		we dont have to use the cy.get('.mouse-hover-content').invoke('show') line of code when we use force click
+----------------------------------------------------------------------------------------------------------------------------------
+Handling calenders		
+		
+
+============================================================================================================================= 
 Assertions
 	should - Create an assertion. Assertions are automatically retried until they pass or time out.
 	Should is assertion type of Chaijs Assertion library
@@ -292,9 +463,13 @@ Assertions
 		
 	// Assert with two conditions on a single element - use and after should. No need to keep on adding should
 		cy.get('#checkBoxOption1').check().should('be.checked').and('have.value','option1')  -> option1 value from HTML value locator
+		
+	// below is the assertion of comparing two strings
+		expect(str).to.equal('Hello , share this practice page and share your knowledge')
+		expect(priceText).to.equal('25')
 
 ==================================================================================================================
-Notes:
+Core concept Notes:
 	Navigating to URL - visit
 	Through command line, cypress runs in headless in electron
 	update configurations in cypress.json which overrides exisiting behavior
@@ -304,6 +479,12 @@ Notes:
 	Iterating over the array of web elements using each
 	Non cypress commands cannot resolve promise by themselves, we need to manually resolve it by then()
 	Aliasing to reuse locators
+	Cypress auto accepts alerts and pop ups
+	Cypress also has the capability to lister for browser events. window:alert is the event which gets fired on alert open
+	So you are firing the event through cypress to get access to that alert
+	Cypress does not support cross origin domain
+	You can traverse to sibling locator element using next() and it only works with get()
+	Mouse hover are not supported in cypress. Alternatively, use jQuery or force click
 	
 	
 ===================================================================================================================	
