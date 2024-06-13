@@ -907,3 +907,4 @@ Switch tab without using SwitchTo().window() (or) open an empty tab in browser
 	To switch tab use ctrl + Tab
 	With each switch of tab or window, get the page title and confirm the page you've switched to
 	
+List Different ways to click in selenium?

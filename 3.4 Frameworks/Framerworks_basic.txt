@@ -20,6 +20,7 @@ TDD(Test driven development)
 		Only developer or tester can understand the implementation as its purely technical language. 
 		eg: TestNG
 		Data driven Framework, POM all falls under this category
+		Test Driven Development (TDD) is a software development approach where tests are written before the actual code.
 		
 
 

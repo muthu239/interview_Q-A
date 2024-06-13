@@ -168,6 +168,8 @@ cy.visit() - To launch a url
 ----------------------------------------------------------------------------------------------------------------------------------	
 cy.get('locator') - Get one or more DOM elements by node name: input, button, etc.
 	example : cy.get('.search-keyword')
+	
+	specific locator known - use get() method
 ----------------------------------------------------------------------------------------------------------------------------------	
 cy.get('locator').type('value') - Type into a DOM element.
 	example : cy.get('.search-keyword').type('cauliflower')
@@ -190,6 +192,8 @@ cy.get('locator').find('child locator').eq(index) - Get A DOM element at a speci
 	 example : cy.get('.products').find('.product').eq(2);
 ----------------------------------------------------------------------------------------------------------------------------------	 
 cy.contains('text') - Get the DOM element containing the text. DOM elements can contain more than the desired text and still match. Additionally, Cypress prefers some DOM elements over the deepest element found..
+with multiple elements using contains
+
 	Syntax : cy.contains('text') [or] cy.contains('locator','text')
 	
 	example :  cy.get('.products').find('.product').eq(2).contains('ADD TO CART')
@@ -243,7 +247,9 @@ Difference between JQuery methods and cypress commands?
 				const textVeg = $e1.find('h4.product-name').text()
 				cy.log(textVeg)
 				})
-	
+
+How to get text in cypress using get() method?
+		
 ----------------------------------------------------------------------------------------------------------------------------------	
 Aliasing
 	Assign an alias for later use. Reference the alias later within a cy.get() or cy.wait() command with a @ prefix. You can alias DOM elements, routes, stubs and spies.

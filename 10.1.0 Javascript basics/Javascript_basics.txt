@@ -1,0 +1,22 @@
+Diff between var, let and const 
+
+We cannot redeclare a variable with let keyword, whereas with var we can redeclare the same variable twice
+Scope of var keyword is global if declared global/functional if declared inside function. But it is not in block scope
+Scope of let keyword is global and block level
+Let and var can be reinitalized
+const - cannot be reinitalized
+
+
+
+Common JavaScript interview questions for QA candidates with experience in Cypress and Playwright mentioned on their resume:
+
+1. Compare and contrast the usage of the var, let, and const keywords in JavaScript.
+2. Describe the distinctions between asynchronous and synchronous programming in JavaScript and discuss the language's approach to handling them.
+3. How can Promises be effectively managed in JavaScript scripting?
+4. Elucidate the fundamental disparities between TypeScript and JavaScript.
+5. Inquire about JavaScript objects and functions, focusing on their differences and syntax utilization.
+6. Engage in programming exercises involving JavaScript array methods like filter(), map(), and reduce(), as well as string manipulation techniques.
+
+
+
+Add test driven developments
