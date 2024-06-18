@@ -1,0 +1,80 @@
+Best practices in building cypress framework
+	Setting up test hooks
+	Data driven testing with fixtures
+	Building custom cypress commands
+	Parametrize test with multiple data sets
+	Understand the test debugging
+	Build page object pattern for objects
+	Configuration changes in cypress.json
+	Screenshots and video recording for test
+	Exploring cypress dashboard
+	Understand the environmental variables of cypress
+	Generate excellent reports for test execution results
+	Integrate cypress tests with Jenkins CI
+	
+===================================================================================================================
+Hooks
+	Cypress also provides hooks(Borrowed from Mocha)
+	They are helpful to set conditions that you want to run before a set of tests or before each test.
+	They are also helpful to clean up conditions after a set of tests or after each test
+	Similar to annotations of testng
+	All setup method should go in before block and all tear down methods should go in after block(Common framework structure)
+	
+	syntax:
+		describe('Hooks',function(){
+		
+		before(function(){
+			//runs once before all tests in the block
+		})
+		
+		after(function(){
+			//runs once after all tests in the block
+		})
+		
+		beforeEach(function(){
+			//runs before each test (before each it block in the code) in the block
+		})
+		
+		afterEach(function(){
+			//runs after each test (before each it block in the code) in the block
+		})
+		
+		})
+	
+	The order of hook and test execution is as follows
+		All before() hooks run(once)
+		Any beforeEach() hooks run
+		Test run
+		Any afterEach() hooks run
+		All after() hooks run(once)
+----------------------------------------------------------------------------------------------------------------------------------		
+How to pass test data into code from JSON file
+	Cypress is providing a feature to drive the data from external soucres. If we place our data in fixtures folder, cypress automatically interacts with the json files available in the fixtures and retrieves data.
+	Fixture loading can be done with method cy.fixture("filename"). and It is recommended to do it in before hook method 
+	We have to resolve the promise of fixture file. Only then we can access data inside the fixture file
+----------------------------------------------------------------------------------------------------------------------------------	
+Building custom cypress commands
+	In support folder -> command.js folder -> It is present to accept all the custom method/functions
+	In this js file once we create a custom function we can use it in the code like cy.get() function
+----------------------------------------------------------------------------------------------------------------------------------	
+Parametrize test with multiple data sets i.e) iterating through the array in json // for each loop is used
+{
+ "name": "bob",
+ "gender":"Female",
+ "products" : ["Blackberry","Samsung Note 8"]
+}
+
+	
+    this.data.products.forEach(element => {
+        cy.selectProduct(element)
+    })
+	
+	
+----------------------------------------------------------------------------------------------------------------------------------
+Understand the test debugging
+	cy.pause() - will pause the execution at this point. We can resume after that point. This is useful for debugging
+	cy.debug() - debug() method will stop the execution at this point
+	
+----------------------------------------------------------------------------------------------------------------------------------
+Page object model
+	In page object model we will have objects of a page in a class. So If a change in locator is required we can change at only one place

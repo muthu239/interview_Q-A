@@ -179,6 +179,9 @@ How to type a value in a box and click enter? (ex:"hello" + press Enter)
 ----------------------------------------------------------------------------------------------------------------------------------   
 cy.wait("milliseconds") - To add wait
 	example : cy.wait(2000)
+----------------------------------------------------------------------------------------------------------------------------------
+cy.pause() - will pause the execution at this point. We can resume after that point. This is useful for debugging
+cy.debug() - will stop the execution at this point
 	
 ----------------------------------------------------------------------------------------------------------------------------------	
 cy.get('locator : visible') - Handling invisible elements. this will find only visible elements and filters out the invisible elements
@@ -466,6 +469,7 @@ Assertions
 		
 	//assert if text is displayed correctly
 		cy.get('.brand').should('have.text','GREENKART')
+		  cy.get(':nth-child(4) > .ng-untouched').should('have.value',this.data.name)
 		
 	// Assert with two conditions on a single element - use and after should. No need to keep on adding should
 		cy.get('#checkBoxOption1').check().should('be.checked').and('have.value','option1')  -> option1 value from HTML value locator
@@ -473,6 +477,12 @@ Assertions
 	// below is the assertion of comparing two strings
 		expect(str).to.equal('Hello , share this practice page and share your knowledge')
 		expect(priceText).to.equal('25')
+		
+	//Assert with an attribute value. The text field should have a minimum length of 2
+		cy.get('input[name="name"]:nth-child(2)').should('have.attr','minlength','2')
+	
+	//Assert if an element is disabled
+        cy.get('#inlineRadio3').should('be.disabled')
 
 ==================================================================================================================
 Core concept Notes:
@@ -500,3 +510,11 @@ Cypress is asynchronous, but why it is executing like its synchronous?(Important
 	.then() - this method is used to hold the execution of next step until the current step is resolved. But this is taken care by cypress. and user doesnt have to include this method each time
 	So while executing it will behave like synchronous step by step execution
 	
+=======================================================================================================
+Building custom cypress commands
+	In support folder -> command.js folder -> It is present to accept all the custom method/functions
+	In this js file once we create a custom function we can use it in the code like cy.get() function
+	
+How to add multiple spec files
+	In config add the spec pattern with comma. 
+		eg: specPattern: ['cypress/integration/examples/*.js','cypress/integration/pageObjects/*.js']
