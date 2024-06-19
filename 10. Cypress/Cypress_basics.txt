@@ -179,6 +179,10 @@ How to type a value in a box and click enter? (ex:"hello" + press Enter)
 ----------------------------------------------------------------------------------------------------------------------------------   
 cy.wait("milliseconds") - To add wait
 	example : cy.wait(2000)
+	
+Adding explicit wait
+	 Cypress.config('defaultCommandTimeout',8000)    //this timeout will be applicable only in this it{} block
+	 It will be applicable only after the wait specified line
 ----------------------------------------------------------------------------------------------------------------------------------
 cy.pause() - will pause the execution at this point. We can resume after that point. This is useful for debugging
 cy.debug() - will stop the execution at this point
@@ -484,6 +488,8 @@ Assertions
 	//Assert if an element is disabled
         cy.get('#inlineRadio3').should('be.disabled')
 
+	//Assert with regular expression // that is using include we can verify if the string contains the expected
+		cy.get('.alert').should('include.text',"Success! Thank you! Your order will be delivered in next few weeks :-).")
 ==================================================================================================================
 Core concept Notes:
 	Navigating to URL - visit
@@ -518,3 +524,4 @@ Building custom cypress commands
 How to add multiple spec files
 	In config add the spec pattern with comma. 
 		eg: specPattern: ['cypress/integration/examples/*.js','cypress/integration/pageObjects/*.js']
+		

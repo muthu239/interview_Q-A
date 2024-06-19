@@ -78,3 +78,15 @@ Understand the test debugging
 ----------------------------------------------------------------------------------------------------------------------------------
 Page object model
 	In page object model we will have objects of a page in a class. So If a change in locator is required we can change at only one place
+----------------------------------------------------------------------------------------------------------------------------------
+Configuration changes in cypress.config.js - Implementing global config
+	in cypress.config.js file enter the "defaultCommandTimeout: 6000 " - this will be applicable globally to the entire code.
+		example - defaultCommandTimeout: 6000
+	
+	If we need the timeout to be on spec level, enter it in the it{} block of the code, so the timeout will be applicable only for that block
+		example - Cypress.config('defaultCommandTimeout',8000) //this timeout will be applicable only in this it{} block
+		
+		
+		
+Importance of environmental variables
+	environmental variables are values which we want to globally set and apply to all test cases, then insted of reusing the values at each test, we can write in form of environmental variables and reuse everywhere in our framework 
