@@ -1,0 +1,178 @@
+what is RPA?
+	The process of automating day to day business operations with the help of robots to reduce human intervention is said to be Robotic Process Automation(RPA)
+
+What type of work can RPA do?
+	1. Extract content from any documents like pdfs, word, Notepad, Excel or email clients
+	2. Move files and folders in operating system
+	3. Can retrieve data from web browsers with artificial intelligence capablities
+	4. Automate any desktop applications like SAP, Mainframes, word, etc.
+	5. Automate any web applications
+	6. Read and write databases
+	
+	RPA robots can capture data and manipulate any applications just like humans do.
+	
+RPA in layman terms	
+	Just like how physical robots have been rapidly replacing industrial workers, software RPA robots will be replacing a high percentange of white collar workers, sooner than you think
+	
+How these robots are created?
+	there are RPA tools in market which can design the virtual robots according to process requirements
+	
+
+	
+Where is RPA used in business?
+	Financial services
+	Health care
+	Accounting
+	Customer service
+	Human resource
+	Supply chain management
+	
+Popular RPA tools in market
+	UiPath
+	Blue Prism
+	Automation Anywhere
+	
+RPA Vs Selenium (or) RPA and Selenium
+
+
+Why is it not preferred to receord the scripts?
+	Recording can only helps us in a sequence of steps process automating. But on a real life there will be conditions and branches at each step. So it is always not preferred to record the script
+	
+Note:(Important)
+	Sequence and Flowchart are two type of workflows
+	IN a flowchart you can have both sequence and flow chart types
+	In a flowchart we can use sequence to create actions/record actions. But in sequence we cannot add flowchart
+	
+is it possible to type values into instead of using type into activity? (Important question)
+	yes, by entering the word or alphabet in the hot key activity
+	
+Is it possible to run the process which is recorded with notepad while having the notepad application open in background?
+	It is possible, but the title in the selector should be same as we used while creating the script. suppose if notepad is already open in the background, then when a new instance opens, the applications document name will not be the same as we used to create script(which will be in the selector) and the script will fail.
+	It is possible to handle that by creating a regular expression for the title name in the selector
+	
+Data scrapping techniques:
+	-> Get Text (activity) - need to be used when the text needs to be extracted from specific location like in web/desktop applications
+	-> Get OCR(Optical character recognition) text (important interview topic)(activity) - grabs text from images. OCR engine is available in uiPath which helps in grabbing the text from images.
+	-> Get Full text (activity) - gets complete text from application
+	-> Get visible text (activity) - need to be used when you want to get native txt i.e)visible on screen 
+
+diff btwn Native and full text screen scrapping menus?
+	Native will extract text only which is visible and will not scroll down
+	Whereas with full text option it'll extract the text from the entire document
+	
+-> Full text is the default method, it is a fast and accurate, yet unlike the native method, it cannot extract the screen cooordinates of the text.
+->Both these methods work only with desktop applications, but the native method only works with apps that are built to render text with the Graphics deveice interface (GDI) example : Notepad supports native whereas word doesnt support.
+->OCR is not 100% accurate, but can be usefulto extract that the other two methods could not, as it works with all applications including citrix, studio uses Google OCR, Google Cloud OCR, Microsoft OCR, Microsoft Cloud OCR and Abbyy Cloud OCR	
+
+attach application vs open application
+	Attach aplication will check for already available open script developed application with the same file name
+	whereas open application will open the application initally
+
+
+Shortcut to extract certain text from a line of text
+	use Get OCR text activity, using mouse drag and create a snapshot to the extent you require. that's it. The required text is extracted from the line without any code
+	
+	
+Excel activities(Important)
+	Reading excel cell activity gives output as single value whereas reading range of excel cells give outut in datatable. Datatable is like an virtual excel present in UiPath.
+	Output data table activity - Writes a DataTable to a string using the CSV format.
+	To read entire document range, use read range activity and give empty quotes "". It'll read the entire sheet even if filter is applied it doesnt matter
+	
+	
+Best practices/Uipath Coding standards
+	Making workflow readable
+	Buidling reusable workflows
+	Commenting techniques
+	Exception handlings - Try and catch activity
+
+Running multiple xaml from main xaml file
+Parallel activity helps in running the files parallelely
+
+Important interview question:
+	Comment Vs Comment Out:
+		comment - Activity to enter comment
+		comment out - Activity to ignore activities while running. Shortcut is to right click any activity and disable activity to comment out the activity
+		
+Which activity to use when we want write in a text file from multiple iterations without overwriting?
+	Append line - this activity works similar to write text file but by appending the iteration values in the text file instead of overwriting it
+	
+Note:
+	Only one activity can be added to then and else block of if else activity. If you want to perform multiple acitivities with that condition then add a sequence workflow for the activity and perform the acitivities what you need to do
+	
+Open browser Vs Attach browser(Important question)
+	Attach browser will help to work with browser that is already open with that page also open, else job will fail
+	
+	
+Retry scope activity
+=========================================
+------------------
+Studio Terminologies
+	Process - > Project/Workspace which stores all files
+	Dependencies -> Libraries to support automation
+	xaml -> Design automation workflow
+	project.json -> Project information and Metadata to publish project
+	Activities -> UiPath core packages for designing workflow
+	Properties -> properties list for selected activity
+	Outline -> Output console to log workflow results
+	Ribbon Menu -> UiPath tool features save, publish, record
+	
+The project panel:
+	The project panel enables you to manage project files, dependencies, and configure project settings
+	
+The designer:
+	This is where you take your idea and shape it into an actual automation. Any automation is a sequence of building blocks called activities, each of them performing a designated action in the order you arranged them on the canvas
+	
+The activities panel:
+	you can search for an Activity from here or expand the available activites. once you select one, you can drag & drop it into the canvas or simply double click it.
+	
+The command palette:
+	The command palette is a way to directly add an activity into the canvas. Search for an activity or pick a recommended activity. Shortcut ctrl + shift + p
+
+The data manager:
+	This is your one stop shop for handling all your automation assets such as variables, arguments, files and more. 
+	
+The home tab:
+	Home is where you can manage your automations, create a new ones, browse templates or even find learning resources. 	
+	
+	
+==================================================================================
+UiPath Orchestrator
+	It is a centralized robot management dashboard where you can easily deploy, secure and manage your uiPath Robots at scale
+
+
+
+==================================================
+Object reference not set to an instance of an object -While handling dataTable -  important question?
+
+================================================================
+vbCrLf - when you have both carriage return(\r) and line feed(\n) in the string
+vbCr - only When you have carriage return(\r)
+vbLf - only when you have line feed(\n)
+
+====================================================================
+Project difficulties faced
+	Got the dynamic value as a variable and used that as an attribute in the following activity's selector to handle the dynamic element and get the text from that field
+	
+Is it possible to run headless mode in Uipath?
+
+How to handle dropdowns in UiPath?
+
+How to do drag and drop? What are the possible ways
+
+
+
+Deloitte - interview questions asked
+1. Components of bot in uiPath
+2. Purpose of orchestrator
+3. Data scrapping Vs Screen scrapping
+4. What do you prefer - Uipath Vs Selenium and why?
+5. Components of UiPath
+6. Purpose of UiPath studio
+7. What is RE framework?
+8. Attended Vs Unattended bots
+9. 
+=====================================================================================
+https://www.simplilearn.com/tutorials/rpa-tutorial/uipath-interview-questions
+https://www.simplilearn.com/tutorials/rpa-tutorial/rpa-interview-questions
+https://www.interviewbit.com/uipath-interview-questions/#robotic-process-automation
+https://www.kausalvikash.in/uipath-interview-questions-and-answers/

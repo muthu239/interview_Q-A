@@ -19,6 +19,7 @@ Hooks
 	They are also helpful to clean up conditions after a set of tests or after each test
 	Similar to annotations of testng
 	All setup method should go in before block and all tear down methods should go in after block(Common framework structure)
+	Setup and teardown methods go into the blocks
 	
 	syntax:
 		describe('Hooks',function(){
@@ -90,3 +91,14 @@ Configuration changes in cypress.config.js - Implementing global config
 		
 Importance of environmental variables
 	environmental variables are values which we want to globally set and apply to all test cases, then insted of reusing the values at each test, we can write in form of environmental variables and reuse everywhere in our framework 
+	
+==================================================================================
+Cypress mochawesome reporter
+	HTML report with screenshot and video recorded in it
+	Add the event listeners and enable it
+	Register the events in e2e.js
+	
+	Install the reporter
+	Tell cypress we are enabling the reporter and define the event listeners
+	Register the event in support e2e.js file
+	

@@ -12,7 +12,7 @@
 3. Automation Testing
 	Java & Python basics
 	Selenium
-	Selenium Frameworks - Data driven, POM, Cucumber, TestNG
+	Selenium Frameworks - Data driven, POM, Cucumber, TestNG,Maven
 
 4. Performance Testing - web based clients
 	Jmeter

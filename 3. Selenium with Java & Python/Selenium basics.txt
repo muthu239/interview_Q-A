@@ -43,7 +43,7 @@ How do you verify the colour using selenium?
 ctrl + u -> to view page source
 F12 / ctrl + shif + i -> to view developer tools
 ctrl + shift +  c -> to inspect an element
-==================================================
+==================================================================================================================
 Selenium	
 	Selenium is an open source UI automation tool
 	Selenium is used to automate web based application
@@ -147,7 +147,11 @@ Whats new in Selenium 4
 				-> To Right Of
 				-> Above 
 				-> Below
-			No existing locator functionalities have been removed
+			No existing locator functionalities have been removed.Similar to the below are examples
+		example:
+			WebElement emailAddressField = driver.findElement(By.id("email"));
+			WebElement passwordField = driver.findElement(with(By.tagName("input")).below(emailAddressField));
+				
 
 	-> Support for chrome debugging protocol
 			Selenium 4 comes with native support for chrome dev tools protocol
@@ -263,12 +267,32 @@ Options Class:
 	Methods of Options Class
 		setBinary(): 
 			This is used to provide the binary exe path of Browser. This method is used whenever tester want to perform the browser version testing in selenium
+			Example:
+				System.setProperty("webdriver.gecko.driver", "D:\\PATH\\geckodriver.exe");
+				FirefoxOptions fo = new FirefoxOptions();
+				fo.setBinary(new FirefoxBinary(new File("C:\\Program Files\\Mozilla Firefox\\firefox.exe")));
+				WebDriver driver = new FirefoxDriver(fo);
 				
 		setAcceptInsecureCerts(): 
 			This is used to bypass the authentication certificate or SSL certificate to test the website. This method accepts boolean parameter, if true driver accepts the certificate and proceeds further, if false is passed and site has SSL then driver will stop the execution as it cannot process further due to SSL.
+			Example:
+				System.setProperty("webdriver.gecko.driver", "D:\\PATH\\geckodriver.exe");
+				FirefoxOptions fo = new FirefoxOptions();
+				fo.setAcceptInsecureCerts(false);
+				WebDriver driver = new FirefoxDriver(fo);
 				
 		setProxy(): 
 			To set Proxy we have Proxy Class in Selenium. We need to set the proxy and pass the Proxy Object in setProxy() method.
+			Example:
+				System.setProperty("webdriver.gecko.driver", "D:\\PATH\\geckodriver.exe");
+				FirefoxOptions fo = new FirefoxOptions();
+			// Create object Proxy class
+				Proxy prox = new Proxy();
+				prox.setProxyAutoconfigUrl("https://proxy.chercher.tech");
+			// register the proxy with options class
+				fo.setProxy(prox);
+			// create object to firefox driver
+				WebDriver driver = new FirefoxDriver(fo);
 				
 		setHeadLess(): 
 			Headless means no UI. Selenium helps user to run the Tests in headless browser and make the Browser HeadLess.
@@ -372,7 +396,7 @@ Waits in selenium
 	
 	Timeout Interface in selenium
 		- Timeout is interface in webdriver interface, which manages all waits of webdriver instances
-		- We are declaring the timeout in the instance of webdriver and not on the process. So if we define the timeout with a webdriver instance it is applicable throughout the script. So we dont have to mention it again and again on the scrip like thread.sleep
+		- We are declaring the timeout in the instance of webdriver and not on the process. So if we define the timeout with a webdriver instance it is applicable throughout the script. So we dont have to mention it again and again on the script like thread.sleep
 		- There is no implementation present for these methods in Timeouts interface, the browser classes(FireFox driver, chromeDriver,..) provides the implementations for these methods because browser classes implements webdriver interface
 		- one time putting wait is enough here as long as driver is not killed
 		
@@ -786,6 +810,11 @@ Javascript executor:
 			JavascriptExecutor js = (JavascriptExecutor)driver;
 			String text = js.executeScript("return window.alert.myAlertText;");
 			System.out.println(text);
+			
+		- Set attribute value
+			WebDriver driver; // Assigned elsewhere
+			JavascriptExecutor js = (JavascriptExecutor) driver;
+			js.executeScript("document.getElementById('//id of element').setAttribute('attr', '10')");
 		
 	How to scroll using js executor?
 		JavascriptExecutor js = (JavascriptExecutor)driver;
@@ -808,6 +837,12 @@ Javascript executor:
 	
 File upload in selenium
 	Selenium cannot interact with OS, so with the help of sendKeys method we can send in the filepath which will upload the file
+	
+Navigation commands
+	driver.navigate().to(“url”) - To navigate to given url
+	driver.navigate().forward() - To move to the next page
+	driver.navigate().backward() - To move to the current page
+	driver.navigate().refresh() - To refresh the particular page
 	
 =========================================================================================================================================
 Justify selenium webdriver is interface not a class
@@ -908,3 +943,37 @@ Switch tab without using SwitchTo().window() (or) open an empty tab in browser
 	With each switch of tab or window, get the page title and confirm the page you've switched to
 	
 List Different ways to click in selenium?
+
+
+
+driver.manage().window().maximize() Vs driver.manage.window().fullscreen()
+	driver.manage().window().fullscreen();
+		The browser's menu bar is not visible
+		The whole desktop estate is covered up by the browser.
+		The Task bar is not visible
+
+	driver.manage().window().maximize();
+		The browser's menu bar is visible
+		The whole desktop estate is not covered up by the browser.
+		The Task bar is visible
+
+
+======================================================================================================================================
+Selenium
+https://www.interviewbit.com/selenium-interview-questions/
+
+https://www.interviewbit.com/cucumber-interview-questions/
+
+https://artoftesting.com/selenium-interview-questions
+
+https://www.mygreatlearning.com/blog/selenium-interview-questions/#selenium-interview-questions-for-freshers
+
+https://www.edureka.co/blog/interview-questions/selenium-interview-questions-answers/
+
+https://www.testgorilla.com/blog/tricky-selenium-interview-questions-answers/
+
+https://intellipaat.com/blog/interview-question/selenium-interview-questions/
+
+https://www.simplilearn.com/tutorials/selenium-tutorial/selenium-interview-questions-and-answers
+
+https://www.tutorialspoint.com/how-to-verify-color-of-a-web-element-in-selenium-webdriver

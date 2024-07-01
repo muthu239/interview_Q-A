@@ -158,3 +158,7 @@ cucumber reporting - for api
 	This report gives a details report of each step and how much time it took and where it failed
 	very simple to add. And no need to do lot of work around it.
 	
+==============================================================================================================================
+Deloitte interview questions
+1. Purpose of Gherkin keywords(Given, when, then, And, but, *, ...) and where should you use that keyword
+	https://cucumber.io/docs/gherkin/reference/ - Go through this documentation fully

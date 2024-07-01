@@ -95,3 +95,16 @@ Is Main method compulsory in java?
 					System.out.println("program is running without main() method");
 				}
 			}
+			
+			
+========================================================================================================================
+
+
+https://www.digitalocean.com/community/tutorials/java-programming-interview-questions#9-how-do-you-remove-leading-and-trailing-spaces-from-a-string-in-java
+
+https://www.interviewbit.com/java-programming-interview-questions/#write-a-class-programmer-give-some-properties-and-methods-to-it-and-show-how-you-will-you-access-them-in-main-method
+
+https://www.javaguides.net/2023/07/java-coding-interview-questions-and-answers.html
+
+https://rahulshettyacademy.com/blog/index.php/2021/07/29/25-java-programming-interview-questions-part-1/#t-1710775087800
+https://www.baeldung.com/java-sort-hashset

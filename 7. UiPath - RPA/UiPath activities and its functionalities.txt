@@ -1,0 +1,1 @@
+Below are the most commonly used uiPath activities and their functionality
