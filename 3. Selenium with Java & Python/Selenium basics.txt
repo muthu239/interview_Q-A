@@ -636,6 +636,12 @@ Select class
 			//selectByIndex(int index)
 			Select select = new Select(monthDropDown);
 			select.selectByIndex(11);
+			
+			//getOptions()
+			List<WebElement> monthValues = select.getOptions();
+			for(WebElement month : monthValues) {
+				System.out.println(month.getText());
+			}
 		
 Handle multiple Browser windows/Tab
 	In selenium, we need to switch to window/tab on which we want to work
@@ -668,6 +674,13 @@ Handle multiple Browser windows/Tab
 			
 			//To switch to parent window
 			driver.switchTo().defaultContent();
+			
+	Note: 		
+		To switch to a specific window, Set method does not contain get() method.So convert the set to a list and use get() of specific index to switch to that window
+			
+			Set<String> windowId = driver.getWindowHandles();
+			List<String> windowIdList = new ArrayList(windowId);
+			driver.switchTo().window(windowIdList.get(2))
 		
 Handle alerts 
 	Alerts in webpage used to get the attention of user

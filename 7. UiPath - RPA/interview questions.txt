@@ -163,16 +163,48 @@ How to do drag and drop? What are the possible ways
 
 Deloitte - interview questions asked
 1. Components of bot in uiPath
+	The Robot is split into several components, each being dedicated to a particular task in your automation. The Robot components are as follows:
+		Service
+			Service Mode
+			User Mode
+		Executor
+		Command Line Interface
+		UiPath Assistant
+
 2. Purpose of orchestrator
+
 3. Data scrapping Vs Screen scrapping
+	There are two main types.
+	
+	Screen scraping can be used to extract raw text as a string value from any element, image or region in any application type; you can optionally convert it into a DataTable structure if this is appropriate. It generates the activities Get Full Text, Get Visible Text or Get OCR Text, depending on your choices. 
+	
+	Data scraping instead works only on (web) application data that is recognisable to UiPath as a table structure and only generates DataTable output. Instead of a whole table element or region, you select a single table cell; if the table can be scraped the wizard will then let you configure what to extract. This wizard creates an Extract Structured Data activity.
+	
 4. What do you prefer - Uipath Vs Selenium and why?
+
 5. Components of UiPath
+	1. UiPath Studio
+		The Studio component is basically a visual designer that enables the user to build automation workflows by utilizing the pre-built activities. This aids in creating automation workflows that help in automating tasks and processes. It's main features include -
+
+		GUI dashboard
+			Reusable components
+			Three complexity levels
+			Integration with OCR technologies
+			Different types of recorders
+			Error handling & logging
+	2. UiPath Robot
+		The Robot component plays the role of automating the workflows that are created by the Studio component. The user must ensure that this component is running well to carry out task execution. It is also possible to have multiple bots running simultaneously.
+
+	3. UiPath Orchestrator
+		The Orchestrator component enables the user to orchestrate (manipulate) the bots in a repetitive process on different platforms.
+		
 6. Purpose of UiPath studio
 7. What is RE framework?
 8. Attended Vs Unattended bots
-9. 
+9.
 =====================================================================================
 https://www.simplilearn.com/tutorials/rpa-tutorial/uipath-interview-questions
 https://www.simplilearn.com/tutorials/rpa-tutorial/rpa-interview-questions
 https://www.interviewbit.com/uipath-interview-questions/#robotic-process-automation
 https://www.kausalvikash.in/uipath-interview-questions-and-answers/
+https://www.igmguru.com/blog/uipath-interview-questions

@@ -13,6 +13,9 @@
 	Java & Python basics
 	Selenium
 	Selenium Frameworks - Data driven, POM, Cucumber, TestNG,Maven
+	Cypress
+	Playwright
+
 
 4. Performance Testing - web based clients
 	Jmeter
@@ -22,7 +25,7 @@
 5. API/Webservices testing	
 	SoapUI
 	Postman
-	REst Assured
+	Rest Assured
 
 6. RPA
 	UiPath
@@ -31,7 +34,13 @@
 
 8. GIT basics
 	
-9. CI/CD - Jenkins
+9. CI/CD - Jenkins, Docker, Kubernetes
+
+10. ETL testing [last]
+
+11. Mobile automation
+
+12. Security testing
 
 Tools
 	SAP SD,MM - tcodes

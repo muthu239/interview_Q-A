@@ -21,3 +21,39 @@
 
 
 
+===================================================================
+1. How to Handle AJAX Elements?
+2. What is a fluent wait?
+3. What is self-join?
+4. Write a program to find the Fibonacci numbers using Recursion.
+5. Write a program that gives O/p: a2b2c3d2 for the Input String Str=”aabbcccdd“. You must check all the conditions so the code can’t break.
+6. Explain the internal architecture of HashMAP.
+7. What are the Constraints in SQL?
+8. Why did we use Maven?
+9. How will you execute the scenario If you have 100 test scripts… if test case no. 61 passes, then don’t run/execute tests 62 to 67. 
+
+
+1. Write a function to reverse a given string.
+Example:
+Input: Stringinput="hello";
+Output: "olleh"
+
+2. Explain the difference between findElement and findElements.
+->findElement: Returns the first matching element on the current page.
+findElements: Returns a list of all matching elements on the current page.
+
+3. What is the purpose of the testing phase in SDLC?
+->The testing phase ensures that the software product is free of defects and errors, meets the requirements, and is reliable and usable.
+
+4. Explain method overloading and method overriding.
+->Method Overloading: Multiple methods with the same name but different parameters within the same class.
+Method Overriding: A subclass provides a specific implementation of a method that is already defined in its superclass.
+
+5. What is an abstract class?
+->An abstract class is a class that cannot be instantiated and may contain abstract methods (methods without a body) that must be implemented by subclasses.
+
+6. Difference between PUT and POST
+->PUT is like updating or replacing something, while POST is like adding something new.
+
+7. If an element is getting displayed intermittently, how will write code such that no exceptions are to be thrown?
+->To handle elements that are intermittently displayed and ensure no exceptions are thrown, you can use explicit waits in Selenium. Explicit waits allow you to wait for a specific condition to be met before proceeding with the next step in your code.

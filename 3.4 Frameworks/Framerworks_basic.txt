@@ -86,6 +86,11 @@ PageFactory
 		Annotations in Page Factory
 			@FindBy: 
 				This is used to identify web elements with just one defined criterion. It can be used to locate the following: id, name, className, CSS, XPath, tagName, linkText, and partialLinkText.
+				
+				eg:
+					@FindBy(xpath = "//*[@id='signin_info']/a")
+					public WebElement singoutLink;
+				
 			@FindBys: 
 				This is used to point to web elements with more than one criteria and must match all. An AND conditional relationship is used to identify the web elements based on the various criteria defined.
 			@FindAll: 

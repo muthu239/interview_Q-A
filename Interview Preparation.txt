@@ -6,9 +6,14 @@ Self Intro:
 	UiPath automation
 	
 	
-Testing Basics (9 30 to 10 30)
+Testing Basics 
 Agile Basics
-Java Basics - Coding + Conceptual (10 30 to 11 30)
+
+Java Basics - Coding + Conceptual
+Postman
+SoapUI
+Rest Assured
+
 Xpath
 Selenium
 TestNG
@@ -16,7 +21,7 @@ Maven
 Cucumber
 Data driven framework
 POM
-UiPath (2 to 3)
 
-https://www.glassdoor.co.in/Interview/Deloitte-QA-Automation-Engineer-Interview-Questions-EI_IE2763.0,8_KO9,31.htm
-https://www.ambitionbox.com/interviews/deloitte-interview-questions/qa-automation-engineer
+UiPath
+
+

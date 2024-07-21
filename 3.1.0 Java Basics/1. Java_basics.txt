@@ -14,51 +14,146 @@ Types of variable:
 		A variable declared inside the class but outside the body of the method, is called instance variable.
 	
 	Static variable:
-		A variable which is declared as static is called static variable. It cannot be local
+		A variable which is declared as static is called static variable. It cannot be local.
 	
 
 Primitive Vs Non Primitive Data type
-
+	Primitive Data type	
+		A primitive data type specifies the size and type of variable values and it also has no additional methods.
+			Eg: Byte,Short,int,long,float,double,boolean,char
+	
+	Non Primitive data type
+		Non primitive data types are called reference types because they refer to objects
+			eg: String, Arrays, Classes
+			
+	Difference between primitive and non primitive data types
+		- Primitive types are predefined in Java. Non primitive types are created by the programmer and is not defined by Java(Except String)
+		- Non primitive type can be used to call methods to perform certain operation, while primitive types cannot
+		- A primitive type always has a value, while non primitive types can be null
+		- The size of the primitive type depends on the data type, while non primitive types have all the same size
+	
+	Type casting
+		Type casting is when you assign a value of one primitive data type to another
+			- Widening casting[Automatically]
+				converts smaller type to larger type size
+					byte->short->char->int->long->float->double
+			
+			- Narrowing casting[Manually]
+				converts larger type to smaller type size
+					double->float->long->int->char->short->byte
+		
 Arrays
 	Arrays is a collection of similar type of elements
 
 Strings
-	String is a sequence of characters. But in jave string is an object that represents a sequence of characters
+	String is a sequence of characters. But in java string is an object that represents a sequence of characters
 	String is a class in java
+	String objects are immutable. Once string object is created it's data or state cant be changed but a new string object is created
+	
+	Creating string objects
+		1. By string literal
+		2. By new keyword
 	
 	Why Java strings are immutable?(Important)
+		Because Java uses the concept of string literal. suppose there are 5 reference variables, all refer to one object "Sachin". If one reference variable changes the value of object, it will be affected to all the reference variables. That is why string objects are immutable in java
 	
 	
 	String Vs String Buffer
-	String Buffer Vs String Builder
+		String
+			- String class in immutable
+			- String is slow and consume more memory when you concat too may strings, because every time it creates new instance (object)
+			- String class overrides the equals() method of object class. So you can compare the contents of two strings by equals() method
+			
+		String Buffer
+			- Stringbuffer class is mutable
+			- Stringbuffer is fast and consumes less memory when you concat strings
+			- Stringbuffer() class doesnt override the equals() method of object class
 	
+	
+	String Buffer Vs String Builder
+		Stringbuffer
+			- Stringbuffer is synchronised i.e) thread safe. It means two threads cannot call the methods of stringbuffer simultaneously.
+			- Stringbuffer is less efficient than stringbuilder
+			
+		Stringbuilder
+			- Stringbuilder is non synchronised i.e) not thread safe. It means two threads can call the methods of stringbuilder simultaneously.
+			- Stringbuilder is more efficient than stringbuffer
+
 	
 Enums
 	Diff btwn Enum and class
+		An enum is just like class with attributes and methods, but the only difference is enum constant are public static and final(unchangeable) and cannot be overriden
+		An enum cannot be used to create object, and it cannot extend other classes
 -----------------------------------------------------------------
 OOPS Basics
 	Class
+		- Class can be defined as a blueprint for which you can create an individual object. 
+		- Collection of objects is called class
+		
 	Object
+		- Object is defined as an instance of a class
+		- Entity that has state(variable) and behavior(method) is known as object
+		
 	Inheritance
-	Polymorphism	
+		- When one object acquires all the properties and behavior of parent object is called inheritance
+		- The idea behind inheritance is that you can create new class that are built upon exisiting class
+			Types of inheritance:
+				Single
+				Multilevel
+				Hierarchical
+		
+	Polymorphism
+		If one task is performed in different ways, it is known as polymorphism. In Java, we use method override and method overload to achieve polymorphism
+		
 	Abstraction
-	Encapsulation
----------------------------------------------------------------------
-Constructor
-	Types of constructor
-		Default constructor
-		Paramterized constructor
+		Abstraction is a process of hiding the implementation details of showing only functionality to the user. Abstraction lets you focus on what the object does instead of how it does it.
+		Class which is declared with abstract keyword is known as abstract class. It can have abstract and non abstract methods
+		Abstract methods are methods without implementation
+		Abstract class needs to be extended and its method implemented. 
+		Abstract class cannot be instantiated
 	
-	Rules for creating Java Constructor
-		Constructor name must be the same as its class name
-		A constructor must have no explicit return type
-		A java constructor cannot be abstract, final, static
+		Why abstract class cannot be instantiated?
+			As the methods in abstract class are not implemented methods, there is no point in creating object for that class
+	
+	Encapsulation
+		Process of wrapping code and data together into a single unit
+		user can create a fully encapsulated class in java by making all the data members of the class private. And use setter and getter methods to set and get the data in it.
 		
-	Is constructor overloading possible?
-		Yes
+		Advantages of encapsulation
 		
+---------------------------------------------------------------------
+Static Vs Non static methods
+	Static method can be accessed without creating an object of the class, while non static methods require an object to be created to access them
+
+
+Constructor
+	Constructor is a block of code similar to method. the constructor is called when an object of the class is created.
+		Types of constructor
+			Default constructor
+			Paramterized constructor
 		
-Constructor Vs Method
+		Rules for creating Java Constructor
+			Constructor name must be the same as its class name
+			A constructor must have no explicit return type
+			A java constructor cannot be abstract, final, static and synchronised
+			
+		Is constructor overloading possible?
+			Yes. It is possible		
+		
+	Constructor Vs Method
+		Constructor
+			- It is used to initialize the state of an object
+			- A constructor must not have a return type
+			- The constructor is invoked implicitly
+			- Java compiler provides default constructor if you dont have any constructor in class
+			- The constructor name must be the same as class name
+		
+		Method
+			- It is used to expose the behavior of the object
+			- A method must have a return type
+			- Method is invoked explicitly
+			- The method is not provided by compiler in any case
+			- The method name may or may not be same as the class name
 -----------------------------------------------------------------------------
 Static keyword
 	Static members of class belongs to class itself instead of Class object
@@ -81,18 +176,29 @@ This keyword
 		
 		
 ------------------------------------------------------------------------------------------------
-Inheritance
-
-	can we overload Java main() method?
-	Types of inheritance:
-		Single
-		Multilevel
-		Hierarchical
+can we overload Java main() method?
+	Yes, it is possible to overload . However JVM calls main method with string array as arguments first
 	
 	Why mulitple inheritance is not possible in java?
 -------------------------------------------------------------------------------------------------------
-Polymorphism
-	Runtime Ploymorphism(Method overriding) Vs Compile time polymorphism(Method Overloading)
+Runtime Ploymorphism(Method overriding) Vs Compile time polymorphism(Method Overloading)
+	Method overloading
+		- With method overloading, mulitple methods can have same name with different parameters
+		- In Java, it is not possible to overload just by changing the return type of method only.
+	Method overriding
+		- If subclass has same method as declared  in the parent class, it is known as method overriding
+		- Method overriding is used to provide the specific implementation of a method which is already provided by its superclass
+
+-----------------------------------------------------------------------------------------------------
+Binding
+	Converting a method call to method body is known as binding
+		
+	Static Binding[Early binding]
+		When type of object is determined at compile time it is known as static binding
+		If there are any private, Static or final method in a class, there is static binding
+	
+	Dynamic binding[Late binding]	
+		When the type of object is determined at runtime, it is known as dynamic binding
 	
 -----------------------------------------------------------------------------------------------------
 Super Keyword
@@ -109,10 +215,11 @@ Final keyword
 	
 ---------------------------------------------------------------------------------------
 Abstract class
+	Abstraction is a process of hiding the implementation details of showing only functionality to the user. Abstraction lets you focus on what the object does instead of how it does it.
 	Class which is declared with abstract keyword is known as abstract class. It can have abstract and non abstract methods
 	Abstract methods are methods without implementation
-	Abstraction is a process of hiding the implementation details of showing only functionality to the user. Abstraction lets you focus on what the object does instead of how it does it.
-	Abstract class needs to be extended and its method implemented. Abstract class cannot be instantiated
+	Abstract class needs to be extended and its method implemented. 
+	Abstract class cannot be instantiated
 	
 Why abstract class cannot be instantiated?
 	As the methods in abstract class are not implemented methods, there is no point in creating object for that class
@@ -124,12 +231,10 @@ Interface
 	you cant create the object of Interface
 	An interface is declared by using the interface keyword
 	An interface can extend another java interface only
+	An interface is implemented with other classes and it cannot be instantiated
 	
 Abstract class Vs Interface
---------------------------------------------------------------------------------------------------
-Encapsulation
-	Process of wrapping code and data together into a single unit
-	user can create a fully encapsulated class in java by making all the data members of the class private. And use setter and getter methods to set and get the data in it.
+	
 	
 --------------------------------------------------------------------------------------------------
 Exception handling
@@ -157,6 +262,9 @@ Exception handling
 	Finally:
 		Java finally block is followed by try block and always executed whenever the execption occurs or not.
 		Finally block is used to execute important code such as closing connection,stream etc.
+		
+	Throws:
+		When a method is called and an exception is declared, it must either be caught(using try..catch) or the exception must be declared(using throws)
 
 ------------------------------------------------------------------------------------------------------------
 Collections
@@ -175,8 +283,123 @@ Advantages of collection:
 ------------------------------------------------------------------------------------------------------------
 Wrapper class
 --------------------------------------------------------------------
-File Handling in Java:
+========================================================================================================		
 
-	Properties file:
+1. Does JVM create object of main class? (important)
+	No, JVM doesnt create the object of main class
+	The reason for main() static in java is to make sure that the main() method can be called without any instance
+	
+	For example:
+		//Not main is abstract
+		abstract class Main{
+			public static void main(String args[]){
+			system.out.println|("Hello");
 		
+		}
+		
+	Still the output here is "Hello" printed
+	
+	Since we can create an object for abstract classes in Java, it is guaranteed that object of the class with main() is not created by JVM
+	
 
+2. Can we override static method in Java? (Important)
+	No, We cannot override the static function in java. But we can overload the static method in Java.
+	
+	Why you can't override but overload?
+		Static method is bonded during compile time using Type of reference variable and not object.
+		As per java coding convention, static methods should be accessed by class name rather than object.
+		In Short static method can be overloaded,but can not be overridden in java
+		
+		
+3. What is method Hiding in Java?
+	If we declare, another static method with the same signature in derived class(child class) than the static method of super class will be hidden, and any call to that static method in subclass will go to the static method declared in that class itself. THis is known as method hiding in Java
+	
+				public class ParentClass {
+				 
+				 public static void printMe(){
+				 System.out.println("Static Method form Super Class");
+				 }
+				}
+				public class ChildClass extends ParentClass {
+				 public static void printMe(){
+				 System.out.println("Static Method form child Class");
+				 }
+				}
+
+
+				Now create another class and call the printMe() method of both classes.
+
+				public class OverrideStatic {
+				 
+				 public static void main(String args[]){
+				 
+				 ParentClass PClass = new ParentClass();
+				 //This should call the PrintMe method of parent Class
+				 PClass.printMe();
+				  
+				  
+				 PClass = new ChildClass();
+				 //As per Overriding this should call the Child PrintMe method
+				 //But it will call parant PrintMe method because of Type PClass
+				 PClass.printMe();
+				  
+				 ChildClass cClass = new ChildClass();
+				 //Will call the Child Static method
+				 cClass.printMe();
+				 }
+				}
+				Output Will be:
+				Static Method form Super Class
+				Static Method form Super Class
+				Static Method form child Class
+		
+		Now as per method overriding; if a method is overridden then a call is resolved by type of object during runtime. Which means, in our test class OverrideStatic, PClass.printMe(); should call Child class’ printMe() method, because reference variable of type Parent is referring an object of Child, but instead it call printMe()() method of Parent class itself.
+		This happens, because static methods are resolved or bonded during compile time, and only information which is available, and used by the compiler is the type of reference variable. Since PClass was reference variable of the Parent type, printMe() method from Parent class was called.
+
+		Now, In order to prove that static method can be hidden, if we call ChildClass.printMe() or cClass.printMe(), it will call printMe() method fromChild class.
+
+		This means static methods can not overridden in Java, they can only be hidden. This also answers, Why static method can not be overridden in Java, because they are resolved during compile time.
+		
+		
+Optimized way to search an sorted array? - Binary search
+Optimized way to Sort - Quick sort
+
+Is Main method compulsory in java?
+	The answer to this question depends on version of java you are using. Prior to JDK 5, main method was not mandatory in a java program.
+	You could write your full code under static block and it ran normally. 
+	The static block is first executed as soon as the class is loaded before the main(); method is invoked and therefore before the main() is called. 
+	main is usually declared as static method and hence Java doesn’t need an object to call main method.   
+	However, From JDK6 main method is mandatory. If your program doesn’t contain main method, then you will get a run-time error “main method not found in the class”. 
+	Note that your program will successfully compile in this case, but at run-time, it will throw error.
+	
+			// This program will successfully run
+			// prior to JDK 5
+			public class Test 
+			{
+				// static block
+				static
+				{
+					System.out.println("program is running without main() method");
+				}
+			}
+			
+			
+========================================================================================================================
+
+
+https://www.digitalocean.com/community/tutorials/java-programming-interview-questions#9-how-do-you-remove-leading-and-trailing-spaces-from-a-string-in-java
+
+https://www.interviewbit.com/java-programming-interview-questions/#write-a-class-programmer-give-some-properties-and-methods-to-it-and-show-how-you-will-you-access-them-in-main-method
+
+https://www.javaguides.net/2023/07/java-coding-interview-questions-and-answers.html
+
+https://rahulshettyacademy.com/blog/index.php/2021/07/29/25-java-programming-interview-questions-part-1/#t-1710775087800
+https://www.baeldung.com/java-sort-hashset
+
+==========================================================================================================================
+Pending topics
+	Threads
+	IO
+	JDBC
+	Garbage collection
+	Collections
